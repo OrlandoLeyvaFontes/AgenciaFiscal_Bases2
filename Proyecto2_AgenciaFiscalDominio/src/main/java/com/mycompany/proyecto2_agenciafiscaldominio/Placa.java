@@ -44,14 +44,6 @@ public class Placa implements Serializable {
         this.costo = costo;
     }
 
-    public Placa(Long id, String numeroAlfaNumerico, Date fechaEmision, Date fechaRecepcion, float costo) {
-        this.id = id;
-        this.numeroAlfaNumerico = numeroAlfaNumerico;
-        this.fechaEmision = fechaEmision;
-        this.fechaRecepcion = fechaRecepcion;
-        this.costo = costo;
-    }
-
     public String getNumeroAlfaNumerico() {
         return numeroAlfaNumerico;
     }

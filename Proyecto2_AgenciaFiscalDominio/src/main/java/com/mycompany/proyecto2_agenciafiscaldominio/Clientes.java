@@ -44,14 +44,6 @@ public class Clientes implements Serializable {
         this.telefono = telefono;
     }
 
-    public Clientes(Long id, String rfc, String nombreCompleto, Date fechaNacimiento, String telefono) {
-        this.id = id;
-        this.rfc = rfc;
-        this.nombreCompleto = nombreCompleto;
-        this.fechaNacimiento = fechaNacimiento;
-        this.telefono = telefono;
-    }
-
     public String getRfc() {
         return rfc;
     }

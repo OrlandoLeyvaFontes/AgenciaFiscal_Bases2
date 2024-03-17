@@ -1,74 +1,72 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.mycompany.proyecto2_agenciafiscaldominio;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  *
- * @author Guillermo
+ * @author Oley
  */
 @Entity
-@Table(name = "licencia")
 public class Licencia implements Serializable {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @Column(name = "fechaEmision", nullable = false)
-    private Date fechaEmision;
-    
-    @Column(name = "FechaVigencia", nullable = false)
-    private Date fechaVigencia;
-    
-    @Column(name = "costo", nullable = false)
-    private float costo;
-    
-    public Date getFechaEmision() {
-        return fechaEmision;
-    }
+@Id
+@GeneratedValue(strategy=GenerationType.IDENTITY)
+private Long id;
+@Column(name="Vigencia",nullable = false,unique = false)
+private int vigencia;
+@Column(name="costoNormal",nullable=false)
+private float costoNormal;
+@Column(name="CostoDiscapacitado",nullable = false)
+private float costoDiscapaitados;
 
     public Licencia() {
     }
 
-    public Licencia(Date fechaEmision, Date fechaVigencia, float costo) {
-        this.fechaEmision = fechaEmision;
-        this.fechaVigencia = fechaVigencia;
-        this.costo = costo;
+    public Licencia(int vigencia, float costoNormal, float costoDiscapaitados) {
+        this.vigencia = vigencia;
+        this.costoNormal = costoNormal;
+        this.costoDiscapaitados = costoDiscapaitados;
     }
 
-    public Licencia(Long id, Date fechaEmision, Date fechaVigencia, float costo) {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
-        this.fechaEmision = fechaEmision;
-        this.fechaVigencia = fechaVigencia;
-        this.costo = costo;
     }
 
-    public void setFechaEmision(Date fechaEmision) {
-        this.fechaEmision = fechaEmision;
+    public int getVigencia() {
+        return vigencia;
     }
 
-    public Date getFechaVigencia() {
-        return fechaVigencia;
+    public void setVigencia(int vigencia) {
+        this.vigencia = vigencia;
     }
 
-    public void setFechaVigencia(Date fechaVigencia) {
-        this.fechaVigencia = fechaVigencia;
+    public float getCostoNormal() {
+        return costoNormal;
     }
 
-    public float getCosto() {
-        return costo;
+    public void setCostoNormal(float costoNormal) {
+        this.costoNormal = costoNormal;
     }
 
-    public void setCosto(float costo) {
-        this.costo = costo;
+    public float getCostoDiscapaitados() {
+        return costoDiscapaitados;
     }
+
+    public void setCostoDiscapaitados(float costoDiscapaitados) {
+        this.costoDiscapaitados = costoDiscapaitados;
+    }
+    
     
 }
