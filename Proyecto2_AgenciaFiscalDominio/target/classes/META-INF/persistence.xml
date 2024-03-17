@@ -6,6 +6,7 @@
     <class>com.mycompany.proyecto2_agenciafiscaldominio.Automovil</class>
     <class>com.mycompany.proyecto2_agenciafiscaldominio.Placa</class>
     <class>com.mycompany.proyecto2_agenciafiscaldominio.Licencia</class>
+    <class>com.mycompany.proyecto2_agenciafiscaldominio.Tramite</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/agenciapu?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
