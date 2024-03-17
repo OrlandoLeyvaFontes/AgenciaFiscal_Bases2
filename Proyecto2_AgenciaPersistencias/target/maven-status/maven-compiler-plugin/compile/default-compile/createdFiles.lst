@@ -1,8 +1,11 @@
 com\mycompany\proyecto2_agenciapersistencias\IPlacasDAO.class
 com\mycompany\proyecto2_agenciapersistencias\ClientesDAO.class
 com\mycompany\proyecto2_agenciafiscalDTO\PlacaNuevoDTO.class
+com\mycompany\proyecto2_agenciapersistencias\LicenciaDAO.class
+com\mycompany\proyecto2_agenciapersistencias\ILicenciaDAO.class
 com\mycompany\proyecto2_agenciafiscalDTO\AutomovilNuevoDTO.class
 com\mycompany\proyecto2_agenciafiscalDTO\ClienteNuevoDTO.class
+com\mycompany\proyecto2_agenciafiscalDTO\LicenciaNuevaDTO.class
 com\mycompany\proyecto2_agenciapersistencias\IAutomovilDAO.class
 com\mycompany\proyecto2_agenciapersistencias\PlacaDAO.class
 com\mycompany\proyecto2_agenciapersistencias\AutomovilDAO.class

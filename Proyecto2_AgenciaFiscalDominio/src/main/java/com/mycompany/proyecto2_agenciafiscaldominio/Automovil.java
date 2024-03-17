@@ -45,6 +45,15 @@ public class Automovil implements Serializable {
         this.modelo = modelo;
     }
 
+    public Automovil(Long id, String numeroSerie, String marca, String linea, String color, String modelo) {
+        this.id = id;
+        this.numeroSerie = numeroSerie;
+        this.marca = marca;
+        this.linea = linea;
+        this.color = color;
+        this.modelo = modelo;
+    }
+
     public String getNumeroSerie() {
         return numeroSerie;
     }

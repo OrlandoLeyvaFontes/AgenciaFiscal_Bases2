@@ -1,6 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
+
 package com.mycompany.proyecto2_agenciafiscal;
 
 import com.mycompany.proyecto2_agenciafiscalDTO.AutomovilNuevoDTO;
