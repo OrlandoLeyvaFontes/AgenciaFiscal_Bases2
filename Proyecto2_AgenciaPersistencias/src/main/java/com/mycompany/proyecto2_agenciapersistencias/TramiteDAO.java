@@ -18,7 +18,7 @@ import javax.persistence.Persistence;
 public class TramiteDAO implements ITramiteDAO {
 
     @Override
-    public Tramite agergarTramite(TramiteNuevoDTO TramiteNuevo) {
+    public Tramite agregarTramite(TramiteNuevoDTO TramiteNuevo) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         EntityTransaction transaction = null;

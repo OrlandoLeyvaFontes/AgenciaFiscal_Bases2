@@ -59,6 +59,6 @@ public class Proyecto2_AgenciaFiscal {
         //        Licencia lic = licenciaDAO.agregarLicencia(new LicenciaNuevaDTO(1, 1, 1));
         //Prueba Tramite
         TramiteDAO tramiteDAO = new TramiteDAO();
-        Tramite tramite = tramiteDAO.agergarTramite(new TramiteNuevoDTO("Cambio de Propietario", fecha, "Orlando Leyva", 4));
+        Tramite tramite = tramiteDAO.agregarTramite(new TramiteNuevoDTO("Cambio de Propietario", fecha, "Orlando Leyva", 4));
     }
 }

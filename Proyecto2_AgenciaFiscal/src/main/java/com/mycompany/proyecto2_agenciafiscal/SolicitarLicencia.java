@@ -4,6 +4,22 @@
  */
 package com.mycompany.proyecto2_agenciafiscal;
 
+import com.mycompany.proyecto2_agenciafiscalDTO.ClienteNuevoDTO;
+import com.mycompany.proyecto2_agenciafiscalDTO.LicenciaNuevaDTO;
+import com.mycompany.proyecto2_agenciafiscalDTO.TramiteNuevoDTO;
+import com.mycompany.proyecto2_agenciafiscaldominio.Licencia;
+import com.mycompany.proyecto2_agenciapersistencias.ClientesDAO;
+import com.mycompany.proyecto2_agenciapersistencias.IClientesDAO;
+import com.mycompany.proyecto2_agenciapersistencias.ILicenciaDAO;
+import com.mycompany.proyecto2_agenciapersistencias.ITramiteDAO;
+import com.mycompany.proyecto2_agenciapersistencias.LicenciaDAO;
+import com.mycompany.proyecto2_agenciapersistencias.TramiteDAO;
+import java.util.Date;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Gui26
@@ -35,9 +51,9 @@ public class SolicitarLicencia extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtNombreCompleto = new javax.swing.JTextField();
         txtRfc = new javax.swing.JTextField();
-        btnCalendario = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jDateFechaNacimiento = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Solicitar Licencia");
@@ -50,6 +66,11 @@ public class SolicitarLicencia extends javax.swing.JFrame {
         });
 
         btnContinuar.setText("Continuar");
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nombre completo:");
 
@@ -59,11 +80,11 @@ public class SolicitarLicencia extends javax.swing.JFrame {
 
         jLabel4.setText("Celular:");
 
-        btnCalendario.setText("Calendario");
-
         btnLimpiar.setText("Limpiar");
 
         jLabel5.setText("Solicitar Licencia");
+
+        jDateFechaNacimiento.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,11 +101,11 @@ public class SolicitarLicencia extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnCalendario)
-                            .addComponent(txtCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(txtCelular)
                             .addComponent(txtRfc)
-                            .addComponent(txtNombreCompleto))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtNombreCompleto)
+                            .addComponent(jDateFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(119, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnRegresar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
@@ -113,15 +134,15 @@ public class SolicitarLicencia extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtRfc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(btnCalendario))
+                    .addComponent(jDateFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(btnLimpiar)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -140,13 +161,31 @@ public class SolicitarLicencia extends javax.swing.JFrame {
         ventana.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+        
+        ClienteNuevoDTO clienteNuevo = new ClienteNuevoDTO(txtRfc.getText(), txtNombreCompleto.getText(),
+                                                            jDateFechaNacimiento.getDate(), txtCelular.getText());
+        IClientesDAO clienteDAO = new ClientesDAO();
+        clienteDAO.agregarCliente(clienteNuevo);
+        
+        Date currentDate = new Date(System.currentTimeMillis());
+        
+        TramiteNuevoDTO tramiteNuevo = new TramiteNuevoDTO("Licencia", currentDate, txtNombreCompleto.getText(), 600);
+        ITramiteDAO tramiteDAO = new TramiteDAO();
+        tramiteDAO.agregarTramite(tramiteNuevo);
+        
+        LicenciaNuevaDTO licenciaNueva = new LicenciaNuevaDTO(1, 600, 200);
+        ILicenciaDAO licenciaDAO = new LicenciaDAO();
+        licenciaDAO.agregarLicencia(licenciaNueva);
+        
+    }//GEN-LAST:event_btnContinuarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCalendario;
     private javax.swing.JButton btnContinuar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegresar;
+    private com.toedter.calendar.JDateChooser jDateFechaNacimiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

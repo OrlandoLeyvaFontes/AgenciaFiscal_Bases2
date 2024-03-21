@@ -57,6 +57,11 @@ public class RegistrarAutomovil extends javax.swing.JFrame {
         });
 
         btnContinuar.setText("Continuar");
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Registrar Automovil");
 
@@ -128,7 +133,9 @@ public class RegistrarAutomovil extends javax.swing.JFrame {
         ventana.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+        
+    }//GEN-LAST:event_btnContinuarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContinuar;
