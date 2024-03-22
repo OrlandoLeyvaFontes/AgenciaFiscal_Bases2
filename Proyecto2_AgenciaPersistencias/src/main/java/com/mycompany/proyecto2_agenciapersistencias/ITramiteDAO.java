@@ -12,6 +12,6 @@ import com.mycompany.proyecto2_agenciafiscaldominio.Tramite;
  * @author Oley
  */
 public interface ITramiteDAO {
-            public Tramite agregarTramite(TramiteNuevoDTO TramiteNuevo);
+            public Tramite agergarTramite(TramiteNuevoDTO TramiteNuevo);
 
 }

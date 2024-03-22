@@ -4,6 +4,7 @@ com\mycompany\proyecto2_agenciafiscalDTO\PlacaNuevoDTO.class
 com\mycompany\proyecto2_agenciapersistencias\ILicenciaDAO.class
 com\mycompany\proyecto2_agenciapersistencias\TramiteDAO.class
 com\mycompany\proyecto2_agenciafiscalDTO\ClienteNuevoDTO.class
+com\mycompany\proyecto2_agenciapersistencias\IConexion.class
 com\mycompany\proyecto2_agenciafiscalDTO\TramiteNuevoDTO.class
 com\mycompany\proyecto2_agenciafiscalDTO\LicenciaNuevaDTO.class
 com\mycompany\proyecto2_agenciapersistencias\PlacaDAO.class
@@ -12,4 +13,5 @@ com\mycompany\proyecto2_agenciapersistencias\ITramiteDAO.class
 com\mycompany\proyecto2_agenciapersistencias\LicenciaDAO.class
 com\mycompany\proyecto2_agenciafiscalDTO\AutomovilNuevoDTO.class
 com\mycompany\proyecto2_agenciapersistencias\IAutomovilDAO.class
+com\mycompany\proyecto2_agenciapersistencias\ConexionBase.class
 com\mycompany\proyecto2_agenciapersistencias\IClientesDAO.class

@@ -4,62 +4,68 @@
  */
 package com.mycompany.proyecto2_agenciafiscalDTO;
 
+import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author Oley
  */
 public class LicenciaNuevaDTO {
- 
-private Long id;
-private int vigencia;
-private float costoNormal;
-private float costoDiscapaitados;
 
-    public LicenciaNuevaDTO() {
-    }
+    private Calendar fehcaVencida;
 
-    public LicenciaNuevaDTO(int vigencia, float costoNormal, float costoDiscapaitados) {
+    private Calendar fechaExpedi;
+    private String vigencia;
+    private Float Costo;
+
+    public LicenciaNuevaDTO(Calendar fehcaVencida, Calendar fechaExpedi, String vigencia, Float Costo) {
+        this.fehcaVencida = fehcaVencida;
+        this.fechaExpedi = fechaExpedi;
         this.vigencia = vigencia;
-        this.costoNormal = costoNormal;
-        this.costoDiscapaitados = costoDiscapaitados;
+        this.Costo = Costo;
     }
 
-    public Long getId() {
-        return id;
+    public Calendar getFehcaVencida() {
+        return fehcaVencida;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setFehcaVencida(Calendar fehcaVencida) {
+        this.fehcaVencida = fehcaVencida;
     }
 
-    public int getVigencia() {
+    public Calendar getFechaExpedi() {
+        return fechaExpedi;
+    }
+
+    public void setFechaExpedi(Calendar fechaExpedi) {
+        this.fechaExpedi = fechaExpedi;
+    }
+
+    public String getVigencia() {
         return vigencia;
     }
 
-    public void setVigencia(int vigencia) {
+    public void setVigencia(String vigencia) {
         this.vigencia = vigencia;
     }
 
-    public float getCostoNormal() {
-        return costoNormal;
+    public Float getCosto() {
+        return Costo;
     }
 
-    public void setCostoNormal(float costoNormal) {
-        this.costoNormal = costoNormal;
+    public void setCosto(Float Costo) {
+        this.Costo = Costo;
     }
 
-    public float getCostoDiscapaitados() {
-        return costoDiscapaitados;
+    public LicenciaNuevaDTO() {
+
     }
 
-    public void setCostoDiscapaitados(float costoDiscapaitados) {
-        this.costoDiscapaitados = costoDiscapaitados;
-    }
-    
-    
 }

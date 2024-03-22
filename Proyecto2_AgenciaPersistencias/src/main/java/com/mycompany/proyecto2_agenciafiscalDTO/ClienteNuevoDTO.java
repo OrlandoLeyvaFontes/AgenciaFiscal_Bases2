@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyecto2_agenciafiscalDTO;
 
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,13 +22,13 @@ public class ClienteNuevoDTO {
     private Long id;
     private String rfc;
     private String nombreCompleto;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String telefono;
 
     public ClienteNuevoDTO() {
     }
 
-    public ClienteNuevoDTO( String rfc, String nombreCompleto, Date fechaNacimiento, String telefono) {
+    public ClienteNuevoDTO( String rfc, String nombreCompleto, LocalDate fechaNacimiento, String telefono) {
         this.rfc = rfc;
         this.nombreCompleto = nombreCompleto;
         this.fechaNacimiento = fechaNacimiento;
@@ -58,13 +59,15 @@ public class ClienteNuevoDTO {
         this.nombreCompleto = nombreCompleto;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
+   
 
     public String getTelefono() {
         return telefono;

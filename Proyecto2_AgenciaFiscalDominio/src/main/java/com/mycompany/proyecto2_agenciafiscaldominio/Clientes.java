@@ -5,6 +5,7 @@
 package com.mycompany.proyecto2_agenciafiscaldominio;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,14 +31,14 @@ public class Clientes implements Serializable {
     @Column(name = "nombreCompleto", nullable = false, length = 200)
     private String nombreCompleto;
     @Column(name = "FechaNacimiento", nullable = false)
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     @Column(name = "telefono", nullable = false, unique = true, length = 12)
     private String telefono;
 
     public Clientes() {
     }
 
-    public Clientes(String rfc, String nombreCompleto, Date fechaNacimiento, String telefono) {
+    public Clientes(String rfc, String nombreCompleto, LocalDate fechaNacimiento, String telefono) {
         this.rfc = rfc;
         this.nombreCompleto = nombreCompleto;
         this.fechaNacimiento = fechaNacimiento;
@@ -60,13 +61,23 @@ public class Clientes implements Serializable {
         this.nombreCompleto = nombreCompleto;
     }
 
-    public Date getFechaNacimiento() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
+  
 
     public String getTelefono() {
         return telefono;

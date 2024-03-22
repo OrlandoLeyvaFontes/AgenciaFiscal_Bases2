@@ -7,6 +7,7 @@ package com.mycompany.proyecto2_agenciapersistencias;
 import com.mycompany.proyecto2_agenciafiscalDTO.ClienteNuevoDTO;
 import com.mycompany.proyecto2_agenciafiscalDTO.LicenciaNuevaDTO;
 import com.mycompany.proyecto2_agenciafiscaldominio.Licencia;
+import java.util.List;
 
 /**
  *
@@ -15,5 +16,7 @@ import com.mycompany.proyecto2_agenciafiscaldominio.Licencia;
 public interface ILicenciaDAO {
 
     public Licencia agregarLicencia(LicenciaNuevaDTO LicenciaNueva);
+//obtiene una lista de todas las licencias
 
+    public Licencia ListaLicencia(Long id);
 }

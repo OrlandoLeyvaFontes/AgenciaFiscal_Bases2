@@ -14,22 +14,19 @@ import javax.persistence.Id;
  * @author Oley
  */
 public class TramiteNuevoDTO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+
     private String tipoTramite;
     private Date fechaRealizacion;
     private String nombreSolicitante;
-    private float costo;
 
     public TramiteNuevoDTO() {
     }
 
-    public TramiteNuevoDTO(String tipoTramite, Date fechaRealizacion, String nombreSolicitante, float costo) {
+    public TramiteNuevoDTO(String tipoTramite, Date fechaRealizacion, String nombreSolicitante) {
         this.tipoTramite = tipoTramite;
         this.fechaRealizacion = fechaRealizacion;
         this.nombreSolicitante = nombreSolicitante;
-        this.costo = costo;
+     
     }
 
     public String getTipoTramite() {
@@ -56,12 +53,6 @@ public class TramiteNuevoDTO {
         this.nombreSolicitante = nombreSolicitante;
     }
 
-    public float getCosto() {
-        return costo;
-    }
-
-    public void setCosto(float costo) {
-        this.costo = costo;
-    }
+  
      
 }

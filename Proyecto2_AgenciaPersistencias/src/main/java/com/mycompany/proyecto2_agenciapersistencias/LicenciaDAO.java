@@ -7,10 +7,13 @@ package com.mycompany.proyecto2_agenciapersistencias;
 import com.mycompany.proyecto2_agenciafiscalDTO.LicenciaNuevaDTO;
 import com.mycompany.proyecto2_agenciafiscaldominio.Licencia;
 import com.mycompany.proyecto2_agenciafiscaldominio.Placa;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -18,23 +21,38 @@ import javax.persistence.Persistence;
  */
 public class LicenciaDAO implements ILicenciaDAO {
 
+    private IConexion conexionBD;
+
+    public LicenciaDAO(IConexion conexionBD) {
+        this.conexionBD = conexionBD;
+    }
+
+    @Override
+    public Licencia ListaLicencia(Long id) {
+        EntityManager entityManager = conexionBD.crearConexion();
+        Licencia lice = entityManager.find(Licencia.class, id);
+        entityManager.getTransaction().begin();
+        entityManager.close();
+        return lice;
+
+    }
+
     @Override
     public Licencia agregarLicencia(LicenciaNuevaDTO LicenciaNueva) {
-        EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         EntityTransaction transaction = null;
         Licencia licencia = null;
 
         try {
-            entityManagerFactory = Persistence.createEntityManagerFactory("AgenciaPU");
-            entityManager = entityManagerFactory.createEntityManager();
+            entityManager = conexionBD.crearConexion();
             transaction = entityManager.getTransaction();
             transaction.begin();
 
             licencia = new Licencia(
+                    LicenciaNueva.getFehcaVencida(),
+                    LicenciaNueva.getFechaExpedi(),
                     LicenciaNueva.getVigencia(),
-                    LicenciaNueva.getCostoNormal(),
-                    LicenciaNueva.getCostoDiscapaitados()
+                    LicenciaNueva.getCosto()
             );
 
             entityManager.persist(licencia);
@@ -48,11 +66,9 @@ public class LicenciaDAO implements ILicenciaDAO {
             if (entityManager != null) {
                 entityManager.close();
             }
-            if (entityManagerFactory != null) {
-                entityManagerFactory.close();
-            }
         }
 
         return licencia;
     }
+
 }

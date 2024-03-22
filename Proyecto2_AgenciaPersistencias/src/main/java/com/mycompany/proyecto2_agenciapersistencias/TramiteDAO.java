@@ -17,9 +17,54 @@ import javax.persistence.Persistence;
  */
 public class TramiteDAO implements ITramiteDAO {
 
+    private IConexion conexionBD;
+
+    public TramiteDAO(IConexion conexionBD) {
+        this.conexionBD = conexionBD;
+    }
+
+//    @Override
+//    public Tramite agergarTramite(TramiteNuevoDTO TramiteNuevo) {
+//        EntityManagerFactory entityManagerFactory = null;
+//        EntityManager entityManager = null;
+//        EntityTransaction transaction = null;
+//        Tramite tramite = null;
+//
+//        try {
+//            entityManagerFactory = Persistence.createEntityManagerFactory("AgenciaPU");
+//            entityManager = entityManagerFactory.createEntityManager();
+//            transaction = entityManager.getTransaction();
+//            transaction.begin();
+//
+//            tramite = new Tramite(
+//                    TramiteNuevo.getTipoTramite(),
+//                    TramiteNuevo.getFechaRealizacion(),
+//                    TramiteNuevo.getNombreSolicitante(),
+//                    TramiteNuevo.getCosto()
+//            );
+//
+//            entityManager.persist(tramite);
+//            transaction.commit();
+//        } catch (Exception e) {
+//            if (transaction != null && transaction.isActive()) {
+//                transaction.rollback();
+//            }
+//            e.printStackTrace();
+//        } finally {
+//            if (entityManager != null) {
+//                entityManager.close();
+//            }
+//            if (entityManagerFactory != null) {
+//                entityManagerFactory.close();
+//            }
+//        }
+//
+//        return tramite;
+//    }
+
     @Override
-    public Tramite agregarTramite(TramiteNuevoDTO TramiteNuevo) {
-        EntityManagerFactory entityManagerFactory = null;
+    public Tramite agergarTramite(TramiteNuevoDTO TramiteNuevo) {
+  EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         EntityTransaction transaction = null;
         Tramite tramite = null;
@@ -33,8 +78,7 @@ public class TramiteDAO implements ITramiteDAO {
             tramite = new Tramite(
                     TramiteNuevo.getTipoTramite(),
                     TramiteNuevo.getFechaRealizacion(),
-                    TramiteNuevo.getNombreSolicitante(),
-                    TramiteNuevo.getCosto()
+                    TramiteNuevo.getNombreSolicitante()
             );
 
             entityManager.persist(tramite);
@@ -53,8 +97,5 @@ public class TramiteDAO implements ITramiteDAO {
             }
         }
 
-        return tramite;
-    }
+        return tramite;    }
 }
-
-

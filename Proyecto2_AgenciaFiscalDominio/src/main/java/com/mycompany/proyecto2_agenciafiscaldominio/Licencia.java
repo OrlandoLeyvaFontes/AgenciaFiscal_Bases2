@@ -5,68 +5,89 @@
 package com.mycompany.proyecto2_agenciafiscaldominio;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author Oley
  */
 @Entity
-public class Licencia implements Serializable {
-@Id
-@GeneratedValue(strategy=GenerationType.IDENTITY)
-private Long id;
-@Column(name="Vigencia",nullable = false,unique = false)
-private int vigencia;
-@Column(name="costoNormal",nullable=false)
-private float costoNormal;
-@Column(name="CostoDiscapacitado",nullable = false)
-private float costoDiscapaitados;
+@Table(name="licencia")
+@DiscriminatorValue(value = "licencia")
+public class Licencia extends Tramite implements Serializable {
+     
+    //Antes usaba los localDate pero e decidido que asi sera mas sencillo
+@Temporal(TemporalType.TIMESTAMP)
+@Column(name = "fechaVencimiento",nullable = false)
+private Calendar fehcaVencida;
+@Temporal(TemporalType.TIMESTAMP)
+@Column(name = "FechaExpedi",nullable = false)
+private  Calendar fechaExpedi;
+@Column(name = "Vigencia",nullable = false,length = 50)
+private String vigencia;
+@Column(name = "costo",nullable = false)
+private Float Costo;
 
-    public Licencia() {
-    }
-
-    public Licencia(int vigencia, float costoNormal, float costoDiscapaitados) {
+    public Licencia(Calendar fehcaVencida, Calendar fechaExpedi, String vigencia, Float Costo) {
+        this.fehcaVencida = fehcaVencida;
+        this.fechaExpedi = fechaExpedi;
         this.vigencia = vigencia;
-        this.costoNormal = costoNormal;
-        this.costoDiscapaitados = costoDiscapaitados;
+        this.Costo = Costo;
     }
 
-    public Long getId() {
-        return id;
+    public Calendar getFehcaVencida() {
+        return fehcaVencida;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setFehcaVencida(Calendar fehcaVencida) {
+        this.fehcaVencida = fehcaVencida;
     }
 
-    public int getVigencia() {
+    public Calendar getFechaExpedi() {
+        return fechaExpedi;
+    }
+
+    public void setFechaExpedi(Calendar fechaExpedi) {
+        this.fechaExpedi = fechaExpedi;
+    }
+
+    public String getVigencia() {
         return vigencia;
     }
 
-    public void setVigencia(int vigencia) {
+    public void setVigencia(String vigencia) {
         this.vigencia = vigencia;
     }
 
-    public float getCostoNormal() {
-        return costoNormal;
+    public Float getCosto() {
+        return Costo;
     }
 
-    public void setCostoNormal(float costoNormal) {
-        this.costoNormal = costoNormal;
+    public void setCosto(Float Costo) {
+        this.Costo = Costo;
     }
 
-    public float getCostoDiscapaitados() {
-        return costoDiscapaitados;
+
+
+    public Licencia() {
+        
     }
 
-    public void setCostoDiscapaitados(float costoDiscapaitados) {
-        this.costoDiscapaitados = costoDiscapaitados;
-    }
+  
+
     
+
+  
     
 }

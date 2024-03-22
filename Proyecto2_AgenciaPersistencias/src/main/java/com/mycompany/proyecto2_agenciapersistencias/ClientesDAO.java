@@ -9,13 +9,16 @@ import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
  * @author Oley
  */
 public class ClientesDAO implements IClientesDAO {
+    private IConexion conexionBD;
 
     @Override
     public Clientes agregarCliente(ClienteNuevoDTO clienteNuevo) {
@@ -49,6 +52,23 @@ public class ClientesDAO implements IClientesDAO {
 
         return cliente;
     }
+
+    @Override
+    public Clientes Checar(String rfc) {
+EntityManager entity= conexionBD.crearConexion();
+ Query query = entity.createNativeQuery("SELECT * FROM Clientes WHERE rfc = ?", Clientes.class);
+        query.setParameter(1, rfc);
+
+        Clientes cli = null;
+        try {
+            cli = (Clientes) query.getSingleResult();
+        } catch (NoResultException e) {
+            cli = null;
+        }
+        return cli;
+        }
+
+   
 }
 
 
