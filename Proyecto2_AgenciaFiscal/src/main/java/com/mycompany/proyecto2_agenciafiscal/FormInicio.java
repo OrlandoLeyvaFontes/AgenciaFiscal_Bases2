@@ -4,6 +4,8 @@
  */
 package com.mycompany.proyecto2_agenciafiscal;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Gui26
@@ -119,7 +121,16 @@ public class FormInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        SolicitarLicencia01 solicitarLicencia01 = new SolicitarLicencia01();
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(solicitarLicencia01);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        dispose();
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
