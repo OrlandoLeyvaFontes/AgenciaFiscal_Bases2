@@ -12,7 +12,9 @@ import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
  * @author Oley
  */
 public interface IClientesDAO {
-            public Clientes agregarCliente(ClienteNuevoDTO clienteNuevo);
-            public Clientes Checar(String rfc);
+
+    public Clientes agregarCliente(ClienteNuevoDTO clienteNuevo);
+
+    public Clientes Checar(String rfc);
 
 }

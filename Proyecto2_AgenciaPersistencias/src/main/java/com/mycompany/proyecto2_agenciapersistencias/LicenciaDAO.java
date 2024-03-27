@@ -29,11 +29,16 @@ public class LicenciaDAO implements ILicenciaDAO {
 
     @Override
     public Licencia ListaLicencia(Long id) {
-        EntityManager entityManager = conexionBD.crearConexion();
-        Licencia lice = entityManager.find(Licencia.class, id);
-        entityManager.getTransaction().begin();
-        entityManager.close();
-        return lice;
+       EntityManager entityManager = conexionBD.crearConexion();
+        Licencia licencia = null;
+        try {
+            licencia = entityManager.find(Licencia.class, id);
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+        return licencia;
 
     }
 
@@ -62,6 +67,7 @@ public class LicenciaDAO implements ILicenciaDAO {
                 transaction.rollback();
             }
             e.printStackTrace();
+            // Podrías lanzar una excepción personalizada aquí
         } finally {
             if (entityManager != null) {
                 entityManager.close();

@@ -18,7 +18,12 @@ import javax.persistence.Query;
  * @author Oley
  */
 public class ClientesDAO implements IClientesDAO {
+
     private IConexion conexionBD;
+
+    public ClientesDAO(IConexion conexion) {
+        this.conexionBD = conexion;
+    }
 
     @Override
     public Clientes agregarCliente(ClienteNuevoDTO clienteNuevo) {
@@ -35,7 +40,8 @@ public class ClientesDAO implements IClientesDAO {
                     clienteNuevo.getRfc(),
                     clienteNuevo.getNombreCompleto(),
                     clienteNuevo.getFechaNacimiento(),
-                    clienteNuevo.getTelefono()
+                    clienteNuevo.getTelefono(),
+                    clienteNuevo.isDiscapacitado()
             );
 
             entityManager.persist(cliente);
@@ -53,22 +59,21 @@ public class ClientesDAO implements IClientesDAO {
         return cliente;
     }
 
-    @Override
+   @Override
     public Clientes Checar(String rfc) {
-EntityManager entity= conexionBD.crearConexion();
- Query query = entity.createNativeQuery("SELECT * FROM Clientes WHERE rfc = ?", Clientes.class);
-        query.setParameter(1, rfc);
-
-        Clientes cli = null;
+        EntityManager entityManager = null;
         try {
-            cli = (Clientes) query.getSingleResult();
+            entityManager = conexionBD.crearConexion();
+            Query query = entityManager.createQuery("SELECT c FROM Clientes c WHERE c.rfc = :rfc", Clientes.class);
+            query.setParameter("rfc", rfc);
+            return (Clientes) query.getSingleResult();
         } catch (NoResultException e) {
-            cli = null;
+            return null; // No se encontró ningún cliente con el RFC dado
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
         }
-        return cli;
-        }
-
-   
+    }
+    
 }
-
-

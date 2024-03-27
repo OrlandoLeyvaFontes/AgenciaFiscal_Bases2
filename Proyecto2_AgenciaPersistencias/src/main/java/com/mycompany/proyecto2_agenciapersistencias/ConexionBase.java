@@ -17,7 +17,7 @@ public class ConexionBase implements IConexion {
 
     @Override
     public EntityManager crearConexion() throws PersistenceException {
-        EntityManagerFactory managerFactory = Persistence.createEntityManagerFactory("AgenciaPU");
+       EntityManagerFactory managerFactory = Persistence.createEntityManagerFactory("AgenciaPU");
         EntityManager entityManager = managerFactory.createEntityManager();
         return entityManager;
     }

@@ -8,6 +8,7 @@ com\mycompany\proyecto2_agenciapersistencias\IConexion.class
 com\mycompany\proyecto2_agenciafiscalDTO\TramiteNuevoDTO.class
 com\mycompany\proyecto2_agenciafiscalDTO\LicenciaNuevaDTO.class
 com\mycompany\proyecto2_agenciapersistencias\PlacaDAO.class
+Pruebas\Pruebas.class
 com\mycompany\proyecto2_agenciapersistencias\AutomovilDAO.class
 com\mycompany\proyecto2_agenciapersistencias\ITramiteDAO.class
 com\mycompany\proyecto2_agenciapersistencias\LicenciaDAO.class

@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyecto2_agenciafiscalDTO;
 
+import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
 import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
@@ -67,5 +68,6 @@ public class LicenciaNuevaDTO {
     public LicenciaNuevaDTO() {
 
     }
+
 
 }

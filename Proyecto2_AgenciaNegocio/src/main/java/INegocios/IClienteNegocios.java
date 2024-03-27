@@ -13,4 +13,6 @@ import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
  */
 public interface IClienteNegocios {
     public Clientes agregarCliente(ClienteNuevoDTO clienteNuevo);
+    public ClienteNuevoDTO checarCliente(String rfc);
+
 }
