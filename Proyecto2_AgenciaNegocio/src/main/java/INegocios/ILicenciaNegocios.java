@@ -6,7 +6,10 @@ package INegocios;
 
 import com.mycompany.proyecto2_agenciafiscalDTO.ClienteNuevoDTO;
 import com.mycompany.proyecto2_agenciafiscalDTO.LicenciaNuevaDTO;
+import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
 import com.mycompany.proyecto2_agenciafiscaldominio.Licencia;
+import com.mycompany.proyecto2_agenciafiscaldominio.Tramite;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -14,6 +17,10 @@ import java.util.List;
  * @author Oley
  */
 public interface ILicenciaNegocios {
-   public Licencia agregarLicencia(LicenciaNuevaDTO LicenciaNueva);
-     public ClienteNuevoDTO listaClientes();
+  
+    public List<Licencia> listaLicenciaPersona(int id);
+
+    public List<Licencia> listaLicenciaPersonaVigentes(int id);
+
+    public Licencia agregaLicencia(Licencia licencia);
 }

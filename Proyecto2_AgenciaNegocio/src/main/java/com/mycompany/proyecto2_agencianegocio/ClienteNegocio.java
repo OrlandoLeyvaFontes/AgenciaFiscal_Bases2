@@ -44,7 +44,7 @@ private ClienteNuevoDTO convertirClienteAClienteNuevoDTO(Clientes cliente) {
         clienteDTO.setNombreCompleto(cliente.getNombreCompleto());
         clienteDTO.setFechaNacimiento(cliente.getFechaNacimiento());
         clienteDTO.setTelefono(cliente.getTelefono());
-        clienteDTO.setDiscapacitado(cliente.isDiscapacitado());
+        clienteDTO.setDiscapacitado(cliente.getDiscapacitado());
         return clienteDTO;
     }
 }

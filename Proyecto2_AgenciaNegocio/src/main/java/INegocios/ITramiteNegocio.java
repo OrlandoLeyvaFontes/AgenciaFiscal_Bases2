@@ -6,12 +6,16 @@ package INegocios;
 
 import com.mycompany.proyecto2_agenciafiscalDTO.ClienteNuevoDTO;
 import com.mycompany.proyecto2_agenciafiscalDTO.TramiteNuevoDTO;
+import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
 import com.mycompany.proyecto2_agenciafiscaldominio.Tramite;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
  * @author Oley
  */
 public interface ITramiteNegocio {
-    public Tramite agregarTramite(TramiteNuevoDTO TramiteNuevo);
-}
+ public List<Tramite> listaTramitePersona(Clientes clientes);
+
+    public List<Tramite> listaTramite(boolean placas, boolean licencia, LocalDate fechaInicio, LocalDate fechaFin,String filtro);}

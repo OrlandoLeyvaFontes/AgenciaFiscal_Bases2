@@ -15,8 +15,9 @@ import java.util.List;
  */
 public interface ILicenciaDAO {
 
-    public Licencia agregarLicencia(LicenciaNuevaDTO LicenciaNueva);
-//obtiene una lista de todas las licencias
+    public List<Licencia> listaLicenciaPersona(int id);
 
-    public Licencia ListaLicencia(Long id);
+    public List<Licencia> listaLicenciaPersonaVigentes(int id);
+
+    public Licencia agregaLicencia(Licencia licencia);
 }

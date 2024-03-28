@@ -15,20 +15,22 @@ import javax.persistence.Id;
  */
 public class TramiteNuevoDTO {
 
-    private String tipoTramite;
+      private String tipoTramite;
     private Date fechaRealizacion;
     private String nombreSolicitante;
 
+    // Constructor vacío
     public TramiteNuevoDTO() {
     }
 
+    // Constructor con parámetros
     public TramiteNuevoDTO(String tipoTramite, Date fechaRealizacion, String nombreSolicitante) {
         this.tipoTramite = tipoTramite;
         this.fechaRealizacion = fechaRealizacion;
         this.nombreSolicitante = nombreSolicitante;
-     
     }
 
+    // Getters y setters
     public String getTipoTramite() {
         return tipoTramite;
     }
@@ -52,7 +54,6 @@ public class TramiteNuevoDTO {
     public void setNombreSolicitante(String nombreSolicitante) {
         this.nombreSolicitante = nombreSolicitante;
     }
-
   
      
 }

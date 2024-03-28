@@ -19,26 +19,30 @@ import javax.persistence.TemporalType;
  * @author Oley
  */
 public class LicenciaNuevaDTO {
-
-    private Calendar fehcaVencida;
-
+ private Calendar fechaVencida;
     private Calendar fechaExpedi;
     private String vigencia;
-    private Float Costo;
+    private Float costo;
 
-    public LicenciaNuevaDTO(Calendar fehcaVencida, Calendar fechaExpedi, String vigencia, Float Costo) {
-        this.fehcaVencida = fehcaVencida;
+    // Constructor vacío
+    public LicenciaNuevaDTO() {
+    }
+
+    // Constructor con parámetros
+    public LicenciaNuevaDTO(Calendar fechaVencida, Calendar fechaExpedi, String vigencia, Float costo) {
+        this.fechaVencida = fechaVencida;
         this.fechaExpedi = fechaExpedi;
         this.vigencia = vigencia;
-        this.Costo = Costo;
+        this.costo = costo;
     }
 
-    public Calendar getFehcaVencida() {
-        return fehcaVencida;
+    // Getters y setters
+    public Calendar getFechaVencida() {
+        return fechaVencida;
     }
 
-    public void setFehcaVencida(Calendar fehcaVencida) {
-        this.fehcaVencida = fehcaVencida;
+    public void setFechaVencida(Calendar fechaVencida) {
+        this.fechaVencida = fechaVencida;
     }
 
     public Calendar getFechaExpedi() {
@@ -58,15 +62,11 @@ public class LicenciaNuevaDTO {
     }
 
     public Float getCosto() {
-        return Costo;
+        return costo;
     }
 
-    public void setCosto(Float Costo) {
-        this.Costo = Costo;
-    }
-
-    public LicenciaNuevaDTO() {
-
+    public void setCosto(Float costo) {
+        this.costo = costo;
     }
 
 
