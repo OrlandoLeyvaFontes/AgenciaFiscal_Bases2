@@ -6,6 +6,7 @@ package com.mycompany.proyecto2_agenciafiscaldominio;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,19 +32,25 @@ public class Clientes implements Serializable {
     @Column(name = "nombreCompleto", nullable = false, length = 200)
     private String nombreCompleto;
     @Column(name = "FechaNacimiento", nullable = false)
-    private LocalDate fechaNacimiento;
+    private Calendar fechaNacimiento;
     @Column(name = "telefono", nullable = false, unique = true, length = 12)
     private String telefono;
+     @Column(name = "discapacitado", nullable = false)
+    private Boolean discapacitado;
 
     public Clientes() {
     }
 
-    public Clientes(String rfc, String nombreCompleto, LocalDate fechaNacimiento, String telefono) {
+    public Clientes(String rfc, String nombreCompleto, Calendar fechaNacimiento, String telefono, Boolean discapacitado) {
         this.rfc = rfc;
         this.nombreCompleto = nombreCompleto;
         this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
+        this.discapacitado = discapacitado;
     }
+
+    
+
 
     public String getRfc() {
         return rfc;
@@ -69,14 +76,23 @@ public class Clientes implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public Calendar getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+    public void setFechaNacimiento(Calendar fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public Boolean getDiscapacitado() {
+        return discapacitado;
+    }
+
+    public void setDiscapacitado(Boolean discapacitado) {
+        this.discapacitado = discapacitado;
+    }
+
+   
   
 
     public String getTelefono() {

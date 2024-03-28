@@ -1,17 +1,18 @@
 package com.mycompany.proyecto2_agenciafiscaldominio;
 
-import java.util.Date;
+import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
+import java.util.Calendar;
 import javax.annotation.processing.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-03-21T22:52:29", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-03-27T18:11:24", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Tramite.class)
 public class Tramite_ { 
 
-    public static volatile SingularAttribute<Tramite, Date> fechaRealizacion;
-    public static volatile SingularAttribute<Tramite, String> nombreSolicitante;
-    public static volatile SingularAttribute<Tramite, Long> id;
-    public static volatile SingularAttribute<Tramite, String> tipoTramite;
+    public static volatile SingularAttribute<Tramite, Clientes> cliente;
+    public static volatile SingularAttribute<Tramite, Calendar> fechaTramite;
+    public static volatile SingularAttribute<Tramite, Float> Costo;
+    public static volatile SingularAttribute<Tramite, Integer> id;
 
 }

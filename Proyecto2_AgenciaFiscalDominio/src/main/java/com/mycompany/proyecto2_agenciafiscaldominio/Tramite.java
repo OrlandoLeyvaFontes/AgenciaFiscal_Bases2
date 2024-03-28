@@ -5,6 +5,7 @@
 package com.mycompany.proyecto2_agenciafiscaldominio;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -14,7 +15,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -25,59 +30,89 @@ import javax.persistence.Table;
 @DiscriminatorColumn(name = "tipo")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Tramite implements Serializable {
+ public Tramite(){
+        
+    }
 
+    public Tramite(float Costo, Clientes cliente) {
+        this.Costo = Costo;
+        this.cliente = cliente;
+        this.fechaTramite = Calendar.getInstance();
+    }
+    
+    
     @Id
+    @Column(name = "idTramite")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "tipoTramite", nullable = false, unique = false, length = 200)
-    private String tipoTramite;
-    @Column(name = "FechaRealizacion", nullable = true)
-    private Date fechaRealizacion;
-    @Column(name = "nombreSolicitante", nullable = false, unique = false, length = 200)
-    private String nombreSolicitante;
-//    @Column(name = "costo", nullable = true)
-//    private float costo;
-
-    public Tramite() {
+    private Integer id;
+    
+    @Column(name = "Costo")
+    private float Costo;
+    
+    @Column(name="Fecha_Tramite",nullable = true)
+    @Temporal(TemporalType.DATE)
+    private Calendar fechaTramite;
+    
+    @ManyToOne()
+    @JoinColumn(name="idCliente", nullable = false)
+    private Clientes cliente;
+    
+    public Integer getId() {
+        return id;
     }
 
-    public Tramite(String tipoTramite, Date fechaRealizacion, String nombreSolicitante) {
-        this.tipoTramite = tipoTramite;
-        this.fechaRealizacion = fechaRealizacion;
-        this.nombreSolicitante = nombreSolicitante;
-//        this.costo = costo;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getTipoTramite() {
-        return tipoTramite;
+    public float getCosto() {
+        return Costo;
     }
 
-    public void setTipoTramite(String tipoTramite) {
-        this.tipoTramite = tipoTramite;
+    public void setCosto(float Costo) {
+        this.Costo = Costo;
     }
 
-    public Date getFechaRealizacion() {
-        return fechaRealizacion;
+    public Calendar getFechaTramite() {
+        return fechaTramite;
     }
 
-    public void setFechaRealizacion(Date fechaRealizacion) {
-        this.fechaRealizacion = fechaRealizacion;
+    public void setFechaTramite(Calendar fechaTramite) {
+        this.fechaTramite = fechaTramite;
     }
 
-    public String getNombreSolicitante() {
-        return nombreSolicitante;
+    public Clientes getCliente() {
+        return cliente;
     }
 
-    public void setNombreSolicitante(String nombreSolicitante) {
-        this.nombreSolicitante = nombreSolicitante;
+    public void setPersona(Clientes cliente) {
+        this.cliente = cliente;
     }
 
-//    public float getCosto() {
-//        return costo;
-//    }
-//
-//    public void setCosto(float costo) {
-//        this.costo = costo;
-//    }
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Tramite)) {
+            return false;
+        }
+        Tramite other = (Tramite) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Entity.Tramite[ id=" + id + " ]";
+    }
+    
+  
 }
