@@ -152,7 +152,7 @@ private Clientes Checar(String rfc) {
         if (cliente != null) {
             DefaultTableModel model = (DefaultTableModel) tblLicencia.getModel();
             model.setRowCount(0); 
-            Object[] rowData = { cliente.getNombreCompleto(), cliente.getTelefono(), cliente.getFechaNacimiento(),cliente.isDiscapacitado()};
+            Object[] rowData = { cliente.getNombreCompleto(), cliente.getTelefono(), cliente.getFechaNacimiento(),cliente.getDiscapacitado()};
             model.addRow(rowData);
         } else {
             JOptionPane.showMessageDialog(this, "Cliente no encontrado para el RFC ingresado.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -168,34 +168,26 @@ private Clientes Checar(String rfc) {
     private void btnAbrirLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirLicenciaActionPerformed
    String rfc = jTextField1.getText();
 
-    // Aquí debes proporcionar una instancia válida de IConexion
-    IConexion conexionBD = new ConexionBase(); // Esto es solo un ejemplo, reemplázalo con la instancia adecuada
+    IConexion conexionBD = new ConexionBase(); 
 
-    // Crear una instancia de ClientesDAO y pasar la conexión como argumento al constructor
     IClientesDAO clientesDAO = new ClientesDAO(conexionBD);
 
-    // Llamar al método Checar en la instancia de ClientesDAO
     Clientes cliente = clientesDAO.Checar(rfc);
 
     if (cliente != null) {
         try {
-            // Crear instancia de LicenciaDAO
             ILicenciaDAO licenciaDAO = new LicenciaDAO(conexionBD);
 
-            // Crear instancia de LicenciaNegocio
-ILicenciaNegocios licenciaNegocio = new LicenciaNegocio(licenciaDAO, clientesDAO, null);
+ILicenciaNegocios licenciaNegocio = new LicenciaNegocio(licenciaDAO);
 
-            // Crear instancia de Licencia01 y pasar cliente y licenciaNegocio
             Licencia01 licenciaForm = new Licencia01(cliente, licenciaNegocio);
 
-            // Crear JFrame y agregar el formulario Licencia01
             JFrame frame = new JFrame();
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.add(licenciaForm);
             frame.pack();
             frame.setVisible(true);
 
-            // Cerrar el JFrame actual
             JFrame solicitarLicenciaFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             solicitarLicenciaFrame.dispose();
         } catch (Exception ex) {

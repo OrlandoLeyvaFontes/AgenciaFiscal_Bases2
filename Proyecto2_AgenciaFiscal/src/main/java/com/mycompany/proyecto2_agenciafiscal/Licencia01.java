@@ -9,6 +9,7 @@ import com.mycompany.proyecto2_agenciafiscalDTO.LicenciaNuevaDTO;
 import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
 import com.mycompany.proyecto2_agenciafiscaldominio.Licencia;
 import com.mycompany.proyecto2_agencianegocio.LicenciaNegocio;
+import com.mycompany.proyecto2_agenciapersistencias.LicenciaDAO;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -31,9 +32,10 @@ public class Licencia01 extends javax.swing.JPanel implements java.beans.Customi
      * Creates new customizer Licencia
      */
 public Licencia01(Clientes cliente, ILicenciaNegocios LicenciaNegocio) {
-    this.cliente = cliente;
+     this.cliente = cliente;
     this.LicenciaNegocio = LicenciaNegocio;
-    initComponents();
+    initComponents(); // Aquí se inicializan todos los componentes, incluido Año
+    precios(); 
 }
 
 
@@ -44,21 +46,21 @@ public Licencia01(Clientes cliente, ILicenciaNegocios LicenciaNegocio) {
 
  public void precios() {
     if (Año.getSelectedItem().equals("1 año")) {
-        if (cliente.isDiscapacitado()) { // Si el cliente está discapacitado
+        if (cliente.getDiscapacitado()) { // Si el cliente está discapacitado
             txtcosto.setText("200");
         } else {
             txtcosto.setText("600");
         }
         anio = 1;
     } else if (Año.getSelectedItem().equals("2 año")) {
-        if (cliente.isDiscapacitado()) { // Si el cliente está discapacitado
+        if (cliente.getDiscapacitado()) { // Si el cliente está discapacitado
             txtcosto.setText("500");
         } else {
             txtcosto.setText("900");
         }
         anio = 2;
     } else if (Año.getSelectedItem().equals("3 año")) {
-        if (cliente.isDiscapacitado()) { // Si el cliente está discapacitado
+        if (cliente.getDiscapacitado()) { // Si el cliente está discapacitado
             txtcosto.setText("700");
         } else {
             txtcosto.setText("1100");
@@ -149,53 +151,23 @@ public Licencia01(Clientes cliente, ILicenciaNegocios LicenciaNegocio) {
 
 
 public void agregar() {
-   if (cliente != null && cliente.getNombreCompleto() != null && !cliente.getNombreCompleto().isEmpty()) {
-        String nombreSolicitante = cliente.getNombreCompleto();
-        if (nombreSolicitante != null) {
-            // Obtener el costo de la licencia
-            float costo = Float.parseFloat(txtcosto.getText());
-            
-            // Obtener la vigencia seleccionada
-            String selectedItem = (String) Año.getSelectedItem();
-            int vigencia = 0;
+        float costo = Float.valueOf(txtcosto.getText());
+        Calendar calendario = Calendar.getInstance();
+        int ano = calendario.get(Calendar.YEAR) + anio;
+        Calendar cal = new GregorianCalendar(ano, calendario.get(Calendar.MONTH), calendario.get(Calendar.DAY_OF_MONTH));
+        Licencia licencia1 = new Licencia(anio, cal, costo, cliente);
+        Licencia guardar = LicenciaNegocio.agregaLicencia(licencia1);
+        
+        if (guardar != null) {
+            JOptionPane.showMessageDialog(this, "Se completo el tramite de licencia a nombre de: " + cliente.getNombreCompleto());
 
-            if (selectedItem != null && selectedItem.contains(" ")) {
-                vigencia = Integer.parseInt(selectedItem.split(" ")[0]);
-            } else {
-                // Manejar el caso cuando no se puede obtener la vigencia correctamente
-                JOptionPane.showMessageDialog(this, "Error al obtener la vigencia.", "Error", JOptionPane.ERROR_MESSAGE);
-                return; // Salir del método si no se puede obtener la vigencia correctamente
-            }
-            
-            // Crear un objeto Calendar para la fecha actual
-            Calendar calendario = Calendar.getInstance();
-            
-            // Obtener el año actual y sumarle la vigencia seleccionada
-            int ano = calendario.get(Calendar.YEAR) + vigencia;
-            
-            // Crear un nuevo objeto Calendar con la fecha de vencimiento calculada
-            Calendar cal = new GregorianCalendar(ano, calendario.get(Calendar.MONTH), calendario.get(Calendar.DAY_OF_MONTH));
-            
-            // Crear un objeto LicenciaNuevaDTO con los datos proporcionados
-            LicenciaNuevaDTO licenciaNuevaDTO = new LicenciaNuevaDTO(cal, cal, "Vigencia", costo);
-            
-            // Llamar al método agregarLicencia de LicenciaNegocio para guardar la licencia
-            Licencia licenciaGuardada = LicenciaNegocio.agregarLicencia(licenciaNuevaDTO);
-            
-            // Verificar si la licencia se guardó correctamente
-            if (licenciaGuardada != null) {
-                JOptionPane.showMessageDialog(this, "Se completó el trámite de licencia a nombre de: " + nombreSolicitante);
-            } else {
-                JOptionPane.showMessageDialog(this, "Hubo un error al intentar completar su trámite", "Error", JOptionPane.ERROR_MESSAGE);
-            }
         } else {
-            JOptionPane.showMessageDialog(this, "El nombre del solicitante es nulo.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Hubo un error al intentar completar su tramite");
         }
-    } else {
-        JOptionPane.showMessageDialog(this, "Cliente no encontrado o nombre vacío.", "Error", JOptionPane.ERROR_MESSAGE);
     }
+
    
-}
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

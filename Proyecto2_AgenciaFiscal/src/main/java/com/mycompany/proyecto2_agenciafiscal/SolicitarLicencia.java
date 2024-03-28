@@ -163,21 +163,21 @@ public class SolicitarLicencia extends javax.swing.JFrame {
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         
-        ClienteNuevoDTO clienteNuevo = new ClienteNuevoDTO(txtRfc.getText(), txtNombreCompleto.getText(),
-                                                            jDateFechaNacimiento.getDate(), txtCelular.getText());
-        IClientesDAO clienteDAO = new ClientesDAO();
-        clienteDAO.agregarCliente(clienteNuevo);
-        
-        Date currentDate = new Date(System.currentTimeMillis());
-        
-        TramiteNuevoDTO tramiteNuevo = new TramiteNuevoDTO("Licencia", currentDate, txtNombreCompleto.getText(), 600);
-        ITramiteDAO tramiteDAO = new TramiteDAO();
-        tramiteDAO.agregarTramite(tramiteNuevo);
-        
-        LicenciaNuevaDTO licenciaNueva = new LicenciaNuevaDTO(1, 600, 200);
-        ILicenciaDAO licenciaDAO = new LicenciaDAO();
-        licenciaDAO.agregarLicencia(licenciaNueva);
-        
+//        ClienteNuevoDTO clienteNuevo = new ClienteNuevoDTO(txtRfc.getText(), txtNombreCompleto.getText(),
+//                                                            jDateFechaNacimiento.getDate(), txtCelular.getText());
+//        IClientesDAO clienteDAO = new ClientesDAO();
+//        clienteDAO.agregarCliente(clienteNuevo);
+//        
+//        Date currentDate = new Date(System.currentTimeMillis());
+//        
+//        TramiteNuevoDTO tramiteNuevo = new TramiteNuevoDTO("Licencia", currentDate, txtNombreCompleto.getText(), 600);
+//        ITramiteDAO tramiteDAO = new TramiteDAO();
+//        tramiteDAO.agregarTramite(tramiteNuevo);
+//        
+//        LicenciaNuevaDTO licenciaNueva = new LicenciaNuevaDTO(1, 600, 200);
+//        ILicenciaDAO licenciaDAO = new LicenciaDAO();
+//        licenciaDAO.agregarLicencia(licenciaNueva);
+//        
     }//GEN-LAST:event_btnContinuarActionPerformed
 
 
