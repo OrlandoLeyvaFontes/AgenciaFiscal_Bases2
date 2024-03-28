@@ -5,13 +5,17 @@
 package com.mycompany.proyecto2_agenciapersistencias;
 
 import com.mycompany.proyecto2_agenciafiscalDTO.ClienteNuevoDTO;
+import com.mycompany.proyecto2_agenciafiscalDTO.ConsultaClienteDTO;
 import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
 
 /**
  *
@@ -74,6 +78,52 @@ public class ClientesDAO implements IClientesDAO {
                 entityManager.close();
             }
         }
+    }
+    
+    @Override
+    public List<Clientes> consultar(ConsultaClienteDTO filtrosConsulta){
+        
+        EntityManager entityManager = conexionBD.crearConexion();
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        
+        StringBuilder jpqlQuery = new StringBuilder("SELECT c FROM Clientes c WHERE ");
+        StringBuilder and = new StringBuilder("AND ");
+        StringBuilder queryNombre = new StringBuilder("c.nombreCompleto LIKE :nombre ");
+        StringBuilder queryRfc = new StringBuilder("c.rfc LIKE :rfc ");
+        StringBuilder queryNacimiento = new StringBuilder("SUBSTRING(c.fechaNacimiento, 1, 4) = :nacimiento ");
+        
+        boolean i=false;
+        if (filtrosConsulta.getNombre()!=null){
+            jpqlQuery.append(queryNombre);
+            i=true;
+        }
+        if (filtrosConsulta.getRfc()!=null){
+            if(i){
+                jpqlQuery.append(and);
+            }
+            jpqlQuery.append(queryRfc);
+            i=true;
+        }
+        if (filtrosConsulta.getNacimiento()!=null){
+            if(i){
+                jpqlQuery.append(and);
+            }
+            jpqlQuery.append(queryNacimiento);
+        }
+        TypedQuery<Clientes> query = entityManager.createQuery(jpqlQuery.toString(), Clientes.class);
+        if (filtrosConsulta.getNombre()!=null){
+            query.setParameter("nombre", "%"+filtrosConsulta.getNombre()+"%");
+        }
+        if (filtrosConsulta.getRfc()!=null){
+            query.setParameter("rfc", "%"+filtrosConsulta.getRfc()+"%");
+        }
+        if (filtrosConsulta.getNacimiento()!=null){
+            query.setParameter("nacimiento", filtrosConsulta.getNacimiento());
+        }
+        List<Clientes> clientes = query.getResultList();
+        entityManager.close();
+        
+        return clientes;
     }
     
 }

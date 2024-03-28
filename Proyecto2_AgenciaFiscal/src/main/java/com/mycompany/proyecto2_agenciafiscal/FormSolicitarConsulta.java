@@ -4,6 +4,9 @@
  */
 package com.mycompany.proyecto2_agenciafiscal;
 
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+
 /**
  *
  * @author Gui26
@@ -26,38 +29,59 @@ public class FormSolicitarConsulta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnContinuar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        btnNombre = new javax.swing.JRadioButton();
+        btnRfc = new javax.swing.JRadioButton();
+        btnNacimiento = new javax.swing.JRadioButton();
+        txtNombre = new javax.swing.JTextField();
+        txtRfc = new javax.swing.JTextField();
+        txtNacimiento = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Continuar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnContinuar.setText("Continuar");
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnContinuarActionPerformed(evt);
             }
         });
 
-        jRadioButton1.setText("Nombre");
+        btnNombre.setText("Nombre");
+        btnNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNombreActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setText("RFC");
+        btnRfc.setText("RFC");
+        btnRfc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRfcActionPerformed(evt);
+            }
+        });
 
-        jRadioButton3.setText("Año de Nacimiento");
+        btnNacimiento.setText("Año de Nacimiento");
+        btnNacimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNacimientoActionPerformed(evt);
+            }
+        });
+
+        txtNombre.setEnabled(false);
+
+        txtRfc.setEnabled(false);
+
+        txtNacimiento.setEnabled(false);
 
         jLabel1.setText("Buscar por:");
 
@@ -69,9 +93,9 @@ public class FormSolicitarConsulta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(btnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addComponent(btnContinuar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -80,15 +104,15 @@ public class FormSolicitarConsulta extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(51, 51, 51)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton3)
-                                    .addComponent(jRadioButton2)
-                                    .addComponent(jRadioButton1)
+                                    .addComponent(btnNacimiento)
+                                    .addComponent(btnRfc)
+                                    .addComponent(btnNombre)
                                     .addComponent(jLabel1))
                                 .addGap(56, 56, 56)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField1))))
+                                    .addComponent(txtNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                    .addComponent(txtRfc)
+                                    .addComponent(txtNombre))))
                         .addGap(0, 61, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -101,44 +125,88 @@ public class FormSolicitarConsulta extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNombre)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRfc)
+                    .addComponent(txtRfc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNacimiento)
+                    .addComponent(txtNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnContinuar))
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        FormInicio formInicio = new FormInicio();
+        formInicio.setVisible(true);
+        formInicio.dispose(); 
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+        String nombre=null;
+        String rfc=null;
+        String nacimiento=null;
+        if (btnNombre.isSelected()){
+            nombre=txtNombre.getText();
+        }
+        if (btnRfc.isSelected()){
+            rfc=txtRfc.getText();
+        }
+        if (btnNacimiento.isSelected()){
+            nacimiento=txtNacimiento.getText();
+        }
+        FormTablaClientes form = new FormTablaClientes(nombre, rfc, nacimiento);
+        dispose();
+        form.setVisible(true);
+    }//GEN-LAST:event_btnContinuarActionPerformed
+
+    private void btnNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNombreActionPerformed
+        if (btnNombre.isSelected()){
+            txtNombre.setEnabled(true);
+        } else{
+            txtNombre.setEnabled(false);
+            txtNombre.setText("");
+        }
+    }//GEN-LAST:event_btnNombreActionPerformed
+
+    private void btnRfcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRfcActionPerformed
+        if (btnRfc.isSelected()){
+            txtRfc.setEnabled(true);
+        } else{
+            txtRfc.setEnabled(false);
+            txtRfc.setText("");
+        }
+    }//GEN-LAST:event_btnRfcActionPerformed
+
+    private void btnNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNacimientoActionPerformed
+        if (btnNacimiento.isSelected()){
+            txtNacimiento.setEnabled(true);
+        } else{
+            txtNacimiento.setEnabled(false);
+            txtNacimiento.setText("");
+        }
+    }//GEN-LAST:event_btnNacimientoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnContinuar;
+    private javax.swing.JRadioButton btnNacimiento;
+    private javax.swing.JRadioButton btnNombre;
+    private javax.swing.JRadioButton btnRfc;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTextField txtNacimiento;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtRfc;
     // End of variables declaration//GEN-END:variables
 }

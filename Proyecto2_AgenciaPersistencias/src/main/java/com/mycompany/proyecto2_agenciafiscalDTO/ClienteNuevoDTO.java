@@ -18,7 +18,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class ClienteNuevoDTO {
-     @Id
+    
     private Long id;
     private String rfc;
     private String nombreCompleto;

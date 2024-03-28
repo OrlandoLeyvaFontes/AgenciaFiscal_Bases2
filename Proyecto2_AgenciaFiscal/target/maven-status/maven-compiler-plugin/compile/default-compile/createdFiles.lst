@@ -10,12 +10,14 @@ com\mycompany\proyecto2_agenciafiscal\ModuloReportes$1.class
 com\mycompany\proyecto2_agenciafiscal\FormSolicitarConsulta.class
 com\mycompany\proyecto2_agenciafiscal\RegistrarAutomovil$1.class
 com\mycompany\proyecto2_agenciafiscal\FormReporte$1.class
+com\mycompany\proyecto2_agenciafiscal\FormTablaClientes$2.class
 com\mycompany\proyecto2_agenciafiscal\Inicio$3.class
 com\mycompany\proyecto2_agenciafiscal\FormConfirmarAutomovil.class
 com\mycompany\proyecto2_agenciafiscal\Licencia01$3.class
 com\mycompany\proyecto2_agenciafiscal\FormDatosAutomovil.class
 com\mycompany\proyecto2_agenciafiscal\FormReporte.class
 com\mycompany\proyecto2_agenciafiscal\Licencia01$4.class
+com\mycompany\proyecto2_agenciafiscal\FormSolicitarConsulta$3.class
 com\mycompany\proyecto2_agenciafiscal\Proyecto2_AgenciaFiscal.class
 com\mycompany\proyecto2_agenciafiscal\FormInicio$1.class
 com\mycompany\proyecto2_agenciafiscal\FormInicio.class
@@ -32,6 +34,7 @@ com\mycompany\proyecto2_agenciafiscal\ModuloReportes.class
 com\mycompany\proyecto2_agenciafiscal\FormBuscarAutomovil$2.class
 com\mycompany\proyecto2_agenciafiscal\FormTipoAutomovil$1.class
 com\mycompany\proyecto2_agenciafiscal\Licencia01.class
+com\mycompany\proyecto2_agenciafiscal\FormSolicitarConsulta$4.class
 com\mycompany\proyecto2_agenciafiscal\Licencia01$1.class
 com\mycompany\proyecto2_agenciafiscal\FormSolicitarConsulta$1.class
 com\mycompany\proyecto2_agenciafiscal\FormReporte$3.class
@@ -44,6 +47,7 @@ com\mycompany\proyecto2_agenciafiscal\RegistrarAutomovil.class
 com\mycompany\proyecto2_agenciafiscal\FormTablaTramites$1.class
 com\mycompany\proyecto2_agenciafiscal\FormInicio$3.class
 com\mycompany\proyecto2_agenciafiscal\SolicitarLicencia01.class
+com\mycompany\proyecto2_agenciafiscal\FormSolicitarConsulta$5.class
 com\mycompany\proyecto2_agenciafiscal\Licencia01$2.class
 com\mycompany\proyecto2_agenciafiscal\Inicio$2.class
 com\mycompany\proyecto2_agenciafiscal\FormInicio$6.class
