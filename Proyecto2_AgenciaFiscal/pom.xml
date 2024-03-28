@@ -7,23 +7,18 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>Proyecto2_AgenciaPersistencias</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.toedter</groupId>
             <artifactId>jcalendar</artifactId>
             <version>1.4</version>
         </dependency>
         <dependency>
-            <groupId>org.netbeans.external</groupId>
-            <artifactId>AbsoluteLayout</artifactId>
-            <version>RELEASE210</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>v2Proyecto2_AgenciaFiscal_Negocio</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>Proyecto2_AgenciaNegocio</artifactId>
+            <artifactId>v2Proyecto2_AgenciaFiscal_Persistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
@@ -33,4 +28,5 @@
         <maven.compiler.target>19</maven.compiler.target>
         <exec.mainClass>com.mycompany.proyecto2_agenciafiscal.Proyecto2_AgenciaFiscal</exec.mainClass>
     </properties>
+    <name>Proyecto2_AgenciaFiscal</name>
 </project>
