@@ -4,15 +4,31 @@
  */
 package com.mycompany.proyecto2_agenciafiscal;
 
+import INegocios.IConsultaTramites;
+import com.mycompany.proyecto2_agencianegocio.ConsultaTramites;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+
 /**
  *
  * @author Gui26
  */
 public class FormTablaTramites extends javax.swing.JFrame {
 
+    private Object[][] tramites;
+    private Object[][] clientes;
+    
     /**
      * Creates new form FormTablaClientes
      */
+    public FormTablaTramites(Object[][] clientes, Long idCliente) {
+        initComponents();
+        IConsultaTramites consultas = new ConsultaTramites();
+        this.tramites = consultas.consulta(idCliente);
+        this.clientes = clientes;
+        tabla();
+    }
+    
     public FormTablaTramites() {
         initComponents();
     }
@@ -27,14 +43,14 @@ public class FormTablaTramites extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaTramites = new javax.swing.JTable();
         lblTitulo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaTramites.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,11 +69,21 @@ public class FormTablaTramites extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaTramites);
 
-        jButton1.setText("Volver");
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Seleccionar y continuar");
+        btnReporte.setText("Generar reporte");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,9 +98,9 @@ public class FormTablaTramites extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnVolver)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2))))
+                                .addComponent(btnReporte))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(295, 295, 295)
                         .addComponent(lblTitulo)
@@ -90,19 +116,45 @@ public class FormTablaTramites extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnVolver)
+                    .addComponent(btnReporte))
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        FormTablaClientes form = new FormTablaClientes(clientes);
+        dispose();
+        form.setVisible(true);
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReporteActionPerformed
+
+    public void tabla(){
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("Tramite");
+            modelo.addColumn("Fecha");
+            modelo.addColumn("Persona");
+            modelo.addColumn("Costo");
+            for (int i=0; i<tramites.length;i++){
+                Object[] fila = {tramites[i][0],tramites[i][1],
+                    tramites[i][2], tramites[i][3]};
+                modelo.addRow(fila);
+            }
+            tablaTramites.setModel(modelo);
+            TableColumnModel columnModel = tablaTramites.getColumnModel();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnReporte;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTable tablaTramites;
     // End of variables declaration//GEN-END:variables
 }

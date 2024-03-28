@@ -4,6 +4,7 @@ com\mycompany\proyecto2_agenciafiscal\FormInicio$2.class
 com\mycompany\proyecto2_agenciafiscal\SolicitarLicencia.class
 com\mycompany\proyecto2_agenciafiscal\FormConfirmarCliente.class
 com\mycompany\proyecto2_agenciafiscal\SolicitarLicencia01$1.class
+com\mycompany\proyecto2_agenciafiscal\FormTablaTramites$2.class
 com\mycompany\proyecto2_agenciafiscal\HistorialPlacas$1.class
 com\mycompany\proyecto2_agenciafiscal\Inicio$6.class
 com\mycompany\proyecto2_agenciafiscal\ModuloReportes$1.class
@@ -27,6 +28,7 @@ com\mycompany\proyecto2_agenciafiscal\Inicio$4.class
 com\mycompany\proyecto2_agenciafiscal\FormBuscarAutomovil$1.class
 com\mycompany\proyecto2_agenciafiscal\FormReporte$2.class
 com\mycompany\proyecto2_agenciafiscal\RegistrarAutomovil$2.class
+com\mycompany\proyecto2_agenciafiscal\FormTablaClientes$3.class
 com\mycompany\proyecto2_agenciafiscal\FormInicio$5.class
 com\mycompany\proyecto2_agenciafiscal\SolicitarLicencia01$4.class
 com\mycompany\proyecto2_agenciafiscal\Inicio$1.class
@@ -44,6 +46,7 @@ com\mycompany\proyecto2_agenciafiscal\HistorialPlacas.class
 com\mycompany\proyecto2_agenciafiscal\SolicitarLicencia01$3.class
 com\mycompany\proyecto2_agenciafiscal\FormInicio$4.class
 com\mycompany\proyecto2_agenciafiscal\RegistrarAutomovil.class
+com\mycompany\proyecto2_agenciafiscal\FormTablaTramites$3.class
 com\mycompany\proyecto2_agenciafiscal\FormTablaTramites$1.class
 com\mycompany\proyecto2_agenciafiscal\FormInicio$3.class
 com\mycompany\proyecto2_agenciafiscal\SolicitarLicencia01.class

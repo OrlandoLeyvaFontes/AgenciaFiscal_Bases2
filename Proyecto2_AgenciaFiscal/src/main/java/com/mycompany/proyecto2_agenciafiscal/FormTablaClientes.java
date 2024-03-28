@@ -27,6 +27,12 @@ public class FormTablaClientes extends javax.swing.JFrame {
         this.clientes = consultas.consulta(nombre, rfc, nacimiento);
         tabla();
     }
+    
+    public FormTablaClientes(Object[][] clientes) {
+        initComponents();
+        this.clientes = clientes;
+        tabla();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,8 +46,8 @@ public class FormTablaClientes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
         lblTitulo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        btnContinuar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,14 +72,19 @@ public class FormTablaClientes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaClientes);
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Seleccionar y continuar");
+        btnContinuar.setText("Seleccionar y continuar");
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,9 +99,9 @@ public class FormTablaClientes extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnVolver)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2))))
+                                .addComponent(btnContinuar))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(295, 295, 295)
                         .addComponent(lblTitulo)
@@ -106,8 +117,8 @@ public class FormTablaClientes extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnVolver)
+                    .addComponent(btnContinuar))
                 .addContainerGap())
         );
 
@@ -115,11 +126,19 @@ public class FormTablaClientes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         FormSolicitarConsulta form = new FormSolicitarConsulta();
         form.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+        Long idCliente = (Long) tablaClientes.getModel().getValueAt(tablaClientes.getSelectedRow(), 0);
+        
+        FormTablaTramites form = new FormTablaTramites(clientes, idCliente);
+        form.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnContinuarActionPerformed
 
     public void tabla(){
             DefaultTableModel modelo = new DefaultTableModel();
@@ -133,13 +152,14 @@ public class FormTablaClientes extends javax.swing.JFrame {
                     clientes[i][2], clientes[i][3], clientes[i][4]};
                 modelo.addRow(fila);
             }
+            
             tablaClientes.setModel(modelo);
             TableColumnModel columnModel = tablaClientes.getColumnModel();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnContinuar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tablaClientes;

@@ -1,5 +1,7 @@
 INegocios\ILicenciaNegocios.class
 com\mycompany\proyecto2_agencianegocio\ConsultaClientes.class
+INegocios\IConsultaTramites.class
+com\mycompany\proyecto2_agencianegocio\ConsultaTramites.class
 com\mycompany\proyecto2_agencianegocio\LicenciaNegocio.class
 INegocios\IClienteNegocios.class
 INegocios\IConsultaClientes.class

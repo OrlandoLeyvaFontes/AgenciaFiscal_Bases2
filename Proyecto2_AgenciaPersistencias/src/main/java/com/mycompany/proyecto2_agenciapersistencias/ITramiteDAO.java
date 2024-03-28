@@ -18,6 +18,7 @@ public interface ITramiteDAO {
 
     public List<Tramite> listaTramite(boolean placas, boolean licencia, LocalDate fechaInicio, LocalDate fechaFin);
 
-    
     public List<Tramite> listaTramitePersona(Clientes clientes);
+    
+    public List<Tramite> listaTramitePersona(Long id);
 }
