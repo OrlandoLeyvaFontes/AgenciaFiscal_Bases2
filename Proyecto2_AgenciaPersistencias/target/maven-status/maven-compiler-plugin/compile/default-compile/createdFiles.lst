@@ -15,5 +15,6 @@ com\mycompany\proyecto2_agenciapersistencias\ITramiteDAO.class
 com\mycompany\proyecto2_agenciapersistencias\LicenciaDAO.class
 com\mycompany\proyecto2_agenciafiscalDTO\AutomovilNuevoDTO.class
 com\mycompany\proyecto2_agenciapersistencias\IAutomovilDAO.class
+com\mycompany\proyecto2_agenciapersistencias\ImplementacionAutomovilDAO.class
 com\mycompany\proyecto2_agenciapersistencias\ConexionBase.class
 com\mycompany\proyecto2_agenciapersistencias\IClientesDAO.class

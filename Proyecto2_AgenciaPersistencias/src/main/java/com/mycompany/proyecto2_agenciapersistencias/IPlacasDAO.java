@@ -6,11 +6,20 @@ package com.mycompany.proyecto2_agenciapersistencias;
 
 import com.mycompany.proyecto2_agenciafiscalDTO.PlacaNuevoDTO;
 import com.mycompany.proyecto2_agenciafiscaldominio.Placa;
+import java.util.List;
 
 /**
  *
  * @author Oley
  */
 public interface IPlacasDAO {
-    public Placa agregarPlacas(PlacaNuevoDTO placaNuevo);
+
+    //pudo haber sido por dto ya que lo pienso pero me dormi :/
+//    public Placa agregarPlacas(PlacaNuevoDTO placaNuevo);
+    public Placa agregarPlacas(Placa placas);
+
+    public List<Placa> AutoEspecifico(int id);
+
+    public List<Placa> todasPlacas();
+
 }

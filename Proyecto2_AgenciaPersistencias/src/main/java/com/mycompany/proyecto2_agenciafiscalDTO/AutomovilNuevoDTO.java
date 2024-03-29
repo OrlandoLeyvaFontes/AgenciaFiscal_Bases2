@@ -4,11 +4,19 @@
  */
 package com.mycompany.proyecto2_agenciafiscalDTO;
 
+import com.mycompany.proyecto2_agenciafiscaldominio.Automovil;
+import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
+import com.mycompany.proyecto2_agenciafiscaldominio.Placa;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -18,66 +26,52 @@ import javax.persistence.Id;
 public class AutomovilNuevoDTO {
 
   
-    @Id
+ @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String numeroSerie;
     private String marca;
     private String linea;
     private String color;
     private String modelo;
 
+    @ManyToOne
+    @JoinColumn(name = "idCliente")
+    private Clientes cliente;
+
+    @OneToMany(mappedBy = "automovil")
+    private List<Placa> placas;
+
     public AutomovilNuevoDTO() {
+        placas = new ArrayList<>();
     }
 
-    public AutomovilNuevoDTO(String numeroSerie, String marca, String linea, String color, String modelo) {
+    public AutomovilNuevoDTO(String numeroSerie, String marca, String linea, String color, String modelo, Clientes cliente) {
         this.numeroSerie = numeroSerie;
         this.marca = marca;
         this.linea = linea;
         this.color = color;
         this.modelo = modelo;
+        this.cliente = cliente;
+        placas = new ArrayList<>();
     }
 
-    public String getNumeroSerie() {
-        return numeroSerie;
+    // Getters y setters omitidos por brevedad
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+
+        AutomovilNuevoDTO that = (AutomovilNuevoDTO) object;
+
+        return id != null ? id.equals(that.id) : that.id == null;
     }
 
-    public void setNumeroSerie(String numeroSerie) {
-        this.numeroSerie = numeroSerie;
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getLinea() {
-        return linea;
-    }
-
-    public void setLinea(String linea) {
-        this.linea = linea;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-  
 
 }

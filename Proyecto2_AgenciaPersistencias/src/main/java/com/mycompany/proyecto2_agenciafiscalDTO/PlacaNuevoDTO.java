@@ -4,6 +4,9 @@
  */
 package com.mycompany.proyecto2_agenciafiscalDTO;
 
+import com.mycompany.proyecto2_agenciafiscaldominio.Automovil;
+import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -16,51 +19,50 @@ import javax.persistence.Id;
  */
 public class PlacaNuevoDTO {
   
-    private String numeroAlfaNumerico;
-    private Date fechaEmision;
-    private Date fechaRecepcion;
-    private float costo;
+       private String numeroPlacas;
+    private String estado;
+    private Calendar fechaInactivo;
+    private Automovil automovil;
 
     public PlacaNuevoDTO() {
     }
 
-    public PlacaNuevoDTO(String numeroAlfaNumerico, Date fechaEmision, Date fechaRecepcion, float costo) {
-        this.numeroAlfaNumerico = numeroAlfaNumerico;
-        this.fechaEmision = fechaEmision;
-        this.fechaRecepcion = fechaRecepcion;
-        this.costo = costo;
+   public PlacaNuevoDTO(String numeroPlacas, String estado, Automovil automovil, float costo, Clientes cliente) {
+    this.numeroPlacas = numeroPlacas;
+    this.estado = estado;
+    this.automovil = automovil;
+}
+
+    public String getNumeroPlacas() {
+        return numeroPlacas;
     }
 
-    public String getNumeroAlfaNumerico() {
-        return numeroAlfaNumerico;
+    public void setNumeroPlacas(String numeroPlacas) {
+        this.numeroPlacas = numeroPlacas;
     }
 
-    public void setNumeroAlfaNumerico(String numeroAlfaNumerico) {
-        this.numeroAlfaNumerico = numeroAlfaNumerico;
+    public String getEstado() {
+        return estado;
     }
 
-    public Date getFechaEmision() {
-        return fechaEmision;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    public void setFechaEmision(Date fechaEmision) {
-        this.fechaEmision = fechaEmision;
+    public Calendar getFechaInactivio() {
+        return fechaInactivo;
     }
 
-    public Date getFechaRecepcion() {
-        return fechaRecepcion;
+    public void setFechaInactivio(Calendar fechaInactivo) {
+        this.fechaInactivo = fechaInactivo;
     }
 
-    public void setFechaRecepcion(Date fechaRecepcion) {
-        this.fechaRecepcion = fechaRecepcion;
+    public Automovil getAutomovil() {
+        return automovil;
     }
 
-    public float getCosto() {
-        return costo;
-    }
-
-    public void setCosto(float costo) {
-        this.costo = costo;
+    public void setAutomovil(Automovil automovil) {
+        this.automovil = automovil;
     }
 
    
