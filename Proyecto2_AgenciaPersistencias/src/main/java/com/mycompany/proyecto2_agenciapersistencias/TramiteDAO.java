@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyecto2_agenciapersistencias;
 
+import com.mycompany.proyecto2_agenciafiscalDTO.ConsultaTramiteDTO;
 import com.mycompany.proyecto2_agenciafiscalDTO.TramiteNuevoDTO;
 import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
 import com.mycompany.proyecto2_agenciafiscaldominio.Licencia;
@@ -171,6 +172,52 @@ public class TramiteDAO implements ITramiteDAO {
         query.setParameter("id", id);
         List<Tramite> listaTramite = query.getResultList();
         entityManager.getTransaction().commit();
+        entityManager.close();
         return listaTramite;
     }
+    
+    @Override
+    public List<Tramite> listaTramiteReporte(ConsultaTramiteDTO consulta) {
+        EntityManager entityManager = this.conexionBD.crearConexion();
+        StringBuilder jpqlQuery = new StringBuilder("SELECT t FROM Tramite t WHERE ");
+        StringBuilder and = new StringBuilder("AND ");
+        StringBuilder queryNombre = new StringBuilder("t.cliente.nombreCompleto LIKE :nombre ");
+        StringBuilder queryTramite = new StringBuilder("TYPE(t) = :tipo ");
+        StringBuilder queryPeriodo = new StringBuilder("t.fechaTramite > :inicio AND t.fechaTramite <= :fin");
+        
+        boolean i=false;
+        if (consulta.getNombre()!=null){
+            jpqlQuery.append(queryNombre);
+            i=true;
+        }
+        if (consulta.getTramite()!=null){
+            if(i){
+                jpqlQuery.append(and);
+            }
+            jpqlQuery.append(queryTramite);
+            i=true;
+        }
+        if (consulta.getInicio()!=null&&consulta.getFin()!=null){
+            if(i){
+                jpqlQuery.append(and);
+            }
+            jpqlQuery.append(queryPeriodo);
+        }
+        
+        TypedQuery<Tramite> query = entityManager.createQuery(jpqlQuery.toString(), Tramite.class);
+        if (consulta.getNombre()!=null){
+            query.setParameter("nombre", "%"+consulta.getNombre()+"%");
+        }
+        if (consulta.getTramite()!=null){
+            query.setParameter("tipo", consulta.getTramite());
+        }
+        if (consulta.getInicio()!=null&&consulta.getFin()!=null){
+            query.setParameter("inicio", consulta.getInicio());
+            query.setParameter("fin", consulta.getFin());
+        }
+        List<Tramite> listaTramite = query.getResultList();
+        entityManager.close();
+        return listaTramite;
+    }
+    
 }

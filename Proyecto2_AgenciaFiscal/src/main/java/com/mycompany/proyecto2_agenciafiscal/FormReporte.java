@@ -4,6 +4,8 @@
  */
 package com.mycompany.proyecto2_agenciafiscal;
 
+import java.util.Calendar;
+
 /**
  *
  * @author Gui26
@@ -26,53 +28,74 @@ public class FormReporte extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
+        btnContinuar = new javax.swing.JButton();
+        btnNombre = new javax.swing.JRadioButton();
+        btnTramite = new javax.swing.JRadioButton();
+        btnPeriodo = new javax.swing.JRadioButton();
+        txtNombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jDateFechaNacimiento = new com.toedter.calendar.JDateChooser();
-        jDateFechaNacimiento1 = new com.toedter.calendar.JDateChooser();
+        cbTramite = new javax.swing.JComboBox<>();
+        jDateFechaInicio = new com.toedter.calendar.JDateChooser();
+        jDateFechaFin = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Continuar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnContinuar.setText("Continuar");
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnContinuarActionPerformed(evt);
             }
         });
 
-        jRadioButton1.setText("Nombre");
-
-        jRadioButton2.setText("Tramite");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnNombre.setText("Nombre");
+        btnNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                btnNombreActionPerformed(evt);
             }
         });
 
-        jRadioButton3.setText("Periodo");
+        btnTramite.setText("Tramite");
+        btnTramite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTramiteActionPerformed(evt);
+            }
+        });
+
+        btnPeriodo.setText("Periodo");
+        btnPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPeriodoActionPerformed(evt);
+            }
+        });
+
+        txtNombre.setEnabled(false);
 
         jLabel1.setText("Buscar por:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbTramite.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "licencia", "placa" }));
+        cbTramite.setSelectedIndex(-1);
+        cbTramite.setEnabled(false);
+        cbTramite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTramiteActionPerformed(evt);
+            }
+        });
 
-        jDateFechaNacimiento.setDateFormatString("yyyy-MM-dd");
+        jDateFechaInicio.setDateFormatString("yyyy-MM-dd");
+        jDateFechaInicio.setEnabled(false);
 
-        jDateFechaNacimiento1.setDateFormatString("yyyy-MM-dd");
+        jDateFechaFin.setDateFormatString("yyyy-MM-dd");
+        jDateFechaFin.setEnabled(false);
 
         jLabel2.setText("Fecha de inicio");
 
@@ -84,32 +107,32 @@ public class FormReporte extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(btnCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnContinuar)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton1)
+                    .addComponent(btnTramite)
+                    .addComponent(btnNombre)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel2)
                         .addComponent(jLabel3)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jRadioButton3)
+                            .addComponent(btnPeriodo)
                             .addGap(15, 15, 15))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateFechaNacimiento1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jDateFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbTramite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -119,14 +142,14 @@ public class FormReporte extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNombre)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTramite)
+                    .addComponent(cbTramite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton3)
+                .addComponent(btnPeriodo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -134,42 +157,91 @@ public class FormReporte extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jDateFechaNacimiento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)))
-                    .addComponent(jDateFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnCancelar)
+                            .addComponent(btnContinuar)))
+                    .addComponent(jDateFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        FormInicio formInicio = new FormInicio();
+        formInicio.setVisible(true);
+        dispose(); 
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+        String nombre=null;
+        String tramite=null;
+        Calendar fechaInicio=null;
+        Calendar fechaFin=null;
+        if (btnNombre.isSelected()){
+            nombre=txtNombre.getText();
+        }
+        if (btnTramite.isSelected()){
+            tramite=cbTramite.getSelectedItem().toString();
+        }
+        if (btnPeriodo.isSelected()){
+            fechaInicio = jDateFechaInicio.getCalendar();
+            fechaFin = jDateFechaFin.getCalendar();
+        }
+        FormTablaTramites form = new FormTablaTramites(nombre, tramite, fechaInicio, fechaFin);
+        dispose();
+        form.setVisible(true);
+    }//GEN-LAST:event_btnContinuarActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    private void btnTramiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTramiteActionPerformed
+        if (btnTramite.isSelected()){
+            cbTramite.setEnabled(true);
+        } else{
+            cbTramite.setEnabled(false);
+            cbTramite.setSelectedIndex(-1);
+        }
+    }//GEN-LAST:event_btnTramiteActionPerformed
+
+    private void cbTramiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTramiteActionPerformed
+        
+    }//GEN-LAST:event_cbTramiteActionPerformed
+
+    private void btnNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNombreActionPerformed
+        if (btnNombre.isSelected()){
+            txtNombre.setEnabled(true);
+        } else{
+            txtNombre.setEnabled(false);
+            txtNombre.setText("");
+        }
+    }//GEN-LAST:event_btnNombreActionPerformed
+
+    private void btnPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPeriodoActionPerformed
+        if (btnPeriodo.isSelected()){
+            jDateFechaInicio.setEnabled(true);
+            jDateFechaFin.setEnabled(true);
+        } else{
+            jDateFechaInicio.setEnabled(false);
+            jDateFechaFin.setEnabled(false);
+            jDateFechaInicio.setCalendar(null);
+            jDateFechaFin.setCalendar(null);
+        }
+    }//GEN-LAST:event_btnPeriodoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateFechaNacimiento;
-    private com.toedter.calendar.JDateChooser jDateFechaNacimiento1;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnContinuar;
+    private javax.swing.JRadioButton btnNombre;
+    private javax.swing.JRadioButton btnPeriodo;
+    private javax.swing.JRadioButton btnTramite;
+    private javax.swing.JComboBox<String> cbTramite;
+    private com.toedter.calendar.JDateChooser jDateFechaFin;
+    private com.toedter.calendar.JDateChooser jDateFechaInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

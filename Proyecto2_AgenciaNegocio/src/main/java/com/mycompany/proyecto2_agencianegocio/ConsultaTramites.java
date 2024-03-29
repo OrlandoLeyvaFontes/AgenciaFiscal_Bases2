@@ -5,6 +5,9 @@
 package com.mycompany.proyecto2_agencianegocio;
 
 import INegocios.IConsultaTramites;
+import com.mycompany.proyecto2_agenciafiscalDTO.ConsultaTramiteDTO;
+import com.mycompany.proyecto2_agenciafiscaldominio.Licencia;
+import com.mycompany.proyecto2_agenciafiscaldominio.Placa;
 import com.mycompany.proyecto2_agenciafiscaldominio.Tramite;
 import com.mycompany.proyecto2_agenciapersistencias.ConexionBase;
 import com.mycompany.proyecto2_agenciapersistencias.IConexion;
@@ -30,14 +33,16 @@ public class ConsultaTramites implements IConsultaTramites{
         ///////////////
         
         Tramite tramite;
-        Object[][] listaTramites = new Object[tramites.size()][5];
+        Object[][] listaTramites = new Object[tramites.size()][4];
         ListIterator<Tramite> lista = tramites.listIterator();
         int i = 0;
         while (lista.hasNext()) {
             tramite = lista.next();
             listaTramites[i][0]=tramite.getDecriminatorValue();
             Calendar fecha = tramite.getFechaTramite();
-            listaTramites[i][1]=fecha.get(fecha.YEAR)+"-"+fecha.get(fecha.MONTH)+"-"+fecha.get(fecha.DAY_OF_MONTH);
+            listaTramites[i][1]=fecha.get(fecha.YEAR)+"-"
+                    +String.format("%02d", fecha.get(fecha.MONTH))+"-"
+                    +String.format("%02d", fecha.get(fecha.DAY_OF_MONTH));
             listaTramites[i][2]=tramite.getCliente().getNombreCompleto();
             listaTramites[i][3]=tramite.getCosto();
             i++;
@@ -47,8 +52,40 @@ public class ConsultaTramites implements IConsultaTramites{
     }
 
     @Override
-    public Object[][] consulta(String nombre, String tramite, Date inicio, Date fin) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Object[][] consulta(String nombre, String tramite, Calendar inicio, Calendar fin) {
+        IConexion conexion = new ConexionBase();
+        
+        ConsultaTramiteDTO consulta= new ConsultaTramiteDTO(nombre, null, inicio, fin);;
+        if(tramite!=null){
+            if(tramite.equals("licencia")){
+                consulta = new ConsultaTramiteDTO(nombre, Licencia.class, inicio, fin);
+            }
+            if(tramite.equals("placa")){
+                consulta = new ConsultaTramiteDTO(nombre, Placa.class, inicio, fin);
+            }
+        }
+        ITramiteDAO tramiteDAO = new TramiteDAO(conexion);
+        List<Tramite> tramites = tramiteDAO.listaTramiteReporte(consulta);
+        
+        ///////////////
+
+        Tramite tramitee;
+        Object[][] listaTramites = new Object[tramites.size()][4];
+        ListIterator<Tramite> lista = tramites.listIterator();
+        int i = 0;
+        while (lista.hasNext()) {
+            tramitee = lista.next();
+            listaTramites[i][0]=tramitee.getDecriminatorValue();
+            Calendar fecha = tramitee.getFechaTramite();
+            listaTramites[i][1]=fecha.get(fecha.YEAR)+"-"
+                    +String.format("%02d", fecha.get(fecha.MONTH))+"-"
+                    +String.format("%02d", fecha.get(fecha.DAY_OF_MONTH));
+            listaTramites[i][2]=tramitee.getCliente().getNombreCompleto();
+            listaTramites[i][3]=tramitee.getCosto();
+            i++;
+        }
+        
+        return listaTramites;
     }
     
 }

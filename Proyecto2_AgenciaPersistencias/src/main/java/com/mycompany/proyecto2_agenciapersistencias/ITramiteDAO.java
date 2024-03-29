@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyecto2_agenciapersistencias;
 
+import com.mycompany.proyecto2_agenciafiscalDTO.ConsultaTramiteDTO;
 import com.mycompany.proyecto2_agenciafiscalDTO.TramiteNuevoDTO;
 import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
 import com.mycompany.proyecto2_agenciafiscaldominio.Tramite;
@@ -21,4 +22,7 @@ public interface ITramiteDAO {
     public List<Tramite> listaTramitePersona(Clientes clientes);
     
     public List<Tramite> listaTramitePersona(Long id);
+    
+    public List<Tramite> listaTramiteReporte(ConsultaTramiteDTO consulta);
+    
 }

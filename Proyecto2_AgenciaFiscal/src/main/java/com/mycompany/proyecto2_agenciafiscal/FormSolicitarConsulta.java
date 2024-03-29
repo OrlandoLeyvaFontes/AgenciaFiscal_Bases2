@@ -149,7 +149,7 @@ public class FormSolicitarConsulta extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         FormInicio formInicio = new FormInicio();
         formInicio.setVisible(true);
-        formInicio.dispose(); 
+        dispose(); 
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed

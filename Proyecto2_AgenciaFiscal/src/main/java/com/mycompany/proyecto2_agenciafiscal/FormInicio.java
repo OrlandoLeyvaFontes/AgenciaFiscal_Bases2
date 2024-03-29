@@ -28,47 +28,47 @@ public class FormInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnLicencia = new javax.swing.JButton();
+        btnPlaca = new javax.swing.JButton();
+        btnConsulta = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Solicitar licencia");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLicencia.setText("Solicitar licencia");
+        btnLicencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLicenciaActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Solicitar placa para automovil");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnPlaca.setText("Solicitar placa para automovil");
+        btnPlaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnPlacaActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Consulta");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnConsulta.setText("Consulta");
+        btnConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnConsultaActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Reporte");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnReporte.setText("Reporte");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnReporteActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Salir");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -83,17 +83,17 @@ public class FormInicio extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(157, 157, 157)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4)
-                            .addComponent(jButton3)))
+                            .addComponent(btnReporte)
+                            .addComponent(btnConsulta)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton5))
+                        .addComponent(btnSalir))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(137, 137, 137)
-                        .addComponent(jButton1))
+                        .addComponent(btnLicencia))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(101, 101, 101)
-                        .addComponent(jButton2))
+                        .addComponent(btnPlaca))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(160, 160, 160)
                         .addComponent(jLabel1)))
@@ -105,15 +105,15 @@ public class FormInicio extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnLicencia)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btnPlaca)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(btnConsulta)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(btnReporte)
                 .addGap(29, 29, 29)
-                .addComponent(jButton5)
+                .addComponent(btnSalir)
                 .addContainerGap())
         );
 
@@ -121,7 +121,7 @@ public class FormInicio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLicenciaActionPerformed
         SolicitarLicencia01 solicitarLicencia01 = new SolicitarLicencia01();
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -132,25 +132,27 @@ public class FormInicio extends javax.swing.JFrame {
         dispose();
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLicenciaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlacaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnPlacaActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
         FormSolicitarConsulta form = new FormSolicitarConsulta();
         form.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnConsultaActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        FormReporte form = new FormReporte();
+        dispose();
+        form.setVisible(true);
+    }//GEN-LAST:event_btnReporteActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,11 +190,11 @@ public class FormInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnConsulta;
+    private javax.swing.JButton btnLicencia;
+    private javax.swing.JButton btnPlaca;
+    private javax.swing.JButton btnReporte;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -41,7 +41,9 @@ public class ConsultaClientes implements IConsultaClientes{
             listaClientes[i][2]=cliente.getRfc();
             
             Calendar fecha = cliente.getFechaNacimiento();
-            listaClientes[i][3]=fecha.get(fecha.YEAR)+"-"+fecha.get(fecha.MONTH)+"-"+fecha.get(fecha.DAY_OF_MONTH);
+            listaClientes[i][3]=fecha.get(fecha.YEAR)+"-"
+                    +String.format("%02d", fecha.get(fecha.MONTH))+"-"
+                    +String.format("%02d", fecha.get(fecha.DAY_OF_MONTH));
             listaClientes[i][4]=cliente.getTelefono();
             i++;
         }

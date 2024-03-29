@@ -4,7 +4,7 @@
  */
 package INegocios;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -12,5 +12,5 @@ import java.util.Date;
  */
 public interface IConsultaTramites {
     public Object[][] consulta(Long id);
-    public Object[][] consulta(String nombre, String tramite, Date inicio, Date fin);
+    public Object[][] consulta(String nombre, String tramite, Calendar inicio, Calendar fin);
 }

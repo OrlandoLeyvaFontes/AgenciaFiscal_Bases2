@@ -6,6 +6,7 @@ package com.mycompany.proyecto2_agenciafiscal;
 
 import INegocios.IConsultaTramites;
 import com.mycompany.proyecto2_agencianegocio.ConsultaTramites;
+import java.util.Calendar;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -29,8 +30,11 @@ public class FormTablaTramites extends javax.swing.JFrame {
         tabla();
     }
     
-    public FormTablaTramites() {
+    public FormTablaTramites(String nombre, String Tramite, Calendar fechaInicio, Calendar FechaFin) {
         initComponents();
+        IConsultaTramites consultas = new ConsultaTramites();
+        this.tramites = consultas.consulta(nombre, Tramite, fechaInicio, FechaFin);
+        tabla();
     }
 
     /**
@@ -126,9 +130,15 @@ public class FormTablaTramites extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        FormTablaClientes form = new FormTablaClientes(clientes);
-        dispose();
-        form.setVisible(true);
+        if(clientes!=null){
+            FormTablaClientes form = new FormTablaClientes(clientes);
+            dispose();
+            form.setVisible(true);
+        } else{
+            FormReporte form = new FormReporte();
+            dispose();
+            form.setVisible(true);
+        }
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed

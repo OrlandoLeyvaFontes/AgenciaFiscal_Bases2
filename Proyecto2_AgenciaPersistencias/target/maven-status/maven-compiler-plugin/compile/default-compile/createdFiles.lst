@@ -2,6 +2,7 @@ com\mycompany\proyecto2_agenciafiscalDTO\ConsultaClienteDTO.class
 com\mycompany\proyecto2_agenciapersistencias\IPlacasDAO.class
 com\mycompany\proyecto2_agenciapersistencias\ClientesDAO.class
 com\mycompany\proyecto2_agenciafiscalDTO\PlacaNuevoDTO.class
+com\mycompany\proyecto2_agenciafiscalDTO\ConsultaTramiteDTO.class
 com\mycompany\proyecto2_agenciapersistencias\ILicenciaDAO.class
 com\mycompany\proyecto2_agenciapersistencias\TramiteDAO.class
 com\mycompany\proyecto2_agenciafiscalDTO\ClienteNuevoDTO.class
