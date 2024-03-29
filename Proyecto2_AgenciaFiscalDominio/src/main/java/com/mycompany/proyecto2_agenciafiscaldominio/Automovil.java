@@ -5,11 +5,15 @@
 package com.mycompany.proyecto2_agenciafiscaldominio;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -17,7 +21,7 @@ import javax.persistence.Table;
  * @author Oley
  */
 @Entity
-@Table(name="Automovil")
+@Table(name = "Automovil")
 public class Automovil implements Serializable {
 
     @Id
@@ -33,11 +37,15 @@ public class Automovil implements Serializable {
     private String color;
     @Column(name = "modelo", nullable = false, unique = false)
     private String modelo;
-
+    @ManyToOne
+    @JoinColumn(name = "idCliente")
+    private Clientes cliente;
+   @OneToMany(mappedBy = "automovil")
+     private List<Placa> placas;
     public Automovil() {
     }
 
-    public Automovil(String numeroSerie, String marca, String linea, String color, String modelo) {
+    public Automovil(String numeroSerie, String marca, String linea, String color, String modelo, Clientes cliente) {
         this.numeroSerie = numeroSerie;
         this.marca = marca;
         this.linea = linea;
@@ -85,5 +93,42 @@ public class Automovil implements Serializable {
         this.modelo = modelo;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Clientes getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<Placa> getPlacas() {
+        return placas;
+    }
+
+    public void setPlacas(List<Placa> placas) {
+        this.placas = placas;
+    }
+
+     @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Automovil)) {
+            return false;
+        }
+        Automovil other = (Automovil) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+    
 
 }

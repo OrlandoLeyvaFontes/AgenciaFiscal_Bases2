@@ -6,75 +6,85 @@ package com.mycompany.proyecto2_agenciafiscaldominio;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author Oley
  */
 @Entity
-@Table(name = "placa")
-public class Placa implements Serializable {
+@Table(name = "Placa")
+@DiscriminatorValue(value="Placa")
+@PrimaryKeyJoinColumn(name="idPlacas")
+public class Placa extends Tramite implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "numeroAlfaNumerico", nullable = false, unique = true, length = 200)
-    private String numeroAlfaNumerico;
-    @Column(name = "fechaEmision", nullable = false)
-    private Date fechaEmision;
-    @Column(name = "FechaRecepcion", nullable = false)
-    private Date fechaRecepcion;
-    @Column(name = "costo", nullable = false)
-    private float costo;
+  @Column(name="Numero_Placas")
+    private String numeroPlacas;
+    
+    @Column(name="Estado",nullable =  false)
+    private String estado;
+    
+    @Column(name="Fecha_inactivo")
+    @Temporal(TemporalType.DATE)
+    private Calendar fechaInactivo;
+   
+    @ManyToOne
+    @JoinColumn(name = "idAutomovil")
+    private Automovil automovil;
 
     public Placa() {
     }
-
-    public Placa(String numeroAlfaNumerico, Date fechaEmision, Date fechaRecepcion, float costo) {
-        this.numeroAlfaNumerico = numeroAlfaNumerico;
-        this.fechaEmision = fechaEmision;
-        this.fechaRecepcion = fechaRecepcion;
-        this.costo = costo;
+ public Placa(String numeroPlacas, String estado , Automovil automovil, float Costo , Clientes cliente) {
+        super(Costo,cliente);
+        this.numeroPlacas = numeroPlacas;
+        this.estado = estado;
+        this.automovil = automovil;
+    }
+    
+    public String getNumeroPlacas() {
+        return numeroPlacas;
     }
 
-    public String getNumeroAlfaNumerico() {
-        return numeroAlfaNumerico;
+    public void setNumeroPlacas(String numeroPlacas) {
+        this.numeroPlacas = numeroPlacas;
     }
 
-    public void setNumeroAlfaNumerico(String numeroAlfaNumerico) {
-        this.numeroAlfaNumerico = numeroAlfaNumerico;
+    public String getEstado() {
+        return estado;
     }
 
-    public Date getFechaEmision() {
-        return fechaEmision;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    public void setFechaEmision(Date fechaEmision) {
-        this.fechaEmision = fechaEmision;
+    public Calendar getFechaInactivio() {
+        return fechaInactivo;
     }
 
-    public Date getFechaRecepcion() {
-        return fechaRecepcion;
+    public void setFechaInactivio(Calendar fechaInactivo) {
+        this.fechaInactivo = fechaInactivo;
     }
 
-    public void setFechaRecepcion(Date fechaRecepcion) {
-        this.fechaRecepcion = fechaRecepcion;
+    public Automovil getAutomovil() {
+        return automovil;
     }
 
-    public float getCosto() {
-        return costo;
+    public void setAutomovil(Automovil automovil) {
+        this.automovil = automovil;
     }
-
-    public void setCosto(float costo) {
-        this.costo = costo;
-    }
-
+    
   
 }

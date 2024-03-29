@@ -32,18 +32,8 @@ import javax.persistence.Transient;
 @DiscriminatorColumn(name = "tipo")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Tramite implements Serializable {
- public Tramite(){
-        
-    }
 
-    public Tramite(float Costo, Clientes cliente) {
-        this.Costo = Costo;
-        this.cliente = cliente;
-        this.fechaTramite = Calendar.getInstance();
-    }
-    
-    
-    @Id
+       @Id
     @Column(name = "idTramite")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -58,6 +48,18 @@ public class Tramite implements Serializable {
     @ManyToOne()
     @JoinColumn(name="idCliente", nullable = false)
     private Clientes cliente;
+    public Tramite(){
+        
+    }
+
+    public Tramite(float Costo, Clientes cliente) {
+        this.Costo = Costo;
+        this.cliente = cliente;
+        this.fechaTramite = Calendar.getInstance();
+    }
+    
+    
+ 
     
     public Integer getId() {
         return id;
