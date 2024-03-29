@@ -5,10 +5,27 @@
 package com.mycompany.proyecto2_agenciafiscal;
 
 import INegocios.IConsultaTramites;
+import com.itextpdf.text.BadElementException;
 import com.mycompany.proyecto2_agencianegocio.ConsultaTramites;
 import java.util.Calendar;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+//import com.itextpdf.text.pdf.parser.Shape;
+
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.io.FileOutputStream;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.GrayColor;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -128,7 +145,7 @@ public class FormTablaTramites extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         if(clientes!=null){
             FormTablaClientes form = new FormTablaClientes(clientes);
@@ -142,7 +159,41 @@ public class FormTablaTramites extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-        // TODO add your handling code here:
+
+        try {
+            PdfPTable pdfTable = new PdfPTable(tablaTramites.getColumnCount());
+            Document document = new Document(PageSize.A4, 30, 30, 30, 30);
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("Tabla de Tramites.pdf"));
+            document.open();
+            pdfTable.setHeaderRows(1);
+            PdfPCell cell = new PdfPCell(new Paragraph(tablaTramites.getColumnName(0)));
+            cell.setBackgroundColor(new GrayColor(0.7f));
+            pdfTable.addCell(cell);
+            cell = new PdfPCell(new Paragraph(tablaTramites.getColumnName(1)));
+            cell.setBackgroundColor(new GrayColor(0.7f));
+            pdfTable.addCell(cell);
+            cell = new PdfPCell(new Paragraph(tablaTramites.getColumnName(2)));
+            cell.setBackgroundColor(new GrayColor(0.7f));
+            pdfTable.addCell(cell);
+            cell = new PdfPCell(new Paragraph(tablaTramites.getColumnName(3)));
+            cell.setBackgroundColor(new GrayColor(0.7f));
+            pdfTable.addCell(cell);
+            for (int i = 0; i < tablaTramites.getRowCount(); i++) {
+                for (int j = 0; j < tablaTramites.getColumnCount(); j++) {
+                    pdfTable.addCell(tablaTramites.getModel().getValueAt(i, j).toString());
+                }
+            }
+            document.add(pdfTable);
+            document.close();
+            JOptionPane.showMessageDialog(null, "Reporte generado con exito");
+        } catch (FileNotFoundException | DocumentException e) {
+            JOptionPane.showMessageDialog(null, "Error: "+e);
+        }
+        
+        FormInicio formInicio = new FormInicio();
+        formInicio.setVisible(true);
+        dispose();
+        
     }//GEN-LAST:event_btnReporteActionPerformed
 
     public void tabla(){
