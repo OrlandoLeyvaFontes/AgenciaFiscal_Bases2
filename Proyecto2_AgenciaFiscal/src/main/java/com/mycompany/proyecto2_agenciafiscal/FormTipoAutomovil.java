@@ -4,6 +4,16 @@
  */
 package com.mycompany.proyecto2_agenciafiscal;
 
+import com.mycompany.proyecto2_agencianegocio.AutomovilNegocio;
+import com.mycompany.proyecto2_agencianegocio.PlacasNegcoio;
+import com.mycompany.proyecto2_agenciapersistencias.AutomovilDAO;
+import com.mycompany.proyecto2_agenciapersistencias.ConexionBase;
+import com.mycompany.proyecto2_agenciapersistencias.IAutomovilDAO;
+import com.mycompany.proyecto2_agenciapersistencias.IConexion;
+import com.mycompany.proyecto2_agenciapersistencias.IPlacasDAO;
+import com.mycompany.proyecto2_agenciapersistencias.PlacaDAO;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Gui26
@@ -34,24 +44,35 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
 
         jButton1.setText("Volver");
 
-        jButton2.setText("Registrar nuevo automovil");
+        jButton2.setText("Registrar Automovil");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Buscar automovil");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(40, 40, 40))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton2)
+                        .addGap(58, 58, 58)
+                        .addComponent(jButton3)))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -67,6 +88,35 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+   JFrame frame = new JFrame("Buscar Automovil");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        // Crear una instancia de BuscarAutomovil
+        BuscarAutomovil buscarAutomovil = new BuscarAutomovil();
+        
+        // Agregar la instancia de BuscarAutomovil al JFrame
+        frame.getContentPane().add(buscarAutomovil);
+        
+        // Configurar el tamaño del JFrame
+        frame.pack();
+        
+        // Hacer visible el JFrame
+        frame.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+   IConexion conexionBD = new ConexionBase(); // Ejemplo, debes proporcionar una instancia válida de IConexion
+    IAutomovilDAO automovilDAO = new AutomovilDAO(conexionBD);
+    AutomovilNegocio automovilNegocio = new AutomovilNegocio(automovilDAO);
+    IPlacasDAO placasDAO = new PlacaDAO(conexionBD);
+    PlacasNegcoio placasNegocio = new PlacasNegcoio((PlacaDAO) placasDAO); // Asumiendo que PlacasNegcoio espera un objeto de tipo PlacaDAO
+    RegistrarAutomovil form = new RegistrarAutomovil(automovilNegocio, placasNegocio);
+
+    form.setVisible(true);
+    dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

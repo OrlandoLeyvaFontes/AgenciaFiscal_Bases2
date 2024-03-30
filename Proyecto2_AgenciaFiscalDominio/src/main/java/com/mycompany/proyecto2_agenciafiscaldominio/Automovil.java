@@ -51,6 +51,7 @@ public class Automovil implements Serializable {
         this.linea = linea;
         this.color = color;
         this.modelo = modelo;
+        this.cliente = cliente;
     }
 
     public String getNumeroSerie() {
