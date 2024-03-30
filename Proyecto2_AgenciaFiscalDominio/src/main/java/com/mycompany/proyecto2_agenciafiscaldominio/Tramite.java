@@ -48,6 +48,7 @@ public class Tramite implements Serializable {
     @ManyToOne()
     @JoinColumn(name="idCliente", nullable = false)
     private Clientes cliente;
+    
     public Tramite(){
         
     }

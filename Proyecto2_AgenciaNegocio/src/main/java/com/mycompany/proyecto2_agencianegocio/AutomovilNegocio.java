@@ -30,7 +30,7 @@ public class AutomovilNegocio implements  IAutomovilNegocios{
                 return null;
             }
         }
-
+        System.out.println(automovil.getCliente().getId());
         Automovil autoAgregado = automovilDAO.agregaAutomovil(automovil);
         if (autoAgregado == null) {
             System.err.println("No se pudo agregar el automóvil");

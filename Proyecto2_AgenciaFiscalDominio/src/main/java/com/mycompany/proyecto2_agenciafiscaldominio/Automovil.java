@@ -37,11 +37,14 @@ public class Automovil implements Serializable {
     private String color;
     @Column(name = "modelo", nullable = false, unique = false)
     private String modelo;
-    @ManyToOne
-    @JoinColumn(name = "idCliente")
+    
+    @ManyToOne()
+    @JoinColumn(name="idCliente", nullable = false)
     private Clientes cliente;
-   @OneToMany(mappedBy = "automovil")
-     private List<Placa> placas;
+    
+//    @OneToMany(mappedBy = "automovil")
+//    private List<Placa> placas;
+    
     public Automovil() {
     }
 
@@ -110,13 +113,13 @@ public class Automovil implements Serializable {
         this.cliente = cliente;
     }
 
-    public List<Placa> getPlacas() {
-        return placas;
-    }
-
-    public void setPlacas(List<Placa> placas) {
-        this.placas = placas;
-    }
+//    public List<Placa> getPlacas() {
+//        return placas;
+//    }
+//
+//    public void setPlacas(List<Placa> placas) {
+//        this.placas = placas;
+//    }
 
      @Override
     public boolean equals(Object object) {

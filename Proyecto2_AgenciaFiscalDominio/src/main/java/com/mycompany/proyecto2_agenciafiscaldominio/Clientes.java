@@ -5,9 +5,7 @@
 package com.mycompany.proyecto2_agenciafiscaldominio;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +33,7 @@ public class Clientes implements Serializable {
     private Calendar fechaNacimiento;
     @Column(name = "telefono", nullable = false, unique = true, length = 12)
     private String telefono;
-     @Column(name = "discapacitado", nullable = false)
+    @Column(name = "discapacitado", nullable = false)
     private Boolean discapacitado;
 
     public Clientes() {
@@ -48,10 +46,7 @@ public class Clientes implements Serializable {
         this.telefono = telefono;
         this.discapacitado = discapacitado;
     }
-
     
-
-
     public String getRfc() {
         return rfc;
     }
@@ -91,9 +86,6 @@ public class Clientes implements Serializable {
     public void setDiscapacitado(Boolean discapacitado) {
         this.discapacitado = discapacitado;
     }
-
-   
-  
 
     public String getTelefono() {
         return telefono;

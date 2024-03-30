@@ -158,7 +158,7 @@ String rfc = jTextField1.getText();
             currentFrame.dispose();
 
             // Redirigir a la ventana FormTipoAutomovil
-            FormTipoAutomovil formTipoAutomovil = new FormTipoAutomovil();
+            FormTipoAutomovil formTipoAutomovil = new FormTipoAutomovil(cliente);
             formTipoAutomovil.setVisible(true);
         } catch (Exception ex) {
             ex.printStackTrace();

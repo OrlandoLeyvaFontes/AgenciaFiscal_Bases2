@@ -15,12 +15,14 @@ import javax.swing.JOptionPane;
  * @author oley
  */
 public class RegistrarAutomovil extends javax.swing.JFrame {
- private AutomovilNegocio automovilNegocio;
+    private AutomovilNegocio automovilNegocio;
     private PlacasNegcoio placasNegcoio;
+    private Clientes cliente;
 
-    public RegistrarAutomovil(AutomovilNegocio automovilNegocio, PlacasNegcoio placasNegcoio) {
+    public RegistrarAutomovil(AutomovilNegocio automovilNegocio, PlacasNegcoio placasNegcoio, Clientes cliente) {
         this.automovilNegocio = automovilNegocio;
         this.placasNegcoio = placasNegcoio;
+        this.cliente= cliente;
         initComponents();
     }
     /**
@@ -147,6 +149,7 @@ public class RegistrarAutomovil extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -157,8 +160,8 @@ public class RegistrarAutomovil extends javax.swing.JFrame {
     String modelo = txtModelo.getText();
     String color = txtColor.getText();
 
-    // Crear una nueva instancia de Cliente (asumiendo que tienes una clase Cliente)
-    Clientes cliente = new Clientes();
+//    // Crear una nueva instancia de Cliente (asumiendo que tienes una clase Cliente)
+//    Clientes cliente = new Clientes();
 
     // Crear una instancia de Automovil con los datos proporcionados
     Automovil automovil = new Automovil(numeroSerie, marca, linea, color, modelo, cliente);
