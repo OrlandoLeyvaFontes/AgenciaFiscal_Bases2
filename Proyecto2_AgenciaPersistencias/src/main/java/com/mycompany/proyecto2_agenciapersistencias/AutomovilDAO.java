@@ -19,7 +19,9 @@ import javax.persistence.TypedQuery;
  */
 public class AutomovilDAO implements IAutomovilDAO {
     private IConexion conexionBD;
-
+public AutomovilDAO(IConexion conexionBD) {
+        this.conexionBD = conexionBD;
+    }
 //    @Override
 //    public Automovil agergarAutomovil(AutomovilNuevoDTO automovilNuevo) {
 //        EntityManagerFactory entityManagerFactory = null;
@@ -61,14 +63,15 @@ public class AutomovilDAO implements IAutomovilDAO {
 //    }
 
     @Override
-    public List<Automovil> listaAutosClientes(int id) {
- EntityManager entityManager = this.conexionBD.crearConexion();
-        entityManager.getTransaction().begin();
-        TypedQuery<Automovil> query = entityManager.createQuery("SELECT a FROM Automovil a WHERE a.persona.id = :idPersona", Automovil.class);
-        query.setParameter("idClientes", id);
-        List<Automovil> listaAutos = query.getResultList();
-        entityManager.getTransaction().commit();
-        return listaAutos;    }
+    public List<Automovil> listaAutosClientes(int idCliente) {
+   EntityManager entityManager = this.conexionBD.crearConexion();
+    entityManager.getTransaction().begin();
+    TypedQuery<Automovil> query = entityManager.createQuery("SELECT a FROM Automovil a WHERE a.cliente.id = :idCliente", Automovil.class);
+    query.setParameter("idCliente", idCliente);
+    List<Automovil> listaAutos = query.getResultList();
+    entityManager.getTransaction().commit();
+    return listaAutos;
+    }
 
     @Override
     public Automovil agregaAutomovil(Automovil Automovil) {

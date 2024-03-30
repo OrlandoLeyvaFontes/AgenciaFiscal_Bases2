@@ -5,6 +5,7 @@
 package com.mycompany.proyecto2_agencianegocio;
 
 import INegocios.IPlacasNegocios;
+import com.mycompany.proyecto2_agenciafiscaldominio.Automovil;
 import com.mycompany.proyecto2_agenciafiscaldominio.Placa;
 import com.mycompany.proyecto2_agenciapersistencias.PlacaDAO;
 import java.util.List;
@@ -15,17 +16,19 @@ import java.util.List;
  */
 public class PlacasNegcoio implements IPlacasNegocios {
 
-    private PlacaDAO placasDAO;
+   private PlacaDAO placasDAO;
 
     public PlacasNegcoio(PlacaDAO placasDAO) {
         this.placasDAO = placasDAO;
     }
+
 
     @Override
     public List<Placa> BuscarPorAuto(int id) {
         List<Placa> listaPlacaAuto = placasDAO.AutoEspecifico(id);
         return listaPlacaAuto;
     }
+ 
 
     @Override
     public Placa registrarPlaca(Placa placas) {
@@ -47,5 +50,12 @@ public class PlacasNegcoio implements IPlacasNegocios {
 
         return placaAgregada;
     }
+
+    @Override
+    public List<Automovil> buscaPorAuto(int idCliente) {
+        return placasDAO.AutomovilesAsociados(idCliente);
+    }
+    
+
 
 }

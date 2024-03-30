@@ -92,7 +92,7 @@ public class LicenciaDAO implements ILicenciaDAO {
     public List<Licencia> listaLicenciaPersona(int id) {
   EntityManager entityManager = this.conexionBD.crearConexion();
         entityManager.getTransaction().begin();
-        TypedQuery<Licencia> query = entityManager.createQuery("SELECT l FROM Licencia l WHERE l.persona.id = :idPersona", Licencia.class);
+        TypedQuery<Licencia> query = entityManager.createQuery("SELECT l FROM Licencia l WHERE l.cliente.id = :idCliente", Licencia.class);
         query.setParameter("idCliente", id);
         List<Licencia> listaLicencia = query.getResultList();
         entityManager.getTransaction().commit();

@@ -4,6 +4,7 @@
  */
 package INegocios;
 
+import com.mycompany.proyecto2_agenciafiscaldominio.Automovil;
 import com.mycompany.proyecto2_agenciafiscaldominio.Placa;
 import java.util.List;
 
@@ -16,5 +17,6 @@ public interface IPlacasNegocios {
     public List<Placa> BuscarPorAuto(int id);
 
     public Placa registrarPlaca(Placa placas);
+    List<Automovil> buscaPorAuto(int idCliente);
 
 }
