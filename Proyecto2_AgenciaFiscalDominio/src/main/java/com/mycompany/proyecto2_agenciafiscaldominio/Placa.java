@@ -40,7 +40,9 @@ public class Placa extends Tramite implements Serializable {
     @Column(name="Fecha_inactivo")
     @Temporal(TemporalType.DATE)
     private Calendar fechaInactivo;
-   
+    @ManyToOne
+    @JoinColumn(name = "idTramite")
+    private Tramite tramite;
     @ManyToOne
     @JoinColumn(name = "idAutomovil")
     private Automovil automovil;
