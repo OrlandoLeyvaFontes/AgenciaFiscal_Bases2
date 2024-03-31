@@ -88,6 +88,22 @@ public class Placa extends Tramite implements Serializable {
     public void setAutomovil(Automovil automovil) {
         this.automovil = automovil;
     }
+
+    public Calendar getFechaInactivo() {
+        return fechaInactivo;
+    }
+
+    public void setFechaInactivo(Calendar fechaInactivo) {
+        this.fechaInactivo = fechaInactivo;
+    }
+
+    public Tramite getTramite() {
+        return tramite;
+    }
+
+    public void setTramite(Tramite tramite) {
+        this.tramite = tramite;
+    }
     
   
 }
