@@ -4,8 +4,8 @@
  */
 package INegocios;
 
-import com.mycompany.proyecto2_agenciafiscaldominio.Automovil;
-import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
+import entidades_JPA.Automovil;
+import entidades_JPA.Clientes;
 import java.util.List;
 
 /**

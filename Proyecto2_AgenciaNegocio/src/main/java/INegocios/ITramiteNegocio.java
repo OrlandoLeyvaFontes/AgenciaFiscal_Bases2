@@ -4,10 +4,10 @@
  */
 package INegocios;
 
-import com.mycompany.proyecto2_agenciafiscalDTO.ClienteNuevoDTO;
-import com.mycompany.proyecto2_agenciafiscalDTO.TramiteNuevoDTO;
-import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
-import com.mycompany.proyecto2_agenciafiscaldominio.Tramite;
+import dto.ClienteNuevoDTO;
+import dto.TramiteNuevoDTO;
+import entidades_JPA.Clientes;
+import entidades_JPA.Tramite;
 import java.time.LocalDate;
 import java.util.List;
 

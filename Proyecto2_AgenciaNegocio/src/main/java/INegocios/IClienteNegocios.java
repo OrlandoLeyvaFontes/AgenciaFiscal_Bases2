@@ -4,8 +4,8 @@
  */
 package INegocios;
 
-import com.mycompany.proyecto2_agenciafiscalDTO.ClienteNuevoDTO;
-import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
+import dto.ClienteNuevoDTO;
+import entidades_JPA.Clientes;
 
 /**
  *
