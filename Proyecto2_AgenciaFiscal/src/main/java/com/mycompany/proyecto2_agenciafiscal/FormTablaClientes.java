@@ -9,6 +9,7 @@ import com.mycompany.proyecto2_agencianegocio.ConsultaClientes;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -133,11 +134,17 @@ public class FormTablaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        Long idCliente = (Long) tablaClientes.getModel().getValueAt(tablaClientes.getSelectedRow(), 0);
         
-        FormTablaTramites form = new FormTablaTramites(clientes, idCliente);
-        form.setVisible(true);
-        dispose();
+        int fila = tablaClientes.getSelectedRow();
+        if (fila<0){
+            JOptionPane.showMessageDialog(null, "Seleccione un cliente de la tabla");
+        }
+        else{
+            Long idCliente = (Long) tablaClientes.getModel().getValueAt(tablaClientes.getSelectedRow(), 0);
+            FormTablaTramites form = new FormTablaTramites(clientes, idCliente);
+            form.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     public void tabla(){

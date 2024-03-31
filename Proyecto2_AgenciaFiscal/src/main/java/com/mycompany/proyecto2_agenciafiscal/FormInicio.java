@@ -130,7 +130,6 @@ public class FormInicio extends javax.swing.JFrame {
         frame.setVisible(true);
         dispose();
 
-
     }//GEN-LAST:event_btnLicenciaActionPerformed
 
     private void btnPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlacaActionPerformed

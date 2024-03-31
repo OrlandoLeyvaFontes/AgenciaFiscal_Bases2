@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Calendar;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -42,11 +43,6 @@ private ILicenciaDAO licenciaDAO;
     public SolicitarLicencia01() {
           initComponents();
 
-   
-        
-        
-      
-        
     }
 
     public void setObject(Object bean) {
@@ -88,8 +84,8 @@ private Clientes Checar(String rfc) {
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLicencia = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         btnAbrirLicencia = new javax.swing.JButton();
+        btnnRegresar = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -105,17 +101,17 @@ private Clientes Checar(String rfc) {
 
         tblLicencia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre", "Telefono", "Fecha de nacimiento"
+                "ID", "Nombre", "Telefono", "Fecha de nacimiento", "Discapacitado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -124,23 +120,24 @@ private Clientes Checar(String rfc) {
         });
         jScrollPane1.setViewportView(tblLicencia);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 540, 160));
-
-        jButton1.setText("Regresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 540, 160));
 
         btnAbrirLicencia.setText("Continuar");
+        btnAbrirLicencia.setEnabled(false);
         btnAbrirLicencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAbrirLicenciaActionPerformed(evt);
             }
         });
         add(btnAbrirLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, -1));
+
+        btnnRegresar.setText("Regresar");
+        btnnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnRegresarActionPerformed(evt);
+            }
+        });
+        add(btnnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -152,18 +149,25 @@ private Clientes Checar(String rfc) {
         if (cliente != null) {
             DefaultTableModel model = (DefaultTableModel) tblLicencia.getModel();
             model.setRowCount(0); 
-            Object[] rowData = { cliente.getNombreCompleto(), cliente.getTelefono(), cliente.getFechaNacimiento(),cliente.getDiscapacitado()};
+            
+            String discapacitado = "No";
+            if(cliente.getDiscapacitado()){
+                discapacitado = "Si";
+            }
+            
+            Calendar fecha =  cliente.getFechaNacimiento();
+            
+            String nacimiento = fecha.get(fecha.YEAR)+"-"
+                    +String.format("%02d", fecha.get(fecha.MONTH))+"-"
+                    +String.format("%02d", fecha.get(fecha.DAY_OF_MONTH));
+            
+            Object[] rowData = {cliente.getId(), cliente.getNombreCompleto(), cliente.getTelefono(), nacimiento, discapacitado};
             model.addRow(rowData);
+            btnAbrirLicencia.setEnabled(true);
         } else {
             JOptionPane.showMessageDialog(this, "Cliente no encontrado para el RFC ingresado.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        FormInicio formInicio = new FormInicio();
-        formInicio.setVisible(true);
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        frame.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAbrirLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirLicenciaActionPerformed
    String rfc = jTextField1.getText();
@@ -178,7 +182,7 @@ private Clientes Checar(String rfc) {
         try {
             ILicenciaDAO licenciaDAO = new LicenciaDAO(conexionBD);
 
-ILicenciaNegocios licenciaNegocio = new LicenciaNegocio(licenciaDAO);
+            ILicenciaNegocios licenciaNegocio = new LicenciaNegocio(licenciaDAO);
 
             Licencia01 licenciaForm = new Licencia01(cliente, licenciaNegocio);
 
@@ -186,6 +190,7 @@ ILicenciaNegocios licenciaNegocio = new LicenciaNegocio(licenciaDAO);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.add(licenciaForm);
             frame.pack();
+            frame.setLocationRelativeTo(null);
             frame.setVisible(true);
 
             JFrame solicitarLicenciaFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -199,9 +204,16 @@ ILicenciaNegocios licenciaNegocio = new LicenciaNegocio(licenciaDAO);
     }
     }//GEN-LAST:event_btnAbrirLicenciaActionPerformed
 
+    private void btnnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnRegresarActionPerformed
+        FormInicio form = new FormInicio();
+        form.setVisible(true);
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        frame.dispose();
+    }//GEN-LAST:event_btnnRegresarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirLicencia;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;

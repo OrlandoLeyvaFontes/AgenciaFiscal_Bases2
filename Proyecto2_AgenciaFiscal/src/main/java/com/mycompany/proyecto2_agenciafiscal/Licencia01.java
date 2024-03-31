@@ -81,8 +81,8 @@ public Licencia01(Clientes cliente, ILicenciaNegocios LicenciaNegocio) {
         Año = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         txtcosto = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -100,6 +100,7 @@ public Licencia01(Clientes cliente, ILicenciaNegocios LicenciaNegocio) {
         jLabel2.setText("Costo:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
 
+        txtcosto.setEditable(false);
         txtcosto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcostoActionPerformed(evt);
@@ -107,43 +108,43 @@ public Licencia01(Clientes cliente, ILicenciaNegocios LicenciaNegocio) {
         });
         add(txtcosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 100, -1));
 
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 100, -1));
+        add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 100, -1));
 
-        jButton2.setText("Regresar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnRegresarActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
+        add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void AñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñoActionPerformed
         precios();
     }//GEN-LAST:event_AñoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        SolicitarLicencia01 solicitarLicencia01 = new SolicitarLicencia01();
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(solicitarLicencia01);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        JFrame frame2 = (JFrame) SwingUtilities.getWindowAncestor(this);
+        frame2.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
- SolicitarLicencia01 formInicio = new SolicitarLicencia01();
-        formInicio.setVisible(true);
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        frame.dispose(); 
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+    agregar();
 
-
-
-
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-  agregar();
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void txtcostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcostoActionPerformed
         // TODO add your handling code here:
@@ -160,7 +161,10 @@ public void agregar() {
         
         if (guardar != null) {
             JOptionPane.showMessageDialog(this, "Se completo el tramite de licencia a nombre de: " + cliente.getNombreCompleto());
-
+            FormInicio form = new FormInicio();
+            form.setVisible(true);
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            frame.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Hubo un error al intentar completar su tramite");
         }
@@ -172,8 +176,8 @@ public void agregar() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Año;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtcosto;
