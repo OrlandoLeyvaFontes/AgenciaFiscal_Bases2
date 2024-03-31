@@ -74,4 +74,12 @@ public class AutomovilNuevoDTO {
         return id != null ? id.hashCode() : 0;
     }
 
+    public Clientes getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
+    }
+
 }

@@ -36,43 +36,39 @@ public class PlacaDAO implements IPlacasDAO {
 
     @Override
     public Placa agregarPlacas(Placa placas) {
-     EntityManager entityManager = this.conexionBD.crearConexion();
-    entityManager.getTransaction().begin();
-    try {
-        // Verificar si el objeto Automovil asociado a la placa es null
-        if (placas.getAutomovil() == null) {
-            throw new RuntimeException("El objeto Automovil asociado a la placa es nulo.");
+        EntityManager entityManager = this.conexionBD.crearConexion();
+        entityManager.getTransaction().begin();
+        try {
+            if (placas.getAutomovil() == null) {
+                throw new RuntimeException("El objeto Automovil asociado a la placa es nulo.");
+            }
+
+            TypedQuery<Placa> query = entityManager.createQuery(
+                    "SELECT p FROM Placa p WHERE p.automovil.id = :idAutomovil AND p.estado = :estadoActivo", Placa.class)
+                    .setParameter("idAutomovil", placas.getAutomovil().getId())
+                    .setParameter("estadoActivo", "ACTIVA");
+            List<Placa> placasActivas = query.getResultList();
+
+            if (!placasActivas.isEmpty()) {
+                Placa placaActiva = placasActivas.get(0);
+                placaActiva.setEstado("INACTIVA");
+                placaActiva.setFechaInactivio(new GregorianCalendar());
+                entityManager.merge(placaActiva);
+            }
+
+            entityManager.persist(placas);
+            entityManager.flush();
+            entityManager.refresh(placas);
+            entityManager.getTransaction().commit();
+            return placas;
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            throw new RuntimeException("Error al agregar placa", e);
+        } finally {
+            entityManager.close();
         }
-
-        // Buscar si existe una placa activa para el automóvil
-        TypedQuery<Placa> query = entityManager.createQuery(
-                "SELECT p FROM Placa p WHERE p.automovil.id = :idAutomovil AND p.estado = :estadoActivo", Placa.class)
-                .setParameter("idAutomovil", placas.getAutomovil().getId())
-                .setParameter("estadoActivo", "ACTIVA");
-        List<Placa> placasActivas = query.getResultList();
-
-        // Si existe una placa activa, cambiar su estado a inactivo
-        if (!placasActivas.isEmpty()) {
-            Placa placaActiva = placasActivas.get(0);
-            placaActiva.setEstado("INACTIVA");
-            placaActiva.setFechaInactivio(new GregorianCalendar());
-            entityManager.merge(placaActiva);
-        }
-
-        // Agregar la nueva placa
-        entityManager.persist(placas);
-        entityManager.flush();
-        entityManager.refresh(placas);
-        entityManager.getTransaction().commit();
-        return placas;
-    } catch (Exception e) {
-        entityManager.getTransaction().rollback();
-        throw new RuntimeException("Error al agregar placa", e);
-    } finally {
-        entityManager.close();
     }
-    }
-
+//
 //    public Placa agregarPlacas(PlacaNuevoDTO placaNueva) {
 //       EntityManagerFactory entityManagerFactory = null;
 //        EntityManager entityManager = null;
@@ -86,10 +82,11 @@ public class PlacaDAO implements IPlacasDAO {
 //            transaction.begin();
 //
 //            placa = new Placa(
-//                    placaNueva.getNumeroAlfaNumerico(),
-//                    placaNueva.getFechaEmision(),
-//                    placaNueva.getFechaRecepcion(),
-//                    placaNueva.getCosto()
+//                    placaNueva.getNumeroPlacas(),
+//                    placaNueva.getEstado(),
+//                    placaNueva.getFechaInactivio(),
+//                    placaNueva.getAutomovil()
+//                  
 //            );
 //
 //            entityManager.persist(placa);
@@ -113,36 +110,22 @@ public class PlacaDAO implements IPlacasDAO {
 
     @Override
     public List<Placa> AutoEspecifico(int idAutomovil) {
- EntityManager entityManager = this.conexionBD.crearConexion();
+        EntityManager entityManager = this.conexionBD.crearConexion();
         entityManager.getTransaction().begin();
-        TypedQuery<Placa> query = entityManager.createQuery("SELECT a FROM Placa a WHERE a.automovil.id = :idAutomovil", Placa.class);
+        TypedQuery<Placa> query = entityManager.createQuery(
+                "SELECT p FROM Placa p WHERE p.automovil.id = :idAutomovil", Placa.class);
         query.setParameter("idAutomovil", idAutomovil);
-        List<Placa> listaAutos = query.getResultList();
+        List<Placa> listaPlacas = query.getResultList();
         entityManager.getTransaction().commit();
-        return listaAutos;    }
+        return listaPlacas;
+    }
 
     @Override
     public List<Placa> todasPlacas() {
-        EntityManager entityManager = this.conexionBD.crearConexion();
+ EntityManager entityManager = this.conexionBD.crearConexion();
         entityManager.getTransaction().begin();
         TypedQuery<Placa> query = entityManager.createQuery("SELECT p FROM Placa p", Placa.class);
         List<Placa> listaPlacas = query.getResultList();
         entityManager.getTransaction().commit();
         return listaPlacas;    }
-    public List<Automovil> AutomovilesAsociados(int idCliente) {
-        EntityManager entityManager = this.conexionBD.crearConexion();
-        entityManager.getTransaction().begin();
-        TypedQuery<Placa> query = entityManager.createQuery(
-            "SELECT p FROM Placa p WHERE p.tramite.cliente.id = :idCliente", Placa.class);
-        query.setParameter("idCliente", idCliente);
-        List<Placa> listaPlacas = query.getResultList();
-
-        List<Automovil> listaAutos = new ArrayList<>();
-        for (Placa placa : listaPlacas) {
-            listaAutos.add(placa.getAutomovil());
-        }
-
-        entityManager.getTransaction().commit();
-        return listaAutos;
-    }
 }

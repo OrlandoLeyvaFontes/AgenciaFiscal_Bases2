@@ -18,7 +18,7 @@ public interface IPlacasDAO {
 //    public Placa agregarPlacas(PlacaNuevoDTO placaNuevo);
     public Placa agregarPlacas(Placa placas);
 
-    public List<Placa> AutoEspecifico(int id);
+    public List<Placa> AutoEspecifico(int idAutomovil);
 
     public List<Placa> todasPlacas();
 

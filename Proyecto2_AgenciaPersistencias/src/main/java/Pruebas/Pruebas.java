@@ -105,7 +105,41 @@ public class Pruebas {
 //            em.close();
 //            emf.close();
 //        }
-    
+     Clientes cliente = new Clientes();
+        cliente.setNombreCompleto("pedro siaz");
+        cliente.setRfc("RFC123996789");
+        cliente.setTelefono("1994567890");
+        cliente.setDiscapacitado(false); // Asignar un valor apropiado para discapacitado
+cliente.setFechaNacimiento(Calendar.getInstance()); // Asignar una fecha válida
+
+        // Crear una instancia de EntityManagerFactory utilizando la unidad de persistencia definida en persistence.xml
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("AgenciaPU");
+
+        // Obtener el EntityManager
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        // Iniciar una transacción
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+
+        try {
+            // Persistir el cliente
+            entityManager.persist(cliente);
+
+            // Confirmar la transacción
+            transaction.commit();
+
+            System.out.println("Cliente creado y guardado en la base de datos.");
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.out.println("Error al guardar el cliente en la base de datos: " + e.getMessage());
+        } finally {
+            // Cerrar el EntityManager y el EntityManagerFactory
+            entityManager.close();
+            entityManagerFactory.close();
+        }
     
     }
     }
