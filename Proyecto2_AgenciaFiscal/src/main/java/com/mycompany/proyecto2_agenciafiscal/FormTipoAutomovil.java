@@ -100,11 +100,11 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-   JFrame frame = new JFrame("Buscar Automovil");
+        JFrame frame = new JFrame("Buscar Automovil");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         // Crear una instancia de BuscarAutomovil
-        BuscarAutomovil buscarAutomovil = new BuscarAutomovil();
+        BuscarAutomovil buscarAutomovil = new BuscarAutomovil(cliente);
         
         // Agregar la instancia de BuscarAutomovil al JFrame
         frame.getContentPane().add(buscarAutomovil);
@@ -112,8 +112,11 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
         // Configurar el tamaño del JFrame
         frame.pack();
         
+        frame.setLocationRelativeTo(null);
+        
         // Hacer visible el JFrame
         frame.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed

@@ -4,7 +4,15 @@
  */
 package com.mycompany.proyecto2_agenciafiscal;
 
+import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
+import java.util.Random;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.swing.JFrame;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -12,6 +20,14 @@ import javax.swing.JFrame;
  */
 public class FormInicio extends javax.swing.JFrame {
 
+    private static final String[] NOMBRES = {
+        "Juan", "María", "José", "Ana", "Pedro", "Lucía", "Carlos", "Sofía", 
+        "Miguel", "Laura","orlando","guillermo","julia","roberto","alfonso"};
+
+    private int randBetween(int start, int end) {
+        return start + (int)Math.round(Math.random() * (end - start));
+    }
+    
     /**
      * Creates new form FormInicio
      */
@@ -34,6 +50,7 @@ public class FormInicio extends javax.swing.JFrame {
         btnReporte = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnGenerar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,15 +91,19 @@ public class FormInicio extends javax.swing.JFrame {
 
         jLabel1.setText("Agencia fiscal");
 
+        btnGenerar.setText("Generar 20 Clientes");
+        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnSalir))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(137, 137, 137)
                         .addComponent(btnLicencia))
@@ -97,6 +118,12 @@ public class FormInicio extends javax.swing.JFrame {
                                 .addComponent(btnReporte)
                                 .addComponent(btnConsulta)))))
                 .addContainerGap(148, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnSalir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGenerar)
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +139,9 @@ public class FormInicio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnReporte)
                 .addGap(29, 29, 29)
-                .addComponent(btnSalir)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir)
+                    .addComponent(btnGenerar))
                 .addContainerGap())
         );
 
@@ -159,6 +188,53 @@ public class FormInicio extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgenciaPU");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+
+        try {
+            et.begin();
+            Random rand = new Random();
+            for (int i = 0; i < 20; i++) {
+                Clientes cliente = new Clientes();
+
+                // Generar RFC con 12 caracteres
+                String rfc = "RFC" + String.format("%010d", i); 
+                cliente.setRfc(rfc);
+
+                cliente.setNombreCompleto(NOMBRES[rand.nextInt(NOMBRES.length)]);
+
+                Calendar fechaNacimiento = new GregorianCalendar();
+                int year = randBetween(1950, 2003);
+                fechaNacimiento.set(Calendar.YEAR, year);
+                int dayOfYear = randBetween(1, fechaNacimiento.getActualMaximum(Calendar.DAY_OF_YEAR));
+                fechaNacimiento.set(Calendar.DAY_OF_YEAR, dayOfYear);
+                cliente.setFechaNacimiento(fechaNacimiento);
+
+                String telefono = "1234567890" + i; 
+                cliente.setTelefono(telefono);
+
+                cliente.setDiscapacitado(i % 2 == 0);
+
+                em.persist(cliente);
+            }
+            et.commit();
+        } catch (Exception e) {
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+            if (emf != null) {
+                emf.close();
+            }
+        }
+    }//GEN-LAST:event_btnGenerarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -196,6 +272,7 @@ public class FormInicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsulta;
+    private javax.swing.JButton btnGenerar;
     private javax.swing.JButton btnLicencia;
     private javax.swing.JButton btnPlaca;
     private javax.swing.JButton btnReporte;

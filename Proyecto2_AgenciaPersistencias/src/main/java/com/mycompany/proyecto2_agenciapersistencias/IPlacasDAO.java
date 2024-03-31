@@ -22,4 +22,5 @@ public interface IPlacasDAO {
 
     public List<Placa> todasPlacas();
 
+    public Placa autoPlaca(String numPlaca);
 }

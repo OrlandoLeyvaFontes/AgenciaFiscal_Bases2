@@ -4,23 +4,12 @@
  */
 package com.mycompany.proyecto2_agenciapersistencias;
 
-import com.mycompany.proyecto2_agenciafiscalDTO.PlacaNuevoDTO;
-import com.mycompany.proyecto2_agenciafiscaldominio.Automovil;
 import com.mycompany.proyecto2_agenciafiscaldominio.Placa;
-import com.mycompany.proyecto2_agenciafiscaldominio.Tramite;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.Root;
+
 
 /**
  *
@@ -35,17 +24,26 @@ public class PlacaDAO implements IPlacasDAO {
     }
 
     @Override
-    public Placa agregarPlacas(Placa placas) {
+    public Placa agregarPlacas(Placa placa) {
+        
+        String letras = "";
+        for (int i=0; i<3; i++){ 
+            int codigoAscii = (int)Math.floor(Math.random()*(90 - 65)+65); 
+            letras = letras + (char)codigoAscii; 
+        }
+        letras=letras+"-";
+        
+        
         EntityManager entityManager = this.conexionBD.crearConexion();
         entityManager.getTransaction().begin();
         try {
-            if (placas.getAutomovil() == null) {
+            if (placa.getAutomovil() == null) {
                 throw new RuntimeException("El objeto Automovil asociado a la placa es nulo.");
             }
 
             TypedQuery<Placa> query = entityManager.createQuery(
                     "SELECT p FROM Placa p WHERE p.automovil.id = :idAutomovil AND p.estado = :estadoActivo", Placa.class)
-                    .setParameter("idAutomovil", placas.getAutomovil().getId())
+                    .setParameter("idAutomovil", placa.getAutomovil().getId())
                     .setParameter("estadoActivo", "ACTIVA");
             List<Placa> placasActivas = query.getResultList();
 
@@ -55,12 +53,18 @@ public class PlacaDAO implements IPlacasDAO {
                 placaActiva.setFechaInactivio(new GregorianCalendar());
                 entityManager.merge(placaActiva);
             }
-
-            entityManager.persist(placas);
+            
+            entityManager.persist(placa);
             entityManager.flush();
-            entityManager.refresh(placas);
+            
+            String numPlaca = letras+String.format("%03d", placa.getId());
+            placa.setNumeroPlacas(numPlaca);
+            entityManager.merge(placa);
+            entityManager.flush();
+            
+            entityManager.refresh(placa);
             entityManager.getTransaction().commit();
-            return placas;
+            return placa;
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             throw new RuntimeException("Error al agregar placa", e);
@@ -119,10 +123,22 @@ public class PlacaDAO implements IPlacasDAO {
         entityManager.getTransaction().commit();
         return listaPlacas;
     }
+    
+    @Override
+    public Placa autoPlaca(String numPlaca) {
+        EntityManager entityManager = this.conexionBD.crearConexion();
+        entityManager.getTransaction().begin();
+        TypedQuery<Placa> query = entityManager.createQuery(
+                "SELECT p FROM Placa p WHERE p.numeroPlacas = :numPlaca", Placa.class);
+        query.setParameter("numPlaca", numPlaca);
+        List<Placa> listaPlacas = query.getResultList();
+        entityManager.getTransaction().commit();
+        return listaPlacas.getFirst();
+    }
 
     @Override
     public List<Placa> todasPlacas() {
- EntityManager entityManager = this.conexionBD.crearConexion();
+        EntityManager entityManager = this.conexionBD.crearConexion();
         entityManager.getTransaction().begin();
         TypedQuery<Placa> query = entityManager.createQuery("SELECT p FROM Placa p", Placa.class);
         List<Placa> listaPlacas = query.getResultList();

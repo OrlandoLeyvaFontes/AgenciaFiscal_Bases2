@@ -5,12 +5,16 @@
 package com.mycompany.proyecto2_agenciafiscal;
 
 import com.mycompany.proyecto2_agenciafiscaldominio.Automovil;
+import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
 import com.mycompany.proyecto2_agenciafiscaldominio.Placa;
 import com.mycompany.proyecto2_agenciapersistencias.ConexionBase;
 import com.mycompany.proyecto2_agenciapersistencias.IConexion;
 import com.mycompany.proyecto2_agenciapersistencias.PlacaDAO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,30 +24,39 @@ import javax.swing.table.DefaultTableModel;
 public class BuscarAutomovil extends javax.swing.JPanel implements java.beans.Customizer {
     
     private Object bean;
-
+    private Clientes cliente;
+    private Automovil auto;
     /**
      * Creates new customizer BuscarAutomovil
      */
-    public BuscarAutomovil() {
+    public BuscarAutomovil(Clientes cliente) {
+        this.cliente=cliente;
         initComponents();
     }
     
     public void setObject(Object bean) {
         this.bean = bean;
     }
-  private void mostrarAutosEnTabla(List<Automovil> listaAutos) {
+    
+    private void mostrarAutoEnTabla() {
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("ID");
+        model.addColumn("No. Serie");
         model.addColumn("Marca");
+        model.addColumn("Linea");
+        model.addColumn("Color");
         model.addColumn("Modelo");
+        model.addColumn("Placa");
         
-        for (Automovil auto : listaAutos) {
-            Object[] row = new Object[3];
-            row[0] = auto.getId();
+        //for (Automovil automovil : listaAutos) {
+            Object[] row = new Object[6];
+            row[0] = auto.getNumeroSerie();
             row[1] = auto.getMarca();
-            row[2] = auto.getModelo();
+            row[2] = auto.getLinea();
+            row[3] = auto.getColor();
+            row[4] = auto.getModelo();
+            row[5] = txtPlaca.getText();
             model.addRow(row);
-        }
+        //}
 
         jTable1.setModel(model);
     }
@@ -56,75 +69,124 @@ public class BuscarAutomovil extends javax.swing.JPanel implements java.beans.Cu
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtPlaca = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnContinuar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("ID");
+        jLabel1.setText("No. placa");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtPlaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtPlacaActionPerformed(evt);
             }
         });
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 170, -1));
+        add(txtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 170, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No. serie", "Marca", "Linea", "Color", "Modelo", "Placa"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true, true
+            };
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 380, 200));
-
-        jButton1.setText("Continuar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
+        jScrollPane1.setViewportView(jTable1);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 620, 200));
+
+        btnContinuar.setText("Continuar");
+        btnContinuar.setEnabled(false);
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarActionPerformed(evt);
+            }
+        });
+        add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 260, -1, -1));
+
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+        add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      int idCliente = Integer.parseInt(jTextField1.getText());
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+        if(auto!=null){
+            Placa placa = new Placa("ACTIVA",auto,1000);
+            IConexion conexion = new ConexionBase();
+            PlacaDAO placaDAO = new PlacaDAO(conexion);
+            placaDAO.agregarPlacas(placa);
+            JOptionPane.showMessageDialog(this, "Placa generada");
+            FormInicio form = new FormInicio();
+            form.setVisible(true);
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            frame.dispose();
+        } else{
+            JOptionPane.showMessageDialog(this, "No se busco el automovil", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnContinuarActionPerformed
+
+    private void txtPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlacaActionPerformed
+        String numPlaca = txtPlaca.getText();
         IConexion conexion = new ConexionBase(); // Suponiendo que tengas una implementación de IConexion
         PlacaDAO placasDAO = new PlacaDAO(conexion);
         
-        // Obtener la lista de placas asociadas con el cliente
-        List<Placa> listaPlacas = placasDAO.AutoEspecifico(idCliente);
+//        // Obtener la lista de placas asociadas con el cliente
+//        List<Placa> listaPlacas = placasDAO.AutoEspecifico(idCliente);
         
-        // Crear una lista de automóviles a partir de la lista de placas
-        List<Automovil> listaAutos = new ArrayList<>();
-        for (Placa placa : listaPlacas) {
-            listaAutos.add(placa.getAutomovil());
+        Placa placa = placasDAO.autoPlaca(numPlaca);
+        if (placa!=null){
+            
+            auto=placa.getAutomovil();
+            
+//        // Crear una lista de automóviles a partir de la lista de placas
+            //List<Automovil> listaAutos = new ArrayList<>();
+    //        for (Placa placa : listaPlacas) {
+            //listaAutos.add(placa.getAutomovil());
+            btnContinuar.setEnabled(true);
+    //        }
+    
+            // Mostrar los automóviles en la tabla
+            
+            mostrarAutoEnTabla();
+            
+        } else{
+            
         }
         
-        // Mostrar los automóviles en la tabla
-        mostrarAutosEnTabla(listaAutos);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_txtPlacaActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        FormTipoAutomovil form = new FormTipoAutomovil(cliente);
+        form.setVisible(true);
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        frame.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnContinuar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables
 }

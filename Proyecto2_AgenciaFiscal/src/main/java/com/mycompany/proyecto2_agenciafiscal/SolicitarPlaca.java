@@ -84,7 +84,7 @@ private Clientes Checar(String rfc) {
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLicencia = new javax.swing.JTable();
-        btnAbrirLicencia = new javax.swing.JButton();
+        btnContinuar = new javax.swing.JButton();
         btnnRegresar = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -122,14 +122,14 @@ private Clientes Checar(String rfc) {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 540, 160));
 
-        btnAbrirLicencia.setText("Continuar");
-        btnAbrirLicencia.setEnabled(false);
-        btnAbrirLicencia.addActionListener(new java.awt.event.ActionListener() {
+        btnContinuar.setText("Continuar");
+        btnContinuar.setEnabled(false);
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAbrirLicenciaActionPerformed(evt);
+                btnContinuarActionPerformed(evt);
             }
         });
-        add(btnAbrirLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, -1));
+        add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, -1));
 
         btnnRegresar.setText("Regresar");
         btnnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -163,13 +163,13 @@ private Clientes Checar(String rfc) {
             
             Object[] rowData = {cliente.getId(), cliente.getNombreCompleto(), cliente.getTelefono(), nacimiento, discapacitado};
             model.addRow(rowData);
-            btnAbrirLicencia.setEnabled(true);
+            btnContinuar.setEnabled(true);
         } else {
             JOptionPane.showMessageDialog(this, "Cliente no encontrado para el RFC ingresado.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void btnAbrirLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirLicenciaActionPerformed
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
     
     String rfc = jTextField1.getText();
 
@@ -195,7 +195,7 @@ private Clientes Checar(String rfc) {
     } else {
         JOptionPane.showMessageDialog(SolicitarPlaca.this, "Cliente no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
     }
-    }//GEN-LAST:event_btnAbrirLicenciaActionPerformed
+    }//GEN-LAST:event_btnContinuarActionPerformed
 
     private void btnnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnRegresarActionPerformed
         FormInicio form = new FormInicio();
@@ -205,7 +205,7 @@ private Clientes Checar(String rfc) {
     }//GEN-LAST:event_btnnRegresarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAbrirLicencia;
+    private javax.swing.JButton btnContinuar;
     private javax.swing.JButton btnnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
