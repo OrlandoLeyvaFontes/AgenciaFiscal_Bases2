@@ -32,7 +32,7 @@ public class PlacasNegcoio implements IPlacasNegocios {
 
     @Override
     public Placa registrarPlaca(Placa placas) {
-        List<Placa> lista = placasDAO.todasPlacas();
+List<Placa> lista = placasDAO.todasPlacas();
         for (int i = 0; i < lista.size(); i++) {
             if (placas.getNumeroPlacas() == null) {
                 i = lista.size();
@@ -49,13 +49,16 @@ public class PlacasNegcoio implements IPlacasNegocios {
         }
 
         return placaAgregada;
-    }
-
-    @Override
-    public List<Automovil> buscaPorAuto(int idCliente) {
-        return placasDAO.AutomovilesAsociados(idCliente);
-    }
+    
+//
+//    @Override
+//    public List<Automovil> buscaPorAuto(int idAutomovil) {
+//        return placasDAO.AutomovilesAsociados(idAutomovil);
+//    }
     
 
+    
+    
 
+    }
 }

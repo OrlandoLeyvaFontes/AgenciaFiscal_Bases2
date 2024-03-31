@@ -17,6 +17,6 @@ public interface IPlacasNegocios {
     public List<Placa> BuscarPorAuto(int id);
 
     public Placa registrarPlaca(Placa placas);
-    List<Automovil> buscaPorAuto(int idCliente);
+//    List<Automovil> buscaPorAuto(int idCliente);
 
 }
