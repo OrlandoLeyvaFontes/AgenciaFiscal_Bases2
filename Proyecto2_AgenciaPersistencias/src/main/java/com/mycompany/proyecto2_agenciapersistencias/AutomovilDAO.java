@@ -87,7 +87,7 @@ public AutomovilDAO(IConexion conexionBD) {
 
     @Override
     public List<Automovil> listaAutomovil() {
- EntityManager entityManager = this.conexionBD.crearConexion();
+        EntityManager entityManager = this.conexionBD.crearConexion();
         entityManager.getTransaction().begin();
         TypedQuery<Automovil> query = entityManager.createQuery("SELECT a FROM Automovil a", Automovil.class);
         List<Automovil> listaAuto = query.getResultList();

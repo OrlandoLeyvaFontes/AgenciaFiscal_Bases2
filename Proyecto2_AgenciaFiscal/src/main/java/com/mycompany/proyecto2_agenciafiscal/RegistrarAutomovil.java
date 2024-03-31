@@ -7,7 +7,7 @@ package com.mycompany.proyecto2_agenciafiscal;
 import com.mycompany.proyecto2_agenciafiscaldominio.Automovil;
 import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
 import com.mycompany.proyecto2_agencianegocio.AutomovilNegocio;
-import com.mycompany.proyecto2_agencianegocio.PlacasNegcoio;
+import com.mycompany.proyecto2_agencianegocio.PlacasNegocio;
 import com.mycompany.proyecto2_agenciapersistencias.ConexionBase;
 import com.mycompany.proyecto2_agenciapersistencias.IConexion;
 import com.mycompany.proyecto2_agenciapersistencias.IPlacasDAO;
@@ -20,19 +20,18 @@ import javax.swing.JOptionPane;
  */
 public class RegistrarAutomovil extends javax.swing.JFrame {
     private AutomovilNegocio automovilNegocio;
-    private PlacasNegcoio placasNegocio;
+    private PlacasNegocio placasNegocio;
     private Clientes cliente;
 
-    public RegistrarAutomovil(AutomovilNegocio automovilNegocio, PlacasNegcoio placasNegocio, Clientes cliente) {
+    /**
+     * Creates new form FormConfirmarCliente
+     */
+    public RegistrarAutomovil(AutomovilNegocio automovilNegocio, PlacasNegocio placasNegocio, Clientes cliente) {
         this.automovilNegocio = automovilNegocio;
         this.placasNegocio = placasNegocio;
         this.cliente= cliente;
         initComponents();
     }
-    /**
-     * Creates new form FormConfirmarCliente
-     */
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -169,6 +168,9 @@ public class RegistrarAutomovil extends javax.swing.JFrame {
     Automovil automovilRegistrado = automovilNegocio.registrarAutomovil(automovil);
     if (automovilRegistrado != null) {
         JOptionPane.showMessageDialog(this, "Automóvil registrado exitosamente");
+        FormInicio form = new FormInicio();
+        form.setVisible(true);
+        dispose();
     } else {
         JOptionPane.showMessageDialog(this, "No se pudo registrar el automóvil", "Error", JOptionPane.ERROR_MESSAGE);
     }

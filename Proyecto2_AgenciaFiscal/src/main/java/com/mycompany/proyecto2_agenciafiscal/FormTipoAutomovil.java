@@ -6,7 +6,7 @@ package com.mycompany.proyecto2_agenciafiscal;
 
 import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
 import com.mycompany.proyecto2_agencianegocio.AutomovilNegocio;
-import com.mycompany.proyecto2_agencianegocio.PlacasNegcoio;
+import com.mycompany.proyecto2_agencianegocio.PlacasNegocio;
 import com.mycompany.proyecto2_agenciapersistencias.AutomovilDAO;
 import com.mycompany.proyecto2_agenciapersistencias.ConexionBase;
 import com.mycompany.proyecto2_agenciapersistencias.IAutomovilDAO;
@@ -121,7 +121,7 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
         IAutomovilDAO automovilDAO = new AutomovilDAO(conexionBD);
         AutomovilNegocio automovilNegocio = new AutomovilNegocio(automovilDAO);
         IPlacasDAO placasDAO = new PlacaDAO(conexionBD);
-        PlacasNegcoio placasNegocio = new PlacasNegcoio((PlacaDAO) placasDAO); // Asumiendo que PlacasNegcoio espera un objeto de tipo PlacaDAO
+        PlacasNegocio placasNegocio = new PlacasNegocio((PlacaDAO) placasDAO); // Asumiendo que PlacasNegocio espera un objeto de tipo PlacaDAO
         RegistrarAutomovil form = new RegistrarAutomovil(automovilNegocio, placasNegocio, cliente);
 
         form.setVisible(true);

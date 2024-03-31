@@ -1,8 +1,8 @@
 com\mycompany\proyecto2_agencianegocio\ConsultaClientes.class
 com\mycompany\proyecto2_agencianegocio\ConsultaTramites.class
+com\mycompany\proyecto2_agencianegocio\PlacasNegocio.class
 INegocios\IClienteNegocios.class
 INegocios\IConsultaClientes.class
-com\mycompany\proyecto2_agencianegocio\PlacasNegcoio.class
 com\mycompany\proyecto2_agencianegocio\ClienteNegocio.class
 INegocios\IAutomovilNegocios.class
 INegocios\ILicenciaNegocios.class

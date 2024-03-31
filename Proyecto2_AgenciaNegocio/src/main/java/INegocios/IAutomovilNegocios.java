@@ -5,6 +5,7 @@
 package INegocios;
 
 import com.mycompany.proyecto2_agenciafiscaldominio.Automovil;
+import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
 import java.util.List;
 
 /**

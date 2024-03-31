@@ -40,9 +40,9 @@ public class Placa extends Tramite implements Serializable {
     @Column(name="Fecha_inactivo")
     @Temporal(TemporalType.DATE)
     private Calendar fechaInactivo;
-    @ManyToOne
-    @JoinColumn(name = "idTramite")
-    private Tramite tramite;
+//    @ManyToOne
+//    @JoinColumn(name = "idTramite")
+//    private Tramite tramite;
     
     @ManyToOne()
     @JoinColumn(name="idAutomovil", nullable = false)
@@ -50,9 +50,16 @@ public class Placa extends Tramite implements Serializable {
 
     public Placa() {
     }
- public Placa(String numeroPlacas, String estado , Automovil automovil, float Costo , Clientes cliente) {
+    
+    public Placa(String numeroPlacas, String estado , Automovil automovil, float Costo , Clientes cliente) {
         super(Costo,cliente);
         this.numeroPlacas = numeroPlacas;
+        this.estado = estado;
+        this.automovil = automovil;
+    }
+    
+    public Placa(String estado , Automovil automovil, float Costo) {
+        super(Costo,automovil.getCliente());
         this.estado = estado;
         this.automovil = automovil;
     }
@@ -97,13 +104,13 @@ public class Placa extends Tramite implements Serializable {
         this.fechaInactivo = fechaInactivo;
     }
 
-    public Tramite getTramite() {
-        return tramite;
-    }
-
-    public void setTramite(Tramite tramite) {
-        this.tramite = tramite;
-    }
+//    public Tramite getTramite() {
+//        return tramite;
+//    }
+//
+//    public void setTramite(Tramite tramite) {
+//        this.tramite = tramite;
+//    }
     
   
 }

@@ -6,7 +6,12 @@ package com.mycompany.proyecto2_agencianegocio;
 
 import INegocios.IAutomovilNegocios;
 import com.mycompany.proyecto2_agenciafiscaldominio.Automovil;
+import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
+import com.mycompany.proyecto2_agenciafiscaldominio.Placa;
+import com.mycompany.proyecto2_agenciapersistencias.ConexionBase;
 import com.mycompany.proyecto2_agenciapersistencias.IAutomovilDAO;
+import com.mycompany.proyecto2_agenciapersistencias.IConexion;
+import com.mycompany.proyecto2_agenciapersistencias.PlacaDAO;
 import java.util.List;
 
 /**
@@ -16,9 +21,9 @@ import java.util.List;
 public class AutomovilNegocio implements  IAutomovilNegocios{
     private IAutomovilDAO automovilDAO;
 
-   public AutomovilNegocio(IAutomovilDAO automovilDAO) {
-    this.automovilDAO = automovilDAO;
-}
+    public AutomovilNegocio(IAutomovilDAO automovilDAO) {
+        this.automovilDAO = automovilDAO;
+    }
 
 
     @Override
@@ -30,11 +35,16 @@ public class AutomovilNegocio implements  IAutomovilNegocios{
                 return null;
             }
         }
-        System.out.println(automovil.getCliente().getId());
+        //System.out.println(automovil.getCliente().getId());
         Automovil autoAgregado = automovilDAO.agregaAutomovil(automovil);
         if (autoAgregado == null) {
             System.err.println("No se pudo agregar el automóvil");
             return null;
+        } else{
+            Placa placa = new Placa("ACTIVA",autoAgregado,1500);
+            IConexion conexion = new ConexionBase();
+            PlacaDAO placaDAO = new PlacaDAO(conexion);
+            placaDAO.agregarPlacas(placa);
         }
 
         return autoAgregado; 
