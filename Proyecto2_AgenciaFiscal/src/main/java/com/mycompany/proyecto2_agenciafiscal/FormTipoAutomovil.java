@@ -40,25 +40,30 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Volver");
-
-        jButton2.setText("Registrar Automovil");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Buscar automovil");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setText("Registrar Automovil");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+
+        btnBuscar.setText("Buscar automovil");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -70,12 +75,12 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1))
+                        .addComponent(btnVolver))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(jButton2)
+                        .addComponent(btnRegistrar)
                         .addGap(58, 58, 58)
-                        .addComponent(jButton3)))
+                        .addComponent(btnBuscar)))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -83,10 +88,10 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnRegistrar)
+                    .addComponent(btnBuscar))
                 .addGap(33, 33, 33)
-                .addComponent(jButton1)
+                .addComponent(btnVolver)
                 .addContainerGap())
         );
 
@@ -94,7 +99,7 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
    JFrame frame = new JFrame("Buscar Automovil");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -109,19 +114,30 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
         
         // Hacer visible el JFrame
         frame.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-   IConexion conexionBD = new ConexionBase(); // Ejemplo, debes proporcionar una instancia válida de IConexion
-    IAutomovilDAO automovilDAO = new AutomovilDAO(conexionBD);
-    AutomovilNegocio automovilNegocio = new AutomovilNegocio(automovilDAO);
-    IPlacasDAO placasDAO = new PlacaDAO(conexionBD);
-    PlacasNegcoio placasNegocio = new PlacasNegcoio((PlacaDAO) placasDAO); // Asumiendo que PlacasNegcoio espera un objeto de tipo PlacaDAO
-    RegistrarAutomovil form = new RegistrarAutomovil(automovilNegocio, placasNegocio, cliente);
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        IConexion conexionBD = new ConexionBase(); // Ejemplo, debes proporcionar una instancia válida de IConexion
+        IAutomovilDAO automovilDAO = new AutomovilDAO(conexionBD);
+        AutomovilNegocio automovilNegocio = new AutomovilNegocio(automovilDAO);
+        IPlacasDAO placasDAO = new PlacaDAO(conexionBD);
+        PlacasNegcoio placasNegocio = new PlacasNegcoio((PlacaDAO) placasDAO); // Asumiendo que PlacasNegcoio espera un objeto de tipo PlacaDAO
+        RegistrarAutomovil form = new RegistrarAutomovil(automovilNegocio, placasNegocio, cliente);
 
-    form.setVisible(true);
-    dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        form.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        SolicitarPlaca form = new SolicitarPlaca();
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(form);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -159,8 +175,8 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnVolver;
     // End of variables declaration//GEN-END:variables
 }

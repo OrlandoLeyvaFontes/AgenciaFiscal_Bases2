@@ -133,14 +133,14 @@ public class FormInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLicenciaActionPerformed
 
     private void btnPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlacaActionPerformed
-    Tramites form = new Tramites();
-    JFrame frame = new JFrame();
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.getContentPane().add(form);
-    frame.pack();
-    frame.setLocationRelativeTo(null);
-    frame.setVisible(true);
-    dispose();
+        SolicitarPlaca form = new SolicitarPlaca();
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(form);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnPlacaActionPerformed
 
     private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed

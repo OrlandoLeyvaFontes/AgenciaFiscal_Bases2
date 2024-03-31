@@ -143,7 +143,7 @@ private Clientes Checar(String rfc) {
         }    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-String rfc = jTextField1.getText();
+    String rfc = jTextField1.getText();
 
     IConexion conexionBD = new ConexionBase(); 
 

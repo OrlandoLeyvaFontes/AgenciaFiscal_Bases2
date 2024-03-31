@@ -8,6 +8,10 @@ import com.mycompany.proyecto2_agenciafiscaldominio.Automovil;
 import com.mycompany.proyecto2_agenciafiscaldominio.Clientes;
 import com.mycompany.proyecto2_agencianegocio.AutomovilNegocio;
 import com.mycompany.proyecto2_agencianegocio.PlacasNegcoio;
+import com.mycompany.proyecto2_agenciapersistencias.ConexionBase;
+import com.mycompany.proyecto2_agenciapersistencias.IConexion;
+import com.mycompany.proyecto2_agenciapersistencias.IPlacasDAO;
+import com.mycompany.proyecto2_agenciapersistencias.PlacaDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,12 +20,12 @@ import javax.swing.JOptionPane;
  */
 public class RegistrarAutomovil extends javax.swing.JFrame {
     private AutomovilNegocio automovilNegocio;
-    private PlacasNegcoio placasNegcoio;
+    private PlacasNegcoio placasNegocio;
     private Clientes cliente;
 
-    public RegistrarAutomovil(AutomovilNegocio automovilNegocio, PlacasNegcoio placasNegcoio, Clientes cliente) {
+    public RegistrarAutomovil(AutomovilNegocio automovilNegocio, PlacasNegcoio placasNegocio, Clientes cliente) {
         this.automovilNegocio = automovilNegocio;
-        this.placasNegcoio = placasNegcoio;
+        this.placasNegocio = placasNegocio;
         this.cliente= cliente;
         initComponents();
     }
@@ -39,7 +43,6 @@ public class RegistrarAutomovil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -51,12 +54,10 @@ public class RegistrarAutomovil extends javax.swing.JFrame {
         txtLinea = new javax.swing.JTextField();
         txtColor = new javax.swing.JTextField();
         txtModelo = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnContinuar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Solicitar Licencia");
 
         jLabel2.setText("Datos del automovil");
 
@@ -70,12 +71,17 @@ public class RegistrarAutomovil extends javax.swing.JFrame {
 
         jLabel7.setText("Modelo:");
 
-        jButton1.setText("Cancelar");
-
-        jButton2.setText("Continuar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnContinuar.setText("Continuar");
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarActionPerformed(evt);
             }
         });
 
@@ -87,39 +93,32 @@ public class RegistrarAutomovil extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(btnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addComponent(btnContinuar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(152, 152, 152)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addGap(34, 34, 34)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNumeroSerie)
-                                    .addComponent(txtMarca)
-                                    .addComponent(txtLinea)
-                                    .addComponent(txtColor)
-                                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNumeroSerie)
+                            .addComponent(txtMarca)
+                            .addComponent(txtLinea)
+                            .addComponent(txtColor)
+                            .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 17, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -143,8 +142,8 @@ public class RegistrarAutomovil extends javax.swing.JFrame {
                     .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnContinuar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -152,7 +151,7 @@ public class RegistrarAutomovil extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
     // Obtener los valores de los campos de texto
     String numeroSerie = txtNumeroSerie.getText();
     String marca = txtMarca.getText();
@@ -173,12 +172,17 @@ public class RegistrarAutomovil extends javax.swing.JFrame {
     } else {
         JOptionPane.showMessageDialog(this, "No se pudo registrar el automóvil", "Error", JOptionPane.ERROR_MESSAGE);
     }
-            }//GEN-LAST:event_jButton2ActionPerformed
+            }//GEN-LAST:event_btnContinuarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        FormTipoAutomovil form = new FormTipoAutomovil(cliente);
+        form.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnContinuar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

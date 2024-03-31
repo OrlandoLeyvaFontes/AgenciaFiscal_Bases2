@@ -32,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Oley
  */
-public class SolicitarLicencia01 extends javax.swing.JPanel implements java.beans.Customizer {
+public class SolicitarPlaca extends javax.swing.JPanel implements java.beans.Customizer {
 
     private Object bean;
     private int selectedRow = -1;
@@ -40,7 +40,7 @@ private ILicenciaDAO licenciaDAO;
     /**
      * Creates new customizer SolicitarLicencia01
      */
-    public SolicitarLicencia01() {
+    public SolicitarPlaca() {
           initComponents();
 
     }
@@ -170,38 +170,31 @@ private Clientes Checar(String rfc) {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void btnAbrirLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirLicenciaActionPerformed
-        String rfc = jTextField1.getText();
+    
+    String rfc = jTextField1.getText();
 
-        IConexion conexionBD = new ConexionBase(); 
+    IConexion conexionBD = new ConexionBase(); 
 
-        IClientesDAO clientesDAO = new ClientesDAO(conexionBD);
+    IClientesDAO clientesDAO = new ClientesDAO(conexionBD);
 
-        Clientes cliente = clientesDAO.Checar(rfc);
+    Clientes cliente = clientesDAO.Checar(rfc);
 
-        if (cliente != null) {
-            try {
-                ILicenciaDAO licenciaDAO = new LicenciaDAO(conexionBD);
+    if (cliente != null) {
+        try {
+            // Cerrar la ventana actual
+            JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            currentFrame.dispose();
 
-                ILicenciaNegocios licenciaNegocio = new LicenciaNegocio(licenciaDAO);
-
-                Licencia01 licenciaForm = new Licencia01(cliente, licenciaNegocio);
-
-                JFrame frame = new JFrame();
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                frame.add(licenciaForm);
-                frame.pack();
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
-
-                JFrame solicitarLicenciaFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-                solicitarLicenciaFrame.dispose();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(SolicitarLicencia01.this, "Error al abrir la licencia.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(SolicitarLicencia01.this, "Cliente no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+            // Redirigir a la ventana FormTipoAutomovil
+            FormTipoAutomovil formTipoAutomovil = new FormTipoAutomovil(cliente);
+            formTipoAutomovil.setVisible(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(SolicitarPlaca.this, "Error al abrir la ventana.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    } else {
+        JOptionPane.showMessageDialog(SolicitarPlaca.this, "Cliente no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnAbrirLicenciaActionPerformed
 
     private void btnnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnRegresarActionPerformed
