@@ -27,6 +27,5 @@ daos\ConexionBase.class
 daos\IAutomovilDAO.class
 dto\ClienteNuevoDTO.class
 entidades_JPA\Tramite.class
-dto\ClienteNuevoDTO_.class
 dto\AutomovilNuevoDTO.class
 entidades_JPA\Placa.class

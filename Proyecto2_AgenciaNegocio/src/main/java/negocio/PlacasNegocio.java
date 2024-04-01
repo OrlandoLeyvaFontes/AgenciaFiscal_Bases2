@@ -11,25 +11,41 @@ import daos.PlacaDAO;
 import java.util.List;
 
 /**
+ * Clase que implementa la interfaz IPlacasNegocios para manejar operaciones relacionadas con placas de vehículos.
  *
  * @author Oley
  */
 public class PlacasNegocio implements IPlacasNegocios {
 
-   private PlacaDAO placasDAO;
-
+    /**
+     * DAO para acceder a la capa de datos de placas.
+     */
+    private PlacaDAO placasDAO;
+    /**
+     * Cosntructor
+     * @param placasDAO PlacaDAO
+     */
     public PlacasNegocio(PlacaDAO placasDAO) {
         this.placasDAO = placasDAO;
     }
 
-
+     /**
+     * Busca placas asociadas a un automóvil específico.
+     *
+     * @param id Identificador del automóvil del que se desean buscar las placas.
+     * @return Lista de placas asociadas al automóvil especificado.
+     */
     @Override
     public List<Placa> BuscarPorAuto(int id) {
         List<Placa> listaPlacaAuto = placasDAO.AutoEspecifico(id);
         return listaPlacaAuto;
     }
- 
-
+/**
+ * Registra una nueva placa en el sistema.
+ *
+ * @param placas La placa que se desea registrar.
+ * @return La placa registrada en el sistema.
+ */
     @Override
     public Placa registrarPlaca(Placa placas) {
         List<Placa> lista = placasDAO.todasPlacas();
@@ -49,16 +65,11 @@ public class PlacasNegocio implements IPlacasNegocios {
         }
 
         return placaAgregada;
-    
+
 //
 //    @Override
 //    public List<Automovil> buscaPorAuto(int idAutomovil) {
 //        return placasDAO.AutomovilesAsociados(idAutomovil);
 //    }
-    
-
-    
-    
-
     }
 }

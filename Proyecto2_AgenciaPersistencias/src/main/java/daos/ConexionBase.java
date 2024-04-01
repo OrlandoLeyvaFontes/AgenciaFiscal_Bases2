@@ -10,11 +10,22 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 
 /**
- *
+ * Clase para conectarse a la base de datos
  * @author Oley
  */
 public class ConexionBase implements IConexion {
 
+    /**
+     * Constructor
+     */
+    public ConexionBase() {
+    }
+    
+    /**
+     * Crea conexion con la base de datos
+     * @return EntityManager
+     * @throws PersistenceException Error de conexion
+     */
     @Override
     public EntityManager crearConexion() throws PersistenceException {
        EntityManagerFactory managerFactory = Persistence.createEntityManagerFactory("AgenciaPU");

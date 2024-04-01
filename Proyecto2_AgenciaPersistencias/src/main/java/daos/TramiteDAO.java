@@ -28,10 +28,23 @@ import javax.persistence.criteria.Root;
  *
  * @author Oley
  */
+/**
+ * Esta clase implementa la interfaz ITramiteDAO y proporciona funcionalidades
+ * para acceder y manipular los datos de los trámites en la base de datos.
+ */
 public class TramiteDAO implements ITramiteDAO {
 
+    /**
+     * Objeto para la gestión de la conexión a la base de datos.
+     */
     private IConexion conexionBD;
 
+    /**
+     * Constructor de la clase TramiteDAO.
+     *
+     * @param conexionBD Objeto para la gestión de la conexión a la base de
+     * datos.
+     */
     public TramiteDAO(IConexion conexionBD) {
         this.conexionBD = conexionBD;
     }
@@ -74,7 +87,6 @@ public class TramiteDAO implements ITramiteDAO {
 //
 //        return tramite;
 //    }
-
 //    @Override
 //    public Tramite agergarTramite(TramiteNuevoDTO TramiteNuevo) {
 //  EntityManagerFactory entityManagerFactory = null;
@@ -111,10 +123,18 @@ public class TramiteDAO implements ITramiteDAO {
 //        }
 //
 //        return tramite;    }
-
+    /**
+     * Recupera una lista de trámites basada en los criterios proporcionados.
+     *
+     * @param tipo1 Indica si se deben incluir trámites de tipo 1.
+     * @param tipo2 Indica si se deben incluir trámites de tipo 2.
+     * @param fechaInicio Fecha de inicio del período para buscar trámites.
+     * @param fechaFin Fecha de fin del período para buscar trámites.
+     * @return Lista de trámites que cumplen con los criterios de búsqueda.
+     */
     @Override
     public List<Tramite> listaTramite(boolean tipo1, boolean tipo2, LocalDate fechaInicio, LocalDate fechaFin) {
-  EntityManager entityManager = this.conexionBD.crearConexion();
+        EntityManager entityManager = this.conexionBD.crearConexion();
         entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Tramite> criteriaQuery = criteriaBuilder.createQuery(Tramite.class);
@@ -153,6 +173,12 @@ public class TramiteDAO implements ITramiteDAO {
         return listaTramites;
     }
 
+    /**
+     * Recupera una lista de trámites asociados a un cliente específico.
+     *
+     * @param clientes Cliente del que se desean recuperar los trámites.
+     * @return Lista de trámites asociados al cliente especificado.
+     */
     @Override
     public List<Tramite> listaTramitePersona(Clientes clientes) {
         EntityManager entityManager = this.conexionBD.crearConexion();
@@ -163,7 +189,12 @@ public class TramiteDAO implements ITramiteDAO {
         entityManager.getTransaction().commit();
         return listaTramite;
     }
-    
+ /**
+     * Recupera una lista de trámites asociados a un cliente específico mediante su identificador.
+     * 
+     * @param id Identificador del cliente del que se desean recuperar los trámites.
+     * @return Lista de trámites asociados al cliente especificado por su identificador.
+     */
     @Override
     public List<Tramite> listaTramitePersona(Long id) {
         EntityManager entityManager = this.conexionBD.crearConexion();
@@ -175,7 +206,12 @@ public class TramiteDAO implements ITramiteDAO {
         entityManager.close();
         return listaTramite;
     }
-    
+  /**
+     * Recupera una lista de trámites basada en los criterios proporcionados en un objeto ConsultaTramiteDTO.
+     * 
+     * @param consulta Objeto ConsultaTramiteDTO que contiene los criterios de búsqueda.
+     * @return Lista de trámites que cumplen con los criterios de búsqueda especificados en el objeto ConsultaTramiteDTO.
+     */
     @Override
     public List<Tramite> listaTramiteReporte(ConsultaTramiteDTO consulta) {
         EntityManager entityManager = this.conexionBD.crearConexion();
@@ -184,34 +220,34 @@ public class TramiteDAO implements ITramiteDAO {
         StringBuilder queryNombre = new StringBuilder("t.cliente.nombreCompleto LIKE :nombre ");
         StringBuilder queryTramite = new StringBuilder("TYPE(t) = :tipo ");
         StringBuilder queryPeriodo = new StringBuilder("t.fechaTramite > :inicio AND t.fechaTramite <= :fin");
-        
-        boolean i=false;
-        if (consulta.getNombre()!=null){
+
+        boolean i = false;
+        if (consulta.getNombre() != null) {
             jpqlQuery.append(queryNombre);
-            i=true;
+            i = true;
         }
-        if (consulta.getTramite()!=null){
-            if(i){
+        if (consulta.getTramite() != null) {
+            if (i) {
                 jpqlQuery.append(and);
             }
             jpqlQuery.append(queryTramite);
-            i=true;
+            i = true;
         }
-        if (consulta.getInicio()!=null&&consulta.getFin()!=null){
-            if(i){
+        if (consulta.getInicio() != null && consulta.getFin() != null) {
+            if (i) {
                 jpqlQuery.append(and);
             }
             jpqlQuery.append(queryPeriodo);
         }
-        
+
         TypedQuery<Tramite> query = entityManager.createQuery(jpqlQuery.toString(), Tramite.class);
-        if (consulta.getNombre()!=null){
-            query.setParameter("nombre", "%"+consulta.getNombre()+"%");
+        if (consulta.getNombre() != null) {
+            query.setParameter("nombre", "%" + consulta.getNombre() + "%");
         }
-        if (consulta.getTramite()!=null){
+        if (consulta.getTramite() != null) {
             query.setParameter("tipo", consulta.getTramite());
         }
-        if (consulta.getInicio()!=null&&consulta.getFin()!=null){
+        if (consulta.getInicio() != null && consulta.getFin() != null) {
             query.setParameter("inicio", consulta.getInicio());
             query.setParameter("fin", consulta.getFin());
         }
@@ -219,5 +255,5 @@ public class TramiteDAO implements ITramiteDAO {
         entityManager.close();
         return listaTramite;
     }
-    
+
 }

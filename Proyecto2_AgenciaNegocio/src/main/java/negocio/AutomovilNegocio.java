@@ -15,17 +15,29 @@ import daos.PlacaDAO;
 import java.util.List;
 
 /**
- *
+ * Esta clase implementa la interfaz IAutomovilNegocios y proporciona la lógica de negocio relacionada con los automóviles.
+ * Permite realizar operaciones como registrar un nuevo automóvil y obtener una lista de automóviles asociados a un cliente.
+ * 
  * @author Oley
  */
 public class AutomovilNegocio implements  IAutomovilNegocios{
     private IAutomovilDAO automovilDAO;
 
+    /**
+     * Constructor de la clase AutomovilNegocio.
+     *
+     * @param automovilDAO Objeto que implementa la interfaz IAutomovilDAO para acceder a la capa de datos.
+     */
     public AutomovilNegocio(IAutomovilDAO automovilDAO) {
         this.automovilDAO = automovilDAO;
     }
 
-
+    /**
+     * Registra un nuevo automóvil.
+     *
+     * @param automovil El automóvil a registrar.
+     * @return El automóvil registrado, o null si no se pudo registrar.
+     */
     @Override
     public Automovil registrarAutomovil(Automovil automovil) {
         List<Automovil> lista = automovilDAO.listaAutomovil();
@@ -39,16 +51,22 @@ public class AutomovilNegocio implements  IAutomovilNegocios{
         if (autoAgregado == null) {
             System.err.println("No se pudo agregar el automóvil");
             return null;
-        } else{
-            Placa placa = new Placa("ACTIVA",autoAgregado,1500);
-            IConexion conexion = new ConexionBase();
+        } else {
+            Placa placa = new Placa("ACTIVA", autoAgregado, 1500);
+            IConexion conexion = new ConexionBase(); // Aquí puedes considerar inyectar la dependencia.
             PlacaDAO placaDAO = new PlacaDAO(conexion);
             placaDAO.agregarPlacas(placa);
         }
 
-        return autoAgregado; 
+        return autoAgregado;
     }
 
+    /**
+     * Obtiene una lista de automóviles asociados a un cliente específico.
+     *
+     * @param id El identificador del cliente.
+     * @return Una lista de automóviles asociados al cliente.
+     */
     @Override
     public List<Automovil> listaAutosClientes(int id) {
         return automovilDAO.listaAutosClientes(id);

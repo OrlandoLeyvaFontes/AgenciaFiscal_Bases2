@@ -12,17 +12,24 @@ import javax.persistence.TypedQuery;
 
 
 /**
- *
+ * Clase PlacaDAO
  * @author Oley
  */
 public class PlacaDAO implements IPlacasDAO {
 
     private IConexion conexionBD;
-
+    /**
+     * Cosntructor
+     * @param conexionBD Conexion
+     */
     public PlacaDAO(IConexion conexionBD) {
         this.conexionBD = conexionBD;
     }
-
+    /**
+     * Agrega Placa a base de datos
+     * @param placa Placa
+     * @return Placa
+     */
     @Override
     public Placa agregarPlacas(Placa placa) {
         
@@ -50,7 +57,7 @@ public class PlacaDAO implements IPlacasDAO {
             if (!placasActivas.isEmpty()) {
                 Placa placaActiva = placasActivas.get(0);
                 placaActiva.setEstado("INACTIVA");
-                placaActiva.setFechaInactivio(new GregorianCalendar());
+                placaActiva.setFechaInactivo(new GregorianCalendar());
                 entityManager.merge(placaActiva);
             }
             
@@ -111,7 +118,11 @@ public class PlacaDAO implements IPlacasDAO {
 //
 //        return placa;
 //    }
-
+    /**
+     * Lista de placas de un auto
+     * @param idAutomovil ID Auto
+     * @return Lista placas
+     */
     @Override
     public List<Placa> AutoEspecifico(int idAutomovil) {
         EntityManager entityManager = this.conexionBD.crearConexion();
@@ -123,7 +134,11 @@ public class PlacaDAO implements IPlacasDAO {
         entityManager.getTransaction().commit();
         return listaPlacas;
     }
-    
+    /**
+     * Obtiene la ultima placa activa del auto
+     * @param numPlaca Numero alfanumerico
+     * @return Placa
+     */
     @Override
     public Placa autoPlaca(String numPlaca) {
         EntityManager entityManager = this.conexionBD.crearConexion();
@@ -135,7 +150,10 @@ public class PlacaDAO implements IPlacasDAO {
         entityManager.getTransaction().commit();
         return listaPlacas.get(0);
     }
-
+    /**
+     * Lista de placas
+     * @return Lista de placas
+     */
     @Override
     public List<Placa> todasPlacas() {
         EntityManager entityManager = this.conexionBD.crearConexion();

@@ -18,17 +18,24 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 
 /**
- *
+ * Clase ClientesDAO
  * @author Oley
  */
 public class ClientesDAO implements IClientesDAO {
 
     private IConexion conexionBD;
-
+    /**
+     * Cosntructor
+     * @param conexion Conexion
+     */
     public ClientesDAO(IConexion conexion) {
         this.conexionBD = conexion;
     }
-
+    /**
+     * Agrega cliente a la base de datos
+     * @param clienteNuevo ClienteNuevoDTO
+     * @return Cliente
+     */
     @Override
     public Clientes agregarCliente(ClienteNuevoDTO clienteNuevo) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("AgenciaPU");
@@ -62,7 +69,11 @@ public class ClientesDAO implements IClientesDAO {
 
         return cliente;
     }
-
+    /**
+     * Comprueba al cliente en la base de datos segun RFC
+     * @param rfc RFC
+     * @return Cliente
+     */
    @Override
     public Clientes Checar(String rfc) {
         EntityManager entityManager = null;
@@ -79,7 +90,11 @@ public class ClientesDAO implements IClientesDAO {
             }
         }
     }
-    
+    /**
+     * Obtiene una lista de clientes
+     * @param filtrosConsulta Filtro para la busqueda
+     * @return Lista de clientes
+     */
     @Override
     public List<Clientes> consultar(ConsultaClienteDTO filtrosConsulta){
         

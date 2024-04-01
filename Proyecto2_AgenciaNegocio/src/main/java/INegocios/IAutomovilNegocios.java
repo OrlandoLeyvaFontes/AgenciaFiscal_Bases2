@@ -9,12 +9,27 @@ import entidades_JPA.Clientes;
 import java.util.List;
 
 /**
- *
+ * Descripción de la interfaz IAutomovilNegocios.
+ * Esta interfaz define los métodos para la lógica de negocio relacionada con los automóviles.
  * @author Oley
  */
 public interface IAutomovilNegocios {
-        public Automovil registrarAutomovil(Automovil automovil) ;
-            public List<Automovil> listaAutosClientes(int id);
+ 
+    /**
+     * Registra un nuevo automóvil en el sistema.
+     * 
+     * @param automovil El objeto Automovil que se va a registrar.
+     * @return El automóvil registrado, o null si no se pudo registrar.
+     */
+public Automovil registrarAutomovil(Automovil automovil);
+
+ /**
+     * Obtiene una lista de automóviles asociados a un cliente específico.
+     * 
+     * @param id El identificador del cliente.
+     * @return Una lista de objetos Automovil asociados al cliente.
+     */
+public List<Automovil> listaAutosClientes(int id);
 
 
 }

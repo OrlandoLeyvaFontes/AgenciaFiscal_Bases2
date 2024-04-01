@@ -9,16 +9,33 @@ import entidades_JPA.Automovil;
 import java.util.List;
 
 /**
- *
+ * Interfaz IAutomoviliDAO
  * @author Oley
  */
 public interface IAutomovilDAO {
 //    public Automovil agergarAutomovil(AutomovilNuevoDTO automovilNuevo);
 
-    public List<Automovil> listaAutosClientes(int id);
+/**
+ * Obtiene una lista de automóviles asociados a un cliente específico.
+ * 
+ * @param id Identificador del cliente del que se desean obtener los automóviles.
+ * @return Lista de automóviles asociados al cliente especificado.
+ */
+public List<Automovil> listaAutosClientes(int id);
 
-    public Automovil agregaAutomovil(Automovil Automovil);
+/**
+ * Agrega un nuevo automóvil al sistema.
+ * 
+ * @param automovil Automóvil que se desea agregar.
+ * @return El automóvil agregado al sistema.
+ */
+public Automovil agregaAutomovil(Automovil automovil);
 
-    public List<Automovil> listaAutomovil();
+/**
+ * Obtiene una lista de todos los automóviles almacenados en el sistema.
+ * 
+ * @return Lista de todos los automóviles almacenados en el sistema.
+ */
+public List<Automovil> listaAutomovil();
 
 }

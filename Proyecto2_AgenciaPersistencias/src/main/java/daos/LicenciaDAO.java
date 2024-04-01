@@ -17,13 +17,16 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * Clase LicenciaDAO
  * @author Oley
  */
 public class LicenciaDAO implements ILicenciaDAO {
 
     private IConexion conexionBD;
-
+    /**
+     * Constructor
+     * @param conexionBD Conexion
+     */
     public LicenciaDAO(IConexion conexionBD) {
         this.conexionBD = conexionBD;
     }
@@ -87,20 +90,28 @@ public class LicenciaDAO implements ILicenciaDAO {
 //
 //    return licencia;
 //    }
-
+    /**
+     * Lista de licencia de persona
+     * @param id Id Cliente
+     * @return Lista de licencias
+     */
     @Override
     public List<Licencia> listaLicenciaPersona(int id) {
-  EntityManager entityManager = this.conexionBD.crearConexion();
+        EntityManager entityManager = this.conexionBD.crearConexion();
         entityManager.getTransaction().begin();
         TypedQuery<Licencia> query = entityManager.createQuery("SELECT l FROM Licencia l WHERE l.cliente.id = :idCliente", Licencia.class);
         query.setParameter("idCliente", id);
         List<Licencia> listaLicencia = query.getResultList();
         entityManager.getTransaction().commit();
         return listaLicencia;    }
-
+    /**
+     * Lista de licencias Vigentes
+     * @param id ID cliente
+     * @return Lista de licencias
+     */
     @Override
     public List<Licencia> listaLicenciaPersonaVigentes(int id) {
-EntityManager entityManager = this.conexionBD.crearConexion();
+        EntityManager entityManager = this.conexionBD.crearConexion();
         entityManager.getTransaction().begin();
         TypedQuery<Licencia> query = entityManager.createQuery("SELECT l FROM Licencia l "
                 + "WHERE l.Cliente.id = :idCliente AND l.FechaVigencia > CURRENT_DATE", Licencia.class);
@@ -108,10 +119,14 @@ EntityManager entityManager = this.conexionBD.crearConexion();
         List<Licencia> listaLicencia = query.getResultList();
         entityManager.getTransaction().commit();
         return listaLicencia;    }
-
+    /**
+     * Agrega licencia
+     * @param licencia Licencia
+     * @return Licencia
+     */
     @Override
     public Licencia agregaLicencia(Licencia licencia) {
- EntityManager entityManager = this.conexionBD.crearConexion();
+        EntityManager entityManager = this.conexionBD.crearConexion();
         entityManager.getTransaction().begin();
         try {
             entityManager.persist(licencia);

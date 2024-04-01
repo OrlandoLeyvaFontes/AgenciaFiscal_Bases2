@@ -14,13 +14,17 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * Clase AutomovilDAO
  * @author Oley
  */
 public class AutomovilDAO implements IAutomovilDAO {
     private IConexion conexionBD;
-public AutomovilDAO(IConexion conexionBD) {
-        this.conexionBD = conexionBD;
+    /**
+     * Constructor
+     * @param conexionBD Conexion
+     */
+    public AutomovilDAO(IConexion conexionBD) {
+            this.conexionBD = conexionBD;
     }
 //    @Override
 //    public Automovil agergarAutomovil(AutomovilNuevoDTO automovilNuevo) {
@@ -61,7 +65,11 @@ public AutomovilDAO(IConexion conexionBD) {
 //        
 //        return automovil;
 //    }
-
+    /**
+     * Obtiene una lista de automoviles de la base de datos segun id del cliente
+     * @param idCliente ID del Cliente
+     * @return Lista de automoviles
+     */
     @Override
     public List<Automovil> listaAutosClientes(int idCliente) {
         EntityManager entityManager = this.conexionBD.crearConexion();
@@ -72,7 +80,11 @@ public AutomovilDAO(IConexion conexionBD) {
         entityManager.getTransaction().commit();
         return listaAutos;
     }
-
+    /**
+     * Agrega un automovil a la base de datos
+     * @param Automovil Automovil
+     * @return Automovil
+     */
     @Override
     public Automovil agregaAutomovil(Automovil Automovil) {
         EntityManager entityManager = this.conexionBD.crearConexion();
@@ -83,8 +95,12 @@ public AutomovilDAO(IConexion conexionBD) {
             return null;
         }
         entityManager.getTransaction().commit();
-        return Automovil;    }
-
+        return Automovil;
+    }
+    /**
+     * Obtiene una lista de automoviles de la base de datos
+     * @return Lista Automovil
+     */
     @Override
     public List<Automovil> listaAutomovil() {
         EntityManager entityManager = this.conexionBD.crearConexion();

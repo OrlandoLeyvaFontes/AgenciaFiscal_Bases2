@@ -22,31 +22,77 @@ import javax.persistence.OneToMany;
  *
  * @author Oley
  */
+/**
+ * Esta clase representa un DTO (objeto de transferencia de datos) para la
+ * creación de un nuevo automóvil.
+ *
+ * Un DTO se utiliza para transferir datos entre el cliente y el servidor.
+ */
 @Entity
 public class AutomovilNuevoDTO {
 
-  
- @Id
+    /**
+     * Identificador único del automóvil.
+     */
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * Número de serie del automóvil.
+     */
     private String numeroSerie;
+
+    /**
+     * Marca del automóvil.
+     */
     private String marca;
+
+    /**
+     * Línea del automóvil.
+     */
     private String linea;
+
+    /**
+     * Color del automóvil.
+     */
     private String color;
+
+    /**
+     * Modelo del automóvil.
+     */
     private String modelo;
 
+    /**
+     * Cliente asociado al automóvil.
+     */
     @ManyToOne
     @JoinColumn(name = "idCliente")
     private Clientes cliente;
 
+    /**
+     * Lista de placas asociadas al automóvil.
+     */
     @OneToMany(mappedBy = "automovil")
     private List<Placa> placas;
 
+    /**
+     * Constructor vacío de la clase AutomovilNuevoDTO.
+     */
     public AutomovilNuevoDTO() {
         placas = new ArrayList<>();
     }
 
+    /**
+     * Constructor de la clase AutomovilNuevoDTO con parámetros.
+     *
+     * @param numeroSerie Número de serie del automóvil.
+     * @param marca Marca del automóvil.
+     * @param linea Línea del automóvil.
+     * @param color Color del automóvil.
+     * @param modelo Modelo del automóvil.
+     * @param cliente Cliente asociado al automóvil.
+     */
     public AutomovilNuevoDTO(String numeroSerie, String marca, String linea, String color, String modelo, Clientes cliente) {
         this.numeroSerie = numeroSerie;
         this.marca = marca;
@@ -56,28 +102,25 @@ public class AutomovilNuevoDTO {
         this.cliente = cliente;
         placas = new ArrayList<>();
     }
-
-    // Getters y setters omitidos por brevedad
-
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-
-        AutomovilNuevoDTO that = (AutomovilNuevoDTO) object;
-
-        return id != null ? id.equals(that.id) : that.id == null;
-    }
-
+    /**
+     * Obtiene Hash
+     * @return Hash
+     */
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
     }
-
+    /**
+     * Obtiene Cliente
+     * @return Cliente
+     */
     public Clientes getCliente() {
         return cliente;
     }
-
+    /**
+     * Agrega Cliente
+     * @param cliente Cliente
+     */
     public void setCliente(Clientes cliente) {
         this.cliente = cliente;
     }

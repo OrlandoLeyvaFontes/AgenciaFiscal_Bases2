@@ -17,23 +17,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Clase que implementa la interfaz ITramiteNegocio para manejar operaciones relacionadas con trámites.
  *
  * @author Oley
  */
 public class TramiteNegocio implements ITramiteNegocio{
-private ITramiteDAO itramiteDAO;
+    private ITramiteDAO itramiteDAO;
+    /**
+     * Constructor
+     */
+    public TramiteNegocio() {
+    }
+
 
 //    @Override
 //    public Tramite agregarTramite(TramiteNuevoDTO TramiteNuevo) {
 //        return itramiteDAO.agergarTramite(TramiteNuevo);
 //    }
-
+/**
+ * Obtiene una lista de trámites asociados a un cliente específico.
+ * 
+ * @param clientes El objeto Clientes para el cual se desean obtener los trámites.
+ * @return Una lista de objetos Tramite que representan los trámites asociados al cliente.
+ */
     @Override
     public List<Tramite> listaTramitePersona(Clientes clientes) {
            return itramiteDAO.listaTramitePersona(clientes);
 
     }
-
+/**
+ * Obtiene una lista de trámites filtrados según los criterios especificados.
+ * 
+ * @param placas Indica si se deben incluir trámites relacionados con placas.
+ * @param licencia Indica si se deben incluir trámites relacionados con licencias.
+ * @param fechaInicio La fecha de inicio del intervalo de tiempo para el filtro.
+ * @param fechaFin La fecha de fin del intervalo de tiempo para el filtro.
+ * @param filtro El filtro para buscar trámites por nombre de cliente.
+ * @return Una lista de objetos Tramite que representan los trámites filtrados.
+ */
     @Override
     public List<Tramite> listaTramite(boolean placas, boolean licencia, LocalDate fechaInicio, LocalDate fechaFin, String filtro) {
   List<Tramite> listaTramiteFiltrada = itramiteDAO.listaTramite(placas, licencia, fechaInicio, fechaFin);
