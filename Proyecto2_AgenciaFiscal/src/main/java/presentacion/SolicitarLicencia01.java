@@ -86,18 +86,20 @@ private Clientes Checar(String rfc) {
         tblLicencia = new javax.swing.JTable();
         btnAbrirLicencia = new javax.swing.JButton();
         btnnRegresar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("RFC:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 250, 30));
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 250, 30));
 
         tblLicencia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,7 +122,7 @@ private Clientes Checar(String rfc) {
         });
         jScrollPane1.setViewportView(tblLicencia);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 540, 160));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 540, 160));
 
         btnAbrirLicencia.setText("Continuar");
         btnAbrirLicencia.setEnabled(false);
@@ -129,7 +131,7 @@ private Clientes Checar(String rfc) {
                 btnAbrirLicenciaActionPerformed(evt);
             }
         });
-        add(btnAbrirLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, -1));
+        add(btnAbrirLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, -1, -1));
 
         btnnRegresar.setText("Regresar");
         btnnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +139,14 @@ private Clientes Checar(String rfc) {
                 btnnRegresarActionPerformed(evt);
             }
         });
-        add(btnnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
+        add(btnnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
+
+        jLabel2.setText("Identificar cliente por RFC");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+
+        jLabel3.setText("Presione Enter");
+        jLabel3.setEnabled(false);
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -215,6 +224,8 @@ private Clientes Checar(String rfc) {
     private javax.swing.JButton btnAbrirLicencia;
     private javax.swing.JButton btnnRegresar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tblLicencia;

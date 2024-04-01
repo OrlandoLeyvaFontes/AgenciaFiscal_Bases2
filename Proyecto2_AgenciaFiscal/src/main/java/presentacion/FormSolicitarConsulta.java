@@ -39,6 +39,7 @@ public class FormSolicitarConsulta extends javax.swing.JFrame {
         txtRfc = new javax.swing.JTextField();
         txtNacimiento = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +86,8 @@ public class FormSolicitarConsulta extends javax.swing.JFrame {
 
         jLabel1.setText("Buscar por:");
 
+        jLabel2.setText("Busqueda de Cliente");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,11 +118,17 @@ public class FormSolicitarConsulta extends javax.swing.JFrame {
                                     .addComponent(txtNombre))))
                         .addGap(0, 61, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitulo)
                 .addGap(40, 40, 40)
                 .addComponent(jLabel1)
@@ -135,7 +144,7 @@ public class FormSolicitarConsulta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNacimiento)
                     .addComponent(txtNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnContinuar))
@@ -210,6 +219,7 @@ public class FormSolicitarConsulta extends javax.swing.JFrame {
     private javax.swing.JRadioButton btnNombre;
     private javax.swing.JRadioButton btnRfc;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtNacimiento;
     private javax.swing.JTextField txtNombre;

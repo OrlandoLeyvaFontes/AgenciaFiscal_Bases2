@@ -74,18 +74,20 @@ public class BuscarAutomovil extends javax.swing.JPanel implements java.beans.Cu
         jTable1 = new javax.swing.JTable();
         btnContinuar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("No. placa");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
 
         txtPlaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPlacaActionPerformed(evt);
             }
         });
-        add(txtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 170, -1));
+        add(txtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 170, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,7 +110,7 @@ public class BuscarAutomovil extends javax.swing.JPanel implements java.beans.Cu
         });
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 620, 200));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 620, 200));
 
         btnContinuar.setText("Continuar");
         btnContinuar.setEnabled(false);
@@ -117,7 +119,7 @@ public class BuscarAutomovil extends javax.swing.JPanel implements java.beans.Cu
                 btnContinuarActionPerformed(evt);
             }
         });
-        add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 260, -1, -1));
+        add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 310, -1, -1));
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +127,14 @@ public class BuscarAutomovil extends javax.swing.JPanel implements java.beans.Cu
                 btnVolverActionPerformed(evt);
             }
         });
-        add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
+
+        jLabel2.setText("Buscar automovil por numero de placa");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
+
+        jLabel3.setText("Presione Enter");
+        jLabel3.setEnabled(false);
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
@@ -189,6 +198,8 @@ public class BuscarAutomovil extends javax.swing.JPanel implements java.beans.Cu
     private javax.swing.JButton btnContinuar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtPlaca;

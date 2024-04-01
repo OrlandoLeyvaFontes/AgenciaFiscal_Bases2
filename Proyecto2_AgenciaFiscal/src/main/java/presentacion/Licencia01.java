@@ -83,6 +83,7 @@ public Licencia01(Clientes cliente, ILicenciaNegocios LicenciaNegocio) {
         txtcosto = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -123,6 +124,9 @@ public Licencia01(Clientes cliente, ILicenciaNegocios LicenciaNegocio) {
             }
         });
         add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
+
+        jLabel3.setText("Seleccione el tipo de licencia");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void AñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñoActionPerformed
@@ -180,6 +184,7 @@ public void agregar() {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField txtcosto;
     // End of variables declaration//GEN-END:variables
 }

@@ -43,6 +43,7 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,19 +54,21 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
             }
         });
 
-        btnRegistrar.setText("Registrar Automovil");
+        btnRegistrar.setText("Automovil sin registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
             }
         });
 
-        btnBuscar.setText("Buscar automovil");
+        btnBuscar.setText("Buscar automovil con placa");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Seleccione la forma en que quiere generar la placa");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,20 +80,26 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(btnVolver))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(btnRegistrar)
-                        .addGap(58, 58, 58)
-                        .addComponent(btnBuscar)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addGap(78, 78, 78)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(btnRegistrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(btnBuscar)
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnBuscar))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(btnVolver)
                 .addContainerGap())
         );
@@ -181,5 +190,6 @@ public class FormTipoAutomovil extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
